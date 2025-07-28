@@ -1,0 +1,33 @@
+---
+import { MoveRight } from "lucide-react";
+import { BlurFade } from "./magicui/blur-fade";
+import IconWrapper from "./IconWrapper";
+import { MagicCard } from "./magicui/magic-card";
+
+
+const randombackground = ['bg-red-200', 'bg-blue-200', 'bg-green-200', 'bg-yellow-200', 'bg-purple-200', 'bg-pink-200'];
+const {data} = Astro.props;
+---
+        <div class="container mx-20 my-30">
+            <div class="grid grid-cols-4 max-lg:grid-cols-2 gap-5">
+                {data.map((item: any, index: number) => (
+                    <BlurFade delay={0.12 * index} direction="left" inView client:visible>
+                            <div class="rounded-md border hover:shadow-xl hover:bg-white transition duration-300 cursor-pointer">
+                                <MagicCard client:visible  gradientColor={"#D9D9D955"} gradientSize={200} className="p-0">
+                                    <div class="text-center space-y-3 p-5">
+                                        <div class={`${randombackground[Math.floor(Math.random() * randombackground.length)]} w-16 h-16 rounded mx-auto flex justify-center items-center`}>
+                                            <IconWrapper IconComponentName={item.image} className="w-8 h-8 text-gray-800" client:load />
+                                        </div>
+                                        <h1 class="text-lg font-bold">{item.title}</h1>
+                                        <p class="text-sm">{item.description}</p>
+                                        <a href="/layanan" class="text-blue-600 group hover:underline cursor-pointer text-sm flex items-center justify-center">
+                                            <span>Selengkapnya</span>
+                                            <MoveRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                        </a>
+                                    </div>
+                                </MagicCard>
+                            </div>
+                    </BlurFade>
+                ))}
+            </div>
+        </div>

@@ -1,0 +1,56 @@
+---
+import { BlurFade } from "@/components/magicui/blur-fade";
+import Navbar from "@/components/Navbar";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import { EyeIcon, DownloadIcon, FileText } from "lucide-react";
+const data = [
+    {
+        title: "Laporan 1",
+        description: "Laporan 1",
+    },
+    {
+        title: "Laporan 2",
+        description: "Laporan 2",
+    },
+    {
+        title: "Laporan 3",
+        description: "Laporan 3",
+    },
+    {
+        title: "Laporan 2",
+        description: "Laporan 2",
+    },
+    {
+        title: "Laporan 3",
+        description: "Laporan 3",
+    },
+]
+---
+
+<BaseLayout title="Laporan">
+    <div class="container mx-20 my-30">
+        <h1 class="text-3xl font-bold">Informasi Terbaru</h1>
+        <!-- Laporan -->
+         <section class="flex flex-col gap-5 mt-10">
+                         {data.map((item:any, index:number) => (
+                        <BlurFade inView delay={0.2 * index} direction="left" client:visible>
+                        <div class="bg-white p-5 rounded-md">
+                            <div class=" flex items-center gap-4 mb-5">
+                                <div class="bg-red-200 min-w-13 min-h-13 rounded-md flex justify-center items-center">
+                                    <FileText className="text-red-500"/>
+                                </div>
+                                <h3 class="text-lg font-semibold">{item.title}</h3>
+                            </div>
+                            <p class="text-sm">Dokumen yang menunjukan {item.title}</p>
+                        <div class="flex text-sm justify-between mt-5">
+                            <a href="/laporan" class=" text-blue-500 group hover:underline flex items-center"><EyeIcon className="w-4 h-4 mr-2 group-hover:scale-120 transition duration-300" /> Lihat Dokumen</a>
+                            <a href="/laporan" class=" text-blue-500 group hover:underline flex items-center"><DownloadIcon className="w-4 h-4 mr-2 group-hover:scale-120 transition duration-300" /> Unduh Dokumen</a>
+                        </div>
+                    </div>
+                    </BlurFade>
+                    ))}
+         </section>
+    </div>
+
+</BaseLayout>

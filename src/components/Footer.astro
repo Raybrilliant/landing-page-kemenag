@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import { FacebookIcon, InstagramIcon, MapPin, TwitterIcon } from "lucide-react";
+---
+
+<div class="bg-green-700 py-10 mt-40 text-white">
+    <div class="mx-20 grid grid-cols-4 gap-10 items-center">
+        <div class="flex items-center gap-2 mx-auto">
+			<Image src="/logo/logo.png" alt="logo" width={60} height={60} />
+            <div class="text-lg font-semibold">
+                <p >Kementerian Agama</p>
+				<p >Kota Probolinggo</p>
+            </div>
+		</div>
+        <div class="flex items-center gap-2 mx-auto">
+            <MapPin width={50} height={50} />
+            <p>Jl. Mastrip No.323, Kanigaran, Kec. Kanigaran, Kota Probolinggo, Jawa Timur 67213</p>
+        </div>
+        <div class="flex flex-col justify-center">
+            <p>Email: </p>
+            <a href="mailto:info@kementerianagama.go.id" class="text-white">info@kementerianagama.go.id</a>
+        </div>
+		<div class="flex flex-col mx-auto">
+            <h1 class="font-semibold">Sosial Media</h1>
+            <div class="flex items-center gap-2 mt-2">
+                <a href="https://www.facebook.com/kementerianagama" target="_blank">
+                    <FacebookIcon width={30} height={30} />
+                </a>
+                <a href="https://www.twitter.com/kementerianagama" target="_blank">
+                    <TwitterIcon width={30} height={30} />
+                </a>
+                <a href="https://www.instagram.com/kementerianagama" target="_blank">
+                    <InstagramIcon width={30} height={30} />
+                </a>
+            </div>
+		</div>
+	</div>
+</div>

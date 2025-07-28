@@ -1,0 +1,31 @@
+---
+import { Card, CardContent } from "@/components/ui/card";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+
+---
+
+<BaseLayout>
+    <div class="container mx-20 my-30">
+        <h1 class="text-3xl font-bold mb-10">Laporkan Masalah</h1>
+        <Card>
+            <CardContent>
+                <div class="p-4 bg-yellow-200 text-sm rounded-md mb-5 font-medium"> Laporan Anda akan dikirim secara rahasia dan langsung ditindaklanjuti oleh tim kami. Harap sertakan detail yang jelas agar penanganan dapat dilakukan secepat mungkin.</div>
+                <form method="post" action="/api/lapor" class="flex flex-col gap-2">
+                    <select name="category" id="" class="w-full p-2 border border-gray-300 rounded-md">
+                        <option disabled selected>Pilih Kategori</option>
+                        <option value="2">Zona Integritas</option>
+                        <option value="1">Pelayanan PTSP</option>
+                        <option value="2">Pelayanan Haji</option>
+                        <option value="2">Pelayanan Kepegawaian</option>
+                        <option value="3">Lainnya</option>
+                    </select>
+                    <textarea id="message" rows="10" name="message" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Pesan"></textarea>
+                    <label for="file" class="text-sm text-gray-700">Unggah Dokumen Pendukung (opsional)</label>
+                    <input type="file" name="file" id="" class="w-full p-2 border border-gray-300 rounded-md">
+                    <button type="submit" class="w-full py-2 bg-red-500 text-white rounded-md">Laporkan</button>
+                </form>
+            </CardContent>
+        </Card>
+    </div>
+</BaseLayout>
