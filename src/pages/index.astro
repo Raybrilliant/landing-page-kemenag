@@ -21,7 +21,7 @@ const data = layanan;
 				<BlurFade delay={0.7} inView direction="left" client:load>
 					<div class="text-white space-y-5">
 						<p class="text-2xl font-bold">Highlight Berita Terkini</p>
-						<p class="text-sm">Update Berita Seputar Naungan Kemenag Kota Probolinggo</p>
+						<p class="text-sm">Update Berita Seputar Kemenag Kota Probolinggo</p>
 						<button class="bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-600/80 hover:px-7 duration-300 cursor-pointer">Lihat Semua</button>
 					</div>
 				</BlurFade>
@@ -32,14 +32,17 @@ const data = layanan;
 				</BlurFade>
 				<!-- Berita -->
 				 <BlurFade delay={0.5} direction="right" inView client:visible>
-				 <div class="overflow-x-auto mt-20 mx-10">
-					<div class="w-full flex items-center pb-5 gap-5">
-						<Berita title="Kota Probolinggo berhasil mendapat predikat Emas" date="01 Jan 2025" image="https://picsum.photos/600/300" />
-						<Berita title="judul berita" date="01 Jan 2025" content="isi berita" image="https://picsum.photos/600/300" />
-						<Berita title="judul berita" date="01 Jan 2025" content="isi berita" image="https://picsum.photos/600/300" />
-						<Berita title="judul berita" date="01 Jan 2025" content="isi berita" image="https://picsum.photos/600/300" />
+					<div class="relative w-full mx-10 mt-10">
+						<div class="overflow-x-auto w-full">
+						   <div class="flex items-center gap-5">
+							   <Berita title="Kota Probolinggo berhasil mendapat predikat Emas" date="01 Jan 2025" image="https://picsum.photos/600/300" />
+							   <Berita title="judul berita" date="01 Jan 2025" content="isi berita" image="https://picsum.photos/600/300" />
+							   <Berita title="judul berita" date="01 Jan 2025" content="isi berita" image="https://picsum.photos/600/300" />
+							   <Berita title="judul berita" date="01 Jan 2025" content="isi berita" image="https://picsum.photos/600/300" />
+						   </div>
+					   </div>
+					   <div class="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-accent"></div>
 					</div>
-				 </div>
 				 </BlurFade>
 			</div>
 		</div>
