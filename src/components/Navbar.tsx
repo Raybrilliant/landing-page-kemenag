@@ -56,7 +56,7 @@ export default function Navbar() {
                     <p className={`${textSize} font-bold ${textColorClass} duration-300`}>Kota Probolinggo</p>
                 </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center max-sm:hidden">
                 <a href="/" className={`px-4 py-2 rounded-md duration-300 ${linkHoverClass}`}>Home</a>
                 <a href="/about" className={`px-4 py-2 rounded-md duration-300 ${linkHoverClass}`}>About</a>
                 <a href="/contact" className={`px-4 py-2 rounded-md duration-300 ${linkHoverClass}`}>Contact</a>

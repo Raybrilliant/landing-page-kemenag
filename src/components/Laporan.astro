@@ -4,21 +4,21 @@ import { BlurFade } from "./magicui/blur-fade";
 const {data} = Astro.props;
 ---
 
-        <div class="bg-green-700 px-20 py-20">
-            <div class="flex justify-between gap-10 items-center text-white">
+        <div class="bg-green-700 px-20 max-sm:px-5 py-20 max-sm:py-10">
+            <div class="flex max-sm:flex-col justify-between gap-10 items-center text-white">
                 <h2 class="text-2xl font-semibold">
                     Transparansi Informasi Kementerian Agama Kota Probolinggo
                 </h2>
                 <p>
                     Menyajikan publikasi dokumen resmi yang transpran, akurat, dan dapat dipertanggungjawabkan kepada masyarakat dan pemangku kepentingan lainnya.
                 </p>
-                <a href="/informasi" class="w-1/3">
+                <a href="/informasi" class="w-1/3 max-sm:w-full">
                 <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 group rounded-md w-full cursor-pointer">
                     Lihat Semua Informasi <ArrowRightSquare className="w-4 h-4 ml-1 inline-block group-hover:translate-x-1 transition duration-300" />
                 </button>
                 </a>
             </div>
-            <div class="grid grid-cols-3 gap-8 mt-10">
+            <div class="grid grid-cols-3 max-sm:grid-cols-1 gap-8 mt-10">
                 {data.map((item:any, index:number) => (
                     <BlurFade inView delay={0.2 * index} direction="left" client:visible>
                     <div class="bg-white p-5 rounded-md">

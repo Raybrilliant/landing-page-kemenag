@@ -4,11 +4,11 @@ import { Image } from "astro:assets";
 const { title, slug, date, image } = Astro.props;
 ---
 
-<div class="rounded-md bg-white overflow-hidden border hover:shadow-xl duration-300 grid grid-cols-2 cursor-pointer min-h-52 min-w-150">
+<div class="rounded-md bg-white overflow-hidden border hover:shadow-xl duration-300 grid grid-cols-2 cursor-pointer min-h-52 max-sm:min-h-40 min-w-150 max-sm:min-w-full">
     <Image src={image} alt="berita" class="w-full h-full object-cover" width={300} height={208}/>
     <div class="space-y-2 p-5">
-        <h2 class="text-lg font-semibold">{title}</h2>
-        <p class="text-sm">{date}</p>
-        <a href={`/berita/${slug}`} class="text-blue-500 hover:underline text-sm">Selengkapnya</a>
+        <h2 class="text-lg max-sm:text-sm font-semibold max-sm:font-medium">{title}</h2>
+        <p class="text-sm max-sm:text-xs">{date}</p>
+        <a href={`/berita/${slug}`} class="text-blue-500 hover:underline text-sm max-sm:text-xs">Selengkapnya</a>
     </div>
 </div>
