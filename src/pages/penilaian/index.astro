@@ -1,0 +1,98 @@
+---
+import { Card, CardContent } from "@/components/ui/card";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+    <div class="mx-20 max-sm:mx-5 my-30">
+        <h1 class="text-3xl font-bold mb-10">Penilaian Layanan</h1>
+        <Card>
+            <CardContent>
+                <form id="ratingForm" method="post" class="flex flex-col gap-4">
+                    <!-- Tampilkan ID layanan -->
+                    <div class="flex items-center gap-2">
+                    <p class="font-medium">Nomor Layanan:</p>
+                    <input 
+                        type="text" 
+                        id="layananId" 
+                        name="layananId" 
+                        readonly 
+                    />
+                    </div>
+
+                    <!-- Rating bintang -->
+                    <div id="starContainer" class="flex items-center mx-auto gap-2">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                            <svg 
+                                data-star={i + 1}
+                                xmlns="http://www.w3.org/2000/svg" 
+                                viewBox="0 0 24 24" 
+                                fill="currentColor" 
+                                class="w-20 h-20 max-sm:w-10 max-sm:h-10 text-gray-300 cursor-pointer transition-colors"
+                            >
+                                <path 
+                                    fill-rule="evenodd" 
+                                    d="M12 17.27l5.18 3.73-1.64-5.81L21 9.24l-5.9-.51L12 3 8.9 8.73 3 9.24l4.46 5.95-1.64 5.81L12 17.27z" 
+                                    clip-rule="evenodd" 
+                                />
+                            </svg>
+                        ))}
+                    </div>
+                    <input type="hidden" name="rating" id="ratingValue" required />
+                    <p class="text-sm text-center text-gray-500">1 = Sangat Buruk, 5 = Sangat Baik</p>
+
+                    <!-- Tombol submit -->
+                    <button 
+                        type="submit" 
+                        class="w-full py-2 bg-green-500 text-white rounded-md cursor-pointer hover:bg-green-600 transition"
+                    >
+                        Nilai Layanan
+                    </button>
+                </form>
+
+                <!-- Pesan hasil -->
+                <div id="result" class="mt-5 bg-green-200 p-4 rounded-md ">
+                    <p>Terima kasih telah memberikan penilaian, semoga dipermudah segala urusan.</p>
+                </div>
+            </CardContent>
+        </Card>
+    </div>
+
+    <script>
+        // Ambil id dari URL
+        const params = new URLSearchParams(window.location.search);
+        const layananId = params.get("id") || "";
+        const layananIdElement = document.getElementById("layananId");
+        if (layananIdElement instanceof HTMLInputElement) {
+            layananIdElement.value = layananId;
+        }
+
+        // Bintang interaktif
+        const stars = document.querySelectorAll("#starContainer svg");
+        const ratingInput = document.getElementById("ratingValue");
+        if (ratingInput instanceof HTMLInputElement) {
+            ratingInput.value = "0";
+        }
+
+        // Event listener untuk setiap bintang
+        stars.forEach(star => {
+            star.addEventListener("click", () => {
+                const rating = parseInt(star.getAttribute('data-star') || '0');
+                if (ratingInput instanceof HTMLInputElement) {
+                    ratingInput.value = rating.toString();
+                }
+
+                // Update warna semua bintang
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-star') || '0') <= rating) {
+                        s.classList.remove("text-gray-300");
+                        s.classList.add("text-yellow-400");
+                    } else {
+                        s.classList.remove("text-yellow-400");
+                        s.classList.add("text-gray-300");
+                    }
+                });
+            });
+        });
+    </script>
+</BaseLayout>

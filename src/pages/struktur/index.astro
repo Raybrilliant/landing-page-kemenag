@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Struktur from "@/components/Struktur";
+
+const struktur = [
+  { name: "Didik Kurniawan", position: "Kepala Kantor", photo: "didik-kepala.png", description: "Lulusan Universitas A, Fakultas Teknik, Jurusan Teknik Elektro mengawali karir sebagai Penghulu di Bali dan diangkat sebagai kepala kemang pada tahun 2020. beliau memiliki pengalaman dalam bidang teknologi informasi dan komunikasi selama 10 tahun. beliau memiliki visi untuk memajukan teknologi informasi di Indonesia dan menjadi salah satu pemimpin teknologi informasi di dunia." },
+  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
+  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
+  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
+  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
+  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
+  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
+];
+---
+
+<BaseLayout>
+  <div class="max-sm:mx-5 mx-20 my-30">
+    <h1 class="text-3xl font-bold mb-10">Struktur Organisasi</h1>
+      <Struktur struktur={struktur} client:visible />
+  </div>
+</BaseLayout>

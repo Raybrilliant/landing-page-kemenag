@@ -1,0 +1,26 @@
+---
+import { Card, CardContent } from "@/components/ui/card";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+
+---
+
+<BaseLayout>
+    <div class="mx-20 max-sm:mx-5 my-30">
+        <h1 class="text-3xl font-bold mb-10">Cek Progres</h1>
+        <Card>
+            <CardContent>
+                <div class="p-4 bg-yellow-200 text-sm rounded-md mb-5 font-medium"> Masukan Nomor Pelayanan/Laporan untuk mengecek Progres Pelayanan Anda. Nomor Pelayanan didapat ketika Anda mengirim layanan atau laporan.</div>
+                <form method="post" action="/api/lapor" class="flex flex-col gap-2">
+                    <input type="text" name="message" id="" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Nomor Pelayanan/Laporan">
+                    <button type="submit" class="w-full py-2 bg-green-500 text-white rounded-md cursor-pointer">Cek Progres</button>
+                </form>
+                <div id="result" class="mt-5 bg-green-200 p-4 rounded-md">
+                    <p>Nomor Pelayanan/Pelaporan: <span id="result-number" class="font-bold">008897765</span></p>
+                    <p>Progres Pelayanan atau pelaporan anda <span id="result-text" class="font-bold">dalam proses</span>.</p>
+                    <p>Mohon agar dapat mengisi kuisioner penilaian layanan setelah layanan selesai. <a href="/penilaian?id=008897765" class="text-blue-500">Klik disini</a></p>
+                </div>
+            </CardContent>
+        </Card>
+    </div>
+</BaseLayout>
