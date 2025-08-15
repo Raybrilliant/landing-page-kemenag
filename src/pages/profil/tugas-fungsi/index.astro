@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+const visiMisi = {
+  visi: "Terwujudnya Masyarakat Kota Probolinggo Yang Taat Beragama, Inklusif, Toleran, Rukun,berpendidikan, Mandiri,sejahtera Lahir Dan Batin.",
+  misi: "Meningkatkan kualitas pembinaan kehidupan beragama. Meningkatkan kualitas pembinaan wawasan keagamaan. Meningkatkan kualitas pembinaan toleransi dalam kehidupan beragama. Meningkatkan kualitas pembinaan sesama dan antar umat. Meningkatkan kualitas penyelenggaraan RA, madrasah, pendidikan agama, dan pendidikan keagamaan. Meningkatkan kualitas penyelenggaraan ibadah haji dan umroh. Mewujudkan tatakelola kepemerintahan yang professional, integritas, bersih dan melayani",
+}
+
+const { visi, misi } = visiMisi;
+
+---
+
+<BaseLayout title="Tugas dan Fungsi">
+  <div class="max-sm:mx-5 mx-20 my-30">
+    <h1 class="text-3xl font-bold mb-10">Tugas dan Fungsi</h1>
+    <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-10 max-sm:gap-5">
+      <div>
+        <h2 class="text-2xl font-bold mb-5">Tugas</h2>
+        <p class="md:text-lg text-justify">{visi}</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold mb-5">Fungsi</h2>
+        <p class="md:text-lg text-justify">{misi}</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
