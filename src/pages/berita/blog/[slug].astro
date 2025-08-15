@@ -1,0 +1,42 @@
+---
+import NewsLayout from "@/layouts/NewsLayout.astro";
+const { slug } = Astro.params;
+
+const posts = [
+    {
+        title: "Probolinggo Menjadi Bagian orang baik",
+        slug: "probolinggo-menjadi-bagian-orang-baik",
+        date: "12 Oktober 2023",
+        created_at: "12 Oktober 2023",
+        author: "Admin",
+        category: "Pertanian",
+        image: "https://picsum.photos/500/500",
+        content: "Probolinggo adalah kota yang menawarkan banyak keunikan, seperti keindahan alamnya, keberagaman budayanya, dan keberhasilan pertaniannya. Kota ini memiliki banyak tempat wisata, seperti taman bermain, taman bermain, dan taman bermain. Kota ini juga memiliki banyak tempat wisata, seperti taman bermain, taman bermain, dan taman bermain."
+    }
+]
+
+const post = posts.find((item) => item.slug === slug);
+
+if (!post) {
+    throw new Error("Post not found");
+}
+
+---
+
+<NewsLayout title={post.title} description={post.content} url={post.slug} image={post.image}>
+  <article class="my-10 mx-30 max-sm:mx-10 space-y-3">
+    <h1 class=" text-4xl max-sm:text-3xl font-semibold font-serif">{post.title}</h1>
+    <p class="text-sm max-sm:text-xs text-gray-500"><a href="http://localhost:3000/berita" class="font-medium">{post.category}</a> | {post.created_at}</p>
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-5">
+            <img src="/avatar.png" alt="avatar" class="w-10 h-10 max-sm:w-8 max-sm:h-8 rounded-full">
+            <p class="text-sm max-sm:text-xs text-gray-500">{post.author}</p>
+        </div>
+
+    </div>
+    <img src={post.image} alt="gambar" class="my-5 w-full h-96 max-sm:h-64 object-cover object-center rounded-2xl">
+    <article class="text-justify mx-30 max-sm:mx-5">
+        {post.content}
+    </article>
+  </article>
+</NewsLayout>

@@ -1,0 +1,23 @@
+---
+import VerticalNews from './VerticalNews.astro'
+---
+
+<section class="grid grid-cols-5 max-sm:grid-cols-1 gap-5">
+    <div class="col-span-3">
+        <div class="relative rounded-xl h-full overflow-hidden">
+            <img src="https://picsum.photos/1000/1000" class="w-full h-full object-cover absolute -z-10" alt="gambar">
+            <div class="p-10 max-sm:p-5 flex flex-col h-full justify-end gap-3">
+                <div class="bg-amber-600 text-white rounded-full py-1 px-3 w-fit max-sm:text-sm">Pertanian</div>
+                <h1 class="text-white text-3xl font-medium max-sm:text-xl">Kantor Kementerian Kota Probolinggo Menjadi Bagian Dari Aksi Damai</h1>
+            </div>
+            <div class="bg-gradient-to-t from-black to-transparent h-1/2 absolute bottom-0 w-full -z-5"/>
+        </div>
+    </div>
+    <div class="col-span-2">
+        <div class="flex flex-col justify-between gap-5">
+            <VerticalNews title="Probolinggo Menjadi Bagian orang baik" category="Pertanian" image="https://picsum.photos/500/500" description="Probolinggo adalah kota yang menawarkan banyak keunikan, seperti keindahan alamnya, keberagaman budayanya, dan keberhasilan pertaniannya."/>
+            <VerticalNews title="Probolinggo Menjadi Bagian orang baik" category="Pertanian" image="https://picsum.photos/500/500" description="Probolinggo adalah kota yang menawarkan banyak keunikan, seperti keindahan alamnya, keberagaman budayanya, dan keberhasilan pertaniannya."/>
+            <VerticalNews title="Probolinggo Menjadi Bagian orang baik" category="Pertanian" image="https://picsum.photos/500/500" description="Probolinggo adalah kota yang menawarkan banyak keunikan, seperti keindahan alamnya, keberagaman budayanya, dan keberhasilan pertaniannya."/>
+        </div>
+    </div>
+</section>

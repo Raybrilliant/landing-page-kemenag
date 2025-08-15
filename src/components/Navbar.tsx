@@ -175,6 +175,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="w-full md:hidden flex flex-col bg-white shadow-md rounded-md mt-2 p-4">
+          <a href="/berita" className="py-2 px-2 text-gray-900 hover:bg-gray-100 rounded-md">
+            Berita
+          </a>
           {navLinks.map((link) => (
             <a
               key={link.href}

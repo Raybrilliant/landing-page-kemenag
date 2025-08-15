@@ -1,0 +1,11 @@
+---
+const { title, date, category, image, description } = Astro.props;
+---
+
+<section class="flex flex-col gap-2 p-0 hover:outline-1 hover:p-5 hover:shadow-2xl rounded duration-300 cursor-pointer">
+    <img src={image} alt="gmabar" class="rounded-xl">
+    <p class="text-sm text-gray-500">{date}</p>
+    <h1 class="font-medium text-lg">{title}</h1>
+    <p class="opacity-50 text-sm text-justify">{description.trim().slice(0, 90) + '...'} <a href="/" class="font-medium">Selengkapnya</a></p>
+    <p class="text-sm text-amber-600 font-medium">{category}</p>
+</section>

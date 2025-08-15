@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+const currentLink = Astro.url.pathname;
+
+const links = [
+    { name: "Bimbingan Masyarakat", href: "/bimbingan-masyarakat" },
+    { name: "Pendidikan Madrasah", href: "/pendidikan-madrasah" },
+    { name: "Pondok Pesantren", href: "/pondok-pesantren" },
+    { name: "Zakat dan Wakaf", href: "/zakat-wakaf" },
+    { name: "Haji dan Umroh", href: "/haji-umroh" },
+    { name: "KUA", href: "/kua" },
+];
+
+const isActive = (href: string) => {
+    return currentLink === href || currentLink.startsWith(href);
+};
+---
+
+<nav class="bg-black text-white px-5 py-4">
+  <div class="flex items-center justify-between">
+    {/* Logo */}
+    <div class="flex items-center gap-2">
+      <Image src="/logo/logo.png" alt="logo" width={40} height={40} />
+      <a href="/berita">
+        <p class="text-sm">Portal Berita</p>
+        <p class="text-sm">Kementerian Agama Kota Probolinggo</p>
+      </a>
+    </div>
+
+    {/* Desktop Menu */}
+    <div class="hidden md:flex items-center">
+      <a href="/" class="mr-5 opacity-70 hover:opacity-100">Halaman Awal</a>
+      {links.map((link) => (
+        <a 
+          href={"/berita/kategori" + link.href} 
+          class={`mr-5 opacity-70 hover:opacity-100 ${isActive(link.href) ? "font-bold" : ""}`}
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+
+    {/* Mobile Menu Button */}
+    <button id="menu-btn" class="md:hidden flex flex-col gap-1">
+      <span class="w-6 h-0.5 bg-white"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+    </button>
+  </div>
+
+  {/* Mobile Dropdown */}
+  <div id="mobile-menu" class="flex-col flex hidden mt-4 space-y-3 md:hidden">
+    <a href="/" class="opacity-70 hover:opacity-100">Halaman Awal</a>
+    {links.map((link) => (
+      <a 
+        href={"/berita/kategori" + link.href} 
+        class={`opacity-70 hover:opacity-100 ${isActive(link.href) ? "font-bold" : ""}`}
+      >
+        {link.name}
+      </a>
+    ))}
+  </div>
+
+  <script>
+    const btn = document.getElementById("menu-btn");
+    const menu = document.getElementById("mobile-menu");
+    btn?.addEventListener("click", () => {
+      menu?.classList.toggle("hidden");
+    });
+  </script>
+</nav>

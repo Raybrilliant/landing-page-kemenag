@@ -10,11 +10,10 @@ import { Image } from "astro:assets";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import Layanan from "@/components/Layanan.astro";
 
-const title = 'Astro';
 const data = layanan;
 ---
 
-<BaseLayout title={title}>
+<BaseLayout>
 		<!-- Highlight Berita Terkini -->
 		<div class="grid grid-cols-5 max-sm:grid-cols-1">
 			<div class="col-span-1 bg-green-700 flex flex-col justify-end pl-20 pr-5 py-10 max-sm:hidden">
@@ -22,7 +21,7 @@ const data = layanan;
 					<div class="text-white space-y-5">
 						<p class="text-2xl font-bold">Highlight Berita Terkini</p>
 						<p class="text-sm">Update Berita Seputar Kemenag Kota Probolinggo</p>
-						<button class="bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-600/80 hover:px-7 duration-300 cursor-pointer">Lihat Semua</button>
+						<a href="/berita" class="bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-600/80 hover:px-7 duration-300 cursor-pointer">Lihat Semua</a>
 					</div>
 				</BlurFade>
 			</div>
