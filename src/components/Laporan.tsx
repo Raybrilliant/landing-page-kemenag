@@ -16,8 +16,6 @@ export const Laporan = () => {
     const getLaporan = async () => {
         const res = await fetch("/api/laporan?limit=3");
         const data = await res.json();
-        console.log(data);
-        
         if (!res.ok) {
             throw new Error("Failed to fetch data");
         }

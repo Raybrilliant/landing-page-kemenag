@@ -17,8 +17,6 @@ export const LaporanDetail = () => {
     const getLaporan = async () => {
         const res = await fetch("/api/laporan");
         const data = await res.json();
-        console.log(data);
-        
         if (!res.ok) {
             throw new Error("Failed to fetch data");
         }
@@ -33,11 +31,11 @@ export const LaporanDetail = () => {
     return (
         <section className="flex flex-col gap-5 mt-10">
         {loading ? (
-            <div className="flex justify-center items-center">
-                <Skeleton className="w-24 h-24" />
-                <Skeleton className="w-24 h-24" />
-                <Skeleton className="w-24 h-24" />
-            </div>
+                <div className="flex flex-col gap-4">
+                    <Skeleton className="w-full h-32 bg-white" />
+                    <Skeleton className="w-full h-32 bg-white" />
+                    <Skeleton className="w-full h-32 bg-white" />
+                </div>
             ) : (
                 laporan.map((item, index) => (
                     <BlurFade key={item.id} inView delay={0.2 * index} direction="left">
