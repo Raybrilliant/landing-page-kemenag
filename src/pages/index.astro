@@ -2,13 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.tsx";
-import Laporan from "../components/Laporan.astro";
 import Berita from "../components/Berita.astro";
 import { layanan } from "../data/layanan.jsx";
-import { laporan } from "../data/laporan.jsx";
 import { Image } from "astro:assets";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import Layanan from "@/components/Layanan.astro";
+import { Laporan } from "@/components/Laporan";
 
 const data = layanan;
 ---
@@ -49,7 +48,7 @@ const data = layanan;
 		<!-- Layanan -->
 		<Layanan data={data} className="mx-20 max-sm:mx-5 my-30 max-sm:my-5" id="layanan" />
 		<!-- Laporan -->
-		<Laporan data={laporan} />
+		<Laporan client:only="react"/>
 
 		<!-- Kepala Kemenag -->
 		 <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5 mx-20 max-sm:mx-5 my-20 max-sm:my-10 items-center">
