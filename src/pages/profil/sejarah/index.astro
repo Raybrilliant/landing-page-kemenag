@@ -1,9 +1,13 @@
 ---
 import { BlurFade } from "@/components/magicui/blur-fade";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import pb from "@/lib/database";
+
+const data = await pb.collection('profiles').getFullList({filter: `category = 'sejarah'`})
+
 const kepala = [
   {
-    name: "Buchori",
+    name: "BUCHORI",
     year: "1981-1986",
     image: "/profil-sejarah/BUCHORI.webp",
   },
@@ -55,7 +59,7 @@ const kepala = [
   {
     name: "DIDIK KURNIAWAN",
     year: "2024-Sekarang",
-    image: "/didik-kepala.png",
+    image: "/profil-sejarah/DIDIK.webp",
   },
 ]
 ---
@@ -63,17 +67,7 @@ const kepala = [
 <BaseLayout title="Sejarah">
   <div class="max-sm:mx-5 mx-20 my-30">
     <h1 class="text-3xl font-bold mb-5">Sejarah Singkat</h1>
-    <article class=" md:text-lg text-justify">
-      Sebelum tahun 1981 Kementerian Agama Kota Probolinggo telah ada dengan sebutan nama Departemen Agama Kota Madya Probolinggo, pada waktu itu Departemen Agama Kodya Probolinggo masih menjadi satu dengan Departemen Agama Kabupaten Probolinggo
-      <br><br>
-      Pada tahun 1981 sampai dengan tahun 1986 Departemen Agama  Kota Madya Probolinggo dipimpin oleh Bpk. H. BUHORI. karena adanya pemekaran (pemisahan) wilayah Probolinggo menjadi kodya dan kabupaten,Departemen Agama Kodya Probolinggo mengikuti alur perubahan Kepemerintahan tersebut dan dipisah menjadi 2 (dua) bagian yaitu Departemen Agama Kodya Probolinggo dan Departemen Agama Kabupaten Probolinggo.
-      <br><br>
-      Pada tahun 2002 Departemen Agama Kodya Probolinggo berubah nama menjadi Departemen Agama Kota Probolinggo dan pada tahun 2010sesuai dengan Peraturan Presiden nomor 47 Tahun 2009 dan KMA nomor 1 Tahun 2010 Departeman Agama berubah nama menjadi Kementerian Agama seiring dengan perubahan tersebut Departemen Agama Kota Probolinggo berubah nama kembali menjadi Kementerian Agama Kota Probolinggo.
-      <br><br>
-      Sementara lokasi awal Kantor Kementerian Agama Kota Probolinggo masih belum memiliki gedung yang tetap  dan berlokasi  di Jl. Panglima Sudirman yang sebelumnya merupakan Rumah Keluarga Zulkifli Choliq, namun kini Kementerian Agama Kota Probolinggo telah memiliki kantor tersendiri yang berlokasi  di Jl. Mastrip No 323 Kel. Kanigaran Kec. Kanigaran Kota Probolinggo. Kantor ini di bangun pada tahun 1983/1984 dan diresmikan pada tanggal 6 Januari 1986 oleh   Bpk. Drs. LATIEF ANWAR yang pada saat itu menjabat sebagai Walikotamadya KDH. TK. II Probolinggo.
-      <br><br>
-      Semenjak tahun 1981 hingga saat ini kepemimpinan Kantor Kementerian Agama Kota Probolinggo telah dipimpin oleh 11 orang Kepala Kantor diantaranya:
-    </article>
+    <article class=" md:text-lg text-justify" set:html={data[0].content} />
     <div class=" grid grid-cols-5 max-sm:grid-cols-2 gap-10 max-sm:gap-5 mt-10">
       {
         kepala.map((item,index) => (

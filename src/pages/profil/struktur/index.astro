@@ -1,16 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Struktur from "@/components/Struktur";
+import pb from "@/lib/database";
 
-const struktur = [
-  { name: "Didik Kurniawan", position: "Kepala Kantor", photo: "didik-kepala.png", description: "Lulusan Universitas A, Fakultas Teknik, Jurusan Teknik Elektro mengawali karir sebagai Penghulu di Bali dan diangkat sebagai kepala kemang pada tahun 2020. beliau memiliki pengalaman dalam bidang teknologi informasi dan komunikasi selama 10 tahun. beliau memiliki visi untuk memajukan teknologi informasi di Indonesia dan menjadi salah satu pemimpin teknologi informasi di dunia." },
-  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
-  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
-  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
-  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
-  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
-  { name: "Didik Kurniawan", position: "Direktur Jenderal" },
-];
+const struktur = await pb.collection('organizations').getFullList({expand:'category', sort:'-created'})
+
 ---
 
 <BaseLayout>

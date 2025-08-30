@@ -6,13 +6,18 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
+import pb from '@/lib/database';
 import { BlurFade } from './magicui/blur-fade';
 
 interface Struktur {
-  name: string;
-  position: string;
-  photo?: string;
+  name?: string;
+  document?: string;
   description?: string;
+  expand?: {
+    category?: {
+      name?: string;
+    }
+  };
 }
 
 export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
@@ -35,7 +40,7 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
               className="group focus:outline-none"
             >
               <img
-                src={item.photo ? `/${item.photo}` : '/default.png'}
+                src={pb.files.getURL(item,item?.document ?? '')}
                 alt={item.name}
                 width={200}
                 height={200}
@@ -43,7 +48,7 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
               />
 
                 <div className="text-2xl max-sm:text-xl font-bold group-hover:text-green-700 duration-300">{item.name}</div>
-                <div className="text-sm text-gray-500">{item.position}</div>
+                <div className="text-sm text-gray-500">{item.expand?.category?.name}</div>
             </button>
 
           </BlurFade>
@@ -55,12 +60,12 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
         <DialogContent className="max-w-xl">
           <DialogHeader>
             <DialogTitle className="text-green-700">{selected?.name}</DialogTitle>
-            <DialogDescription>{selected?.position}</DialogDescription>
+            <DialogDescription>{selected?.expand?.category?.name}</DialogDescription>
           </DialogHeader>
 
           <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
             <img
-              src={selected?.photo}
+              src={pb.files.getURL(selected!,selected?.document ?? '')}
               alt={selected?.name}
               className="w-full object-cover mb-4 rounded-md"
             />

@@ -19,7 +19,7 @@ export const Laporan = () => {
         if (!res.ok) {
             throw new Error("Failed to fetch data");
         }
-        setLaporan(data);
+        setLaporan(data.items);
         setLoading(false);
     };
 

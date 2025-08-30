@@ -7,13 +7,20 @@ import pb from "@/lib/database";
 const { slug } = Astro.params;
 const {searchParams} = new URL(Astro.url.href);
 const page = Number(searchParams.get("page")) || 1;
-const categories = await pb.collection("news").getList(page, 10, {expand: "category", sort: "-created", filter: `category.name = '${slug}'`})
+const categories = await pb.collection("news").getList(page, 1, {expand: "category", sort: "-created", filter: `category.name = '${slug}'`})
 const category = categories.items[0]
 
 if (!category) {
     throw new Error("Category not found");
 }
 
+function getPageUrl(page: number) {
+  const url = new URL(Astro.url.href);
+  url.hash = "";
+  url.searchParams.set("page", page.toString());
+  // kembalikan relatif supaya aman di server & client
+  return url.pathname + url.search;
+}
 ---
 
 <NewsLayout title={category.expand?.category?.name}>
@@ -28,5 +35,5 @@ if (!category) {
 			 ))}
 		 </div>
     </section>
-    <ItemPagination page={page} totalPage={categories.totalPages} category={category.expand?.category?.name} />
+    <ItemPagination page={page} totalPage={categories.totalPages} getPageUrl={getPageUrl} onPageChange={(newPage) => window.location.href = getPageUrl(newPage)} />
 </NewsLayout>

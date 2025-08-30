@@ -4,10 +4,10 @@ import pb from "@/lib/database";
 export const GET: APIRoute = async ({ request }) => {
     const {searchParams} = new URL(request.url);
     const limit = searchParams.get("limit");
+    const page = searchParams.get("page");
     try {
-    const data = await pb.collection("announcements").getFullList({
+    const data = await pb.collection("announcements").getList(page ? Number(page) : 1,limit ? Number(limit) : 3,{
         sort: "-created",
-        limit: limit ? Number(limit) : undefined,
     });
     return new Response(JSON.stringify(data));
     } catch (error) {

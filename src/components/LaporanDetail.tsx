@@ -3,19 +3,30 @@ import { BlurFade } from "./magicui/blur-fade";
 import { useState, useEffect } from "react";
 import pb from "@/lib/database";
 import { Skeleton } from "./ui/skeleton";
+import { ItemPagination } from "./ItemPagination";
 
-interface Laporan {
-    id: number;
+interface LaporanItem {
+    id: string;
     name: string;
     content: string;
     document: string;
 }
 
+interface LaporanResponse {
+    page: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
+    items: LaporanItem[];
+}
+
 export const LaporanDetail = () => {
-    const [laporan, setLaporan] = useState<Laporan[]>([]);
+    const [laporan, setLaporan] = useState<LaporanResponse | null>(null);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const url = '/api/laporan?limit=15&page=' + page;
     const getLaporan = async () => {
-        const res = await fetch("/api/laporan");
+        const res = await fetch(url);
         const data = await res.json();
         if (!res.ok) {
             throw new Error("Failed to fetch data");
@@ -26,7 +37,7 @@ export const LaporanDetail = () => {
 
     useEffect(() => {
         getLaporan();
-    }, []);
+    }, [page]);
 
     return (
         <section className="flex flex-col gap-5 mt-10">
@@ -36,8 +47,8 @@ export const LaporanDetail = () => {
                     <Skeleton className="w-full h-32 bg-white" />
                     <Skeleton className="w-full h-32 bg-white" />
                 </div>
-            ) : (
-                laporan.map((item, index) => (
+            ) : laporan ? (
+                laporan.items.map((item, index) => (
                     <BlurFade key={item.id} inView delay={0.2 * index} direction="left">
                         <div className="bg-white p-5 rounded-md">
                             <div className="flex items-center gap-4 mb-5">
@@ -58,7 +69,17 @@ export const LaporanDetail = () => {
                         </div>
                     </BlurFade>
                 ))
-            )} 
+            ) : (
+                <div>No data available</div>
+            )}
+            {laporan && laporan.totalPages > 1 && (
+                <ItemPagination 
+                    page={page}
+                    totalPage={laporan.totalPages}
+                    getPageUrl={(page) => url + page}
+                    onPageChange={(newPage) => setPage(newPage)}
+                />
+            )}
         </section>
     );
 }

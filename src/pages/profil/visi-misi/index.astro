@@ -1,15 +1,17 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-const visiMisi = {
-  visi: "Terwujudnya Masyarakat Kota Probolinggo Yang Taat Beragama, Inklusif, Toleran, Rukun,berpendidikan, Mandiri,sejahtera Lahir Dan Batin.",
-  misi: "Meningkatkan kualitas pembinaan kehidupan beragama. Meningkatkan kualitas pembinaan wawasan keagamaan. Meningkatkan kualitas pembinaan toleransi dalam kehidupan beragama. Meningkatkan kualitas pembinaan sesama dan antar umat. Meningkatkan kualitas penyelenggaraan RA, madrasah, pendidikan agama, dan pendidikan keagamaan. Meningkatkan kualitas penyelenggaraan ibadah haji dan umroh. Mewujudkan tatakelola kepemerintahan yang professional, integritas, bersih dan melayani",
-}
+import pb from "@/lib/database";
+
+const data = await pb.collection('profiles').getFullList()
+
+const visi = data.find((item) => item.category === 'visi')
+const misi = data.find((item) => item.category === 'misi')
+
+
 const rencanaStrategis = {
   title: "Rencana Strategis",
   description: "Perencanaan strategis (RENSTRA) merupakan langkah  awal yang dilakukan Kantor Kementerian Agama Kota Probolinggo agar mampu menjawab segala tuntutan lingkungan strategis baik itu lokal, Nasional, regional dan global dengan tetap berada dalam tata sistem administrasi Negara Kesatuan RI. Melalui pendekatan strategis yang jelas dan sinerjik maka Kantor Kementerian Agama Kota Probolinggo dapat menyelaraskan Visi dan Misinya.",
 }
-
-const { visi, misi } = visiMisi;
 
 ---
 
@@ -19,11 +21,11 @@ const { visi, misi } = visiMisi;
     <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-10 max-sm:gap-5">
       <div>
         <h2 class="text-2xl font-bold mb-5">Visi</h2>
-        <p class="text-lg max-sm:text-base text-justify">{visi}</p>
+        <article class="text-lg max-sm:text-base text-justify" set:html={visi?.content} />
       </div>
       <div>
         <h2 class="text-2xl font-bold mb-5">Misi</h2>
-        <p class="text-lg max-sm:text-base text-justify">{misi}</p>
+        <article class="text-lg max-sm:text-base text-justify" set:html={misi?.content} />
       </div>
     </div>
     <div class="mt-5">

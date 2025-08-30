@@ -1,19 +1,37 @@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "./ui/pagination"
 
-
-export const ItemPagination = ({page, totalPage, category}: {page: number, totalPage: number, category: string}) => {
-    const pages = Array.from({ length: totalPage }, (_, i) => i + 1)
+interface ItemPaginationProps {
+    page: number;
+    totalPage: number;
+    getPageUrl: (p: number) => string;
+    onPageChange?: (page: number) => void;
+  }
+  
+  export const ItemPagination = ({ page, totalPage, getPageUrl, onPageChange }: ItemPaginationProps) => {
+    const pages = Array.from({ length: totalPage }, (_, i) => i + 1);
     return (
-        <div>
-            <Pagination>
-                <PaginationContent>
-                    <PaginationItem>
-                        {pages.map((item) => (
-                            <PaginationLink key={item} href={`/berita/kategori/${category}?page=${item}`} isActive={page === item}>{item}</PaginationLink>
-                        ))}
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
-        </div>
-    )
-}
+      <div>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              {pages.map((item) => (
+                <PaginationLink
+                  key={item}
+                  href={getPageUrl(item)}
+                  onClick={(e) => {
+                    if (onPageChange) {
+                      e.preventDefault();
+                      onPageChange(item);
+                    }
+                  }}
+                  isActive={page === item}
+                >
+                  {item}
+                </PaginationLink>
+              ))}
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
+    );
+  };  
