@@ -1,36 +1,14 @@
 ---
 import HorizontalNews from "@/components/berita/HorizontalNews.astro";
+import { ItemPagination } from "@/components/ItemPagination";
 import NewsLayout from "@/layouts/NewsLayout.astro";
+import pb from "@/lib/database";
 
 const { slug } = Astro.params;
-const categories = [
-    {
-        name: "Bimbingan Masyarakat",
-        slug: "bimbingan-masyarakat",
-    },
-    {
-        name: "Pendidikan Madrasah",
-        slug: "pendidikan-madrasah",
-    },
-    {
-        name: "Pondok Pesantren",
-        slug: "pondok-pesantren",
-    },
-    {
-        name: "Zakat dan Wakaf",
-        slug: "zakat-wakaf",
-    },
-    {
-        name: "Haji dan Umroh",
-        slug: "haji-umroh",
-    },
-    {
-        name: "KUA",
-        slug: "kua",
-    },
-]
-
-const category = categories.find((item) => item.slug === slug);
+const {searchParams} = new URL(Astro.url.href);
+const page = Number(searchParams.get("page")) || 1;
+const categories = await pb.collection("news").getList(page, 10, {expand: "category", sort: "-created", filter: `category.name = '${slug}'`})
+const category = categories.items[0]
 
 if (!category) {
     throw new Error("Category not found");
@@ -38,13 +16,17 @@ if (!category) {
 
 ---
 
-<NewsLayout title={category.name}>
+<NewsLayout title={category.expand?.category?.name}>
     <section class="mt-5 mx-20 max-sm:mx-10">
          <div class="flex items-center justify-between mb-5">
-			 <h1 class="text-2xl font-semibold">{category.name}</h1>
+			 <h1 class="text-2xl font-semibold">{category.expand?.category?.name}</h1>
+             <p class="text-sm text-gray-500">{categories.totalItems} Berita</p>
 		 </div>
 		 <div class="grid grid-cols-4 max-sm:grid-cols-1 gap-5 mb-20">
-			 <HorizontalNews title="Probolinggo Menjadi Bagian orang baik" date="12 Oktober 2023" category="Pertanian" image="https://picsum.photos/500/500" description="Probolinggo adalah kota yang menawarkan banyak keunikan, seperti keindahan alamnya, keberagaman budayanya, dan keberhasilan pertaniannya." />
+			 {categories.items.map((item) => (
+				<HorizontalNews title={item.title} date={item.created} category={item.expand?.category?.name} image={pb.files.getURL(item, item.document)} description={item.content} slug={item.slug} />
+			 ))}
 		 </div>
     </section>
+    <ItemPagination page={page} totalPage={categories.totalPages} category={category.expand?.category?.name} />
 </NewsLayout>

@@ -36,7 +36,7 @@ export const BeritaList = () => {
     return (
         <BlurFade delay={0.5} direction="right" inView>
         <div className="relative w-full mx-10 max-sm:mx-5 mt-10 max-sm:hidden ">
-            <div className="overflow-x-auto w-full">
+            <div className="overflow-x-scroll w-full">
                <div className="flex items-center gap-5">
                    {loading ? (
                        <div className="flex gap-5">

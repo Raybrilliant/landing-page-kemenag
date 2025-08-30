@@ -1,15 +1,13 @@
 ---
 import { Image } from "astro:assets";
 const currentLink = Astro.url.pathname;
+import pb from "@/lib/database";
 
-const links = [
-    { name: "Bimbingan Masyarakat", href: "/bimbingan-masyarakat" },
-    { name: "Pendidikan Madrasah", href: "/pendidikan-madrasah" },
-    { name: "Pondok Pesantren", href: "/pondok-pesantren" },
-    { name: "Zakat dan Wakaf", href: "/zakat-wakaf" },
-    { name: "Haji dan Umroh", href: "/haji-umroh" },
-    { name: "KUA", href: "/kua" },
-];
+const data = await pb.collection("categories").getFullList({filter: `type = 'berita'`})
+const links = data.map((item) => ({
+    name: item.name,
+    href: '/berita/kategori/' + item.name,
+}))
 
 const isActive = (href: string) => {
     return currentLink === href || currentLink.startsWith(href);
@@ -32,7 +30,7 @@ const isActive = (href: string) => {
       <a href="/" class="mr-5 opacity-70 hover:opacity-100">Halaman Awal</a>
       {links.map((link) => (
         <a 
-          href={"/berita/kategori" + link.href} 
+          href={link.href} 
           class={`mr-5 opacity-70 hover:opacity-100 ${isActive(link.href) ? "font-bold" : ""}`}
         >
           {link.name}
