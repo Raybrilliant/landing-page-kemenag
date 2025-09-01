@@ -4,7 +4,7 @@ import { FacebookIcon, InstagramIcon, MapPin, TwitterIcon } from "lucide-react";
 ---
 
 <div class="bg-green-700 py-10 mt-40 text-white">
-    <div class="mx-20 max-sm:mx-5 grid grid-cols-4 max-sm:grid-cols-1 gap-10 items-center">
+    <div class="mx-20 max-sm:mx-5 grid grid-cols-3 max-sm:grid-cols-1 gap-10 items-center">
         <div class="flex items-center gap-2 mx-auto">
 			<Image src="/logo/logo.png" alt="logo" width={60} height={60} />
             <div class="text-lg font-semibold">
@@ -16,11 +16,7 @@ import { FacebookIcon, InstagramIcon, MapPin, TwitterIcon } from "lucide-react";
             <MapPin width={50} height={50} />
             <p>Jl. Mastrip No.323, Kanigaran, Kec. Kanigaran, Kota Probolinggo, Jawa Timur 67213</p>
         </div>
-        <div class="flex flex-col justify-center">
-            <p>Email: </p>
-            <a href="mailto:info@kementerianagama.go.id" class="text-white">info@kementerianagama.go.id</a>
-        </div>
-		<div class="flex flex-col mx-auto">
+		<div class="flex flex-col mx-auto max-sm:hidden">
             <h1 class="font-semibold">Sosial Media</h1>
             <div class="flex items-center gap-2 mt-2">
                 <a href="https://www.facebook.com/kementerianagama" target="_blank">
@@ -35,4 +31,5 @@ import { FacebookIcon, InstagramIcon, MapPin, TwitterIcon } from "lucide-react";
             </div>
 		</div>
 	</div>
+    <p class="text-center text-sm max-sm:text-xs md:absolute mt-5 bottom-2 inset-x-0">© {new Date().getFullYear()} Made with <span class="text-red-500 animate-pulse mx-1">❤</span> by Prakom Kementerian Agama Kota Probolinggo.</p>
 </div>

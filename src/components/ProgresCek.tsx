@@ -9,6 +9,7 @@ interface Data {
     name: string;
     status: string;
     response_document: string;
+    explanation: string;
 }
 
 export const ProgresCek = () => {
@@ -48,8 +49,9 @@ export const ProgresCek = () => {
                     <div id="result" className="mt-5 bg-green-200 p-4 rounded-md">
                         <p>Nomor Pelayanan/Pelaporan: <span id="result-number" className="font-bold">{result?.id}</span></p>
                         <p>Progres Pelayanan atau pelaporan anda <span id="result-text" className="font-bold">{result?.status}</span>.</p>
+                        {result.explanation && <p>Keteranagan: <span id="result-text" className="font-bold">{result?.explanation}</span></p>}
                         {result.status == 'selesai' && result.response_document && <p>Hasil Layanan anda dapat di unduh: <a href={pb.files.getURL(result,result.response_document)} target="_blank" className="text-blue-500">Lihat Dokumen</a></p>}
-                        <p>Mohon agar dapat mengisi kuisioner penilaian layanan setelah layanan selesai. <a href={`/penilaian?id=${result?.id}`} className="text-blue-500">Klik disini</a></p>
+                        {result.status == 'selesai' && <p>Mohon agar dapat mengisi kuisioner penilaian layanan kami. <a href={`/penilaian?id=${result?.id}`} className="text-blue-500">Disini</a></p>}
                     </div>
                 )}
             </CardContent>
