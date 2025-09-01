@@ -28,6 +28,7 @@
     # Install prod deps doang
     RUN bun install --production
     
-    EXPOSE 4321
+    ENV PORT=3000
+    EXPOSE 3000
     
     CMD ["bun", "./dist/server/entry.mjs"]    
