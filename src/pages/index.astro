@@ -2,14 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.tsx";
-import { layanan } from "../data/layanan.jsx";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { Layanan } from "@/components/Layanan";
 import { Laporan } from "@/components/Laporan";
 import { Sambutan } from "@/components/Sambutan";
 import { BeritaList } from "@/components/BeritaList";
-
-const data = layanan;
 ---
 
 <BaseLayout>
@@ -34,7 +31,7 @@ const data = layanan;
 		</div>
 
 		<!-- Layanan -->
-		<Layanan data={data} className="mx-20 max-sm:mx-5 my-30 max-sm:my-5" id="layanan" client:only="react"/>
+		<Layanan className="mx-20 max-sm:mx-5 my-30 max-sm:my-5" id="layanan" client:only="react"/>
 		<!-- Laporan -->
 		<Laporan client:only="react"/>
 
