@@ -1,13 +1,18 @@
 import PocketBase from "pocketbase";
 
-const url =
-  import.meta.env.PUBLIC_SITE_API ??
-  (typeof process !== "undefined"
-    ? process.env.PUBLIC_SITE_API || process.env.SITE_API
-    : undefined);
+let url: string | undefined 
+
+if (import.meta.env.SSR) {
+  // jalan di server
+  url = process.env.PUBLIC_SITE_API || process.env.SITE_API;
+} else {
+  // jalan di browser
+  url = import.meta.env.PUBLIC_SITE_API;
+}
+console.log(url);
 
 if (!url) {
-  throw new Error("PUBLIC_SITE_API atau SITE_API tidak ditemukan");
+  url = 'http://api-kemenag-kota-probolinggo-pocketbase-103-163-139-55.traefik.me/';
 }
 
 const pb = new PocketBase(url);
