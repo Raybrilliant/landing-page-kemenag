@@ -15,7 +15,7 @@ const { title, description,url,image, } = Astro.props;
         <!-- Deskripsi -->
         <meta property="og:description" content={description} />
         <!-- URL -->
-        <meta property="og:url" content={import.meta.env.SITE_URL + '/berita/blog/' + url} />
+        <meta property="og:url" content={process.env.SITE_URL || import.meta.env.SITE_URL + '/berita/blog/' + url} />
         <!-- Gambar preview -->
         <meta property="og:image" content={image} />
         <meta property="og:image:width" content="1200" />
@@ -27,7 +27,7 @@ const { title, description,url,image, } = Astro.props;
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
-        <meta name="twitter:url" content={import.meta.env.SITE_URL + '/berita/blog/' + url} />
+        <meta name="twitter:url" content={process.env.SITE_URL || import.meta.env.SITE_URL + '/berita/blog/' + url} />
 
 		<title>{title}</title>
 	</head>
