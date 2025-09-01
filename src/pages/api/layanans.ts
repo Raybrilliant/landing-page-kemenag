@@ -7,6 +7,7 @@ export const GET: APIRoute = async ({ request }) => {
     try {
     const data = await pb.collection("services").getFullList({
         sort: "-created",
+        expand: "category",
         filter: categoryid ? `category = '${categoryid}'` : undefined,
     });
     return new Response(JSON.stringify(data));
