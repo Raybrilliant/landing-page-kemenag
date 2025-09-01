@@ -1,15 +1,16 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import LayananComponent from "@/components/Layanan.astro";
-import { layanan } from "../../data/layanan.jsx";
+import { LayananDetail } from "@/components/LayananDetail";
+import pb from '@/lib/database';
 
 const { id } = Astro.params 
+const data = await pb.collection('categories').getOne(id as string)
 ---
 
-<BaseLayout title={`Layanan ${id}`}>
+<BaseLayout title={`Layanan ${data.name}`}>
   <div class="mx-20 max-sm:mx-5 mt-30 space-y-2">
-    <h1 class="text-3xl font-bold capitalize">Layanan {id}</h1>
+    <h1 class="text-3xl font-bold capitalize">Layanan {data.name}</h1>
     <p class="opacity-70">Silahkan memilih layanan yang anda perlukan</p>
   </div>
-    <LayananComponent data={layanan} className="mx-20 max-sm:mx-5 my-10 max-sm:my-5" />
+    <LayananDetail id={id} className="mx-20 max-sm:mx-5 my-10 max-sm:my-5" client:only="react" />
 </BaseLayout>
