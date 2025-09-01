@@ -68,7 +68,7 @@ export const LayananSubmit = ({layananID, className}: {layananID: string, classN
             </div>
             <div className="flex flex-col gap-1">
                 <label htmlFor="institution" className="font-semibold">Nama Instansi</label>
-                <input type="text" id="institution" name="requester_institution" placeholder="fulan@mail.com" className="w-full p-3 border border-gray-300 rounded-md bg-white" required/>
+                <input type="text" id="institution" name="requester_institution" placeholder="Kemenag Kota Probolinggo" className="w-full p-3 border border-gray-300 rounded-md bg-white" required/>
             </div>
             <div className="flex flex-col gap-1">
                 <label htmlFor="phone" className="font-semibold">Nomor Telepon</label>
