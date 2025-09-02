@@ -46,7 +46,7 @@ export const POST: APIRoute = async ({ request }) => {
         },
         body: JSON.stringify({
           phone: waNumber,
-          message: `Permohonan sudah diterima dengan nomor ${data.id} , kami akan segera memproses permohonan anda.`,
+          message: `Permohonan sudah diterima dengan nomor ${data.id} , kami akan segera memproses permohonan anda. Mohon simpan nomor ini untuk mengecek progres permohonan anda. ~Pesan Otomatis, Jangan Dibalas`,
         }),
       });
       await waResponse.json();
