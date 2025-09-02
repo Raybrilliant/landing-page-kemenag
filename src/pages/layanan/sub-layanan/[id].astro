@@ -7,7 +7,7 @@ const data = await pb.collection('services').getOne(id as string)
 ---
 
 <BaseLayout title={`Submit Layanan ${data.name}`}>
-  <div class="mx-20 max-sm:mx-5 mt-30 space-y-2">
+  <div class="mx-20 max-sm:mx-5 mt-30 mb-15 space-y-2">
     <h1 class="text-3xl font-bold capitalize max-sm:text-2xl">Submit Layanan {data.name}</h1>
     <p class="opacity-70">Silahkan submit layanan yang anda perlukan</p>
 
