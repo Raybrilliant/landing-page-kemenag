@@ -23,7 +23,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (file) {
       formData.append("requester_document", file);
     }
-    formData.append("status", "pending");
+    formData.append("status", "diterima");
   
     try {
       const data = await pb.collection("requests").create(formData);
@@ -36,6 +36,19 @@ export const POST: APIRoute = async ({ request }) => {
         waNumber = waNumber + "@s.whatsapp.net";
       }
       const auth = Buffer.from(`${waUsername}:${waPassword}`).toString("base64");
+
+const message = `
+*📢 Layanan PTSP Kemenag Kota Probolinggo*
+
+*Surat anda* 
+✉️ Nomor : ${data.id}
+✉️ Perihal : ${data.mail_about}
+✉️ Status : ${data.status}
+
+_Untuk memantau progress layanan, bisa mengunjungi tautan dibawah ini:_
+${process.env.SITE_URL || import.meta.env.SITE_URL}/progres
+`;
+
   
   
       const waResponse = await fetch(`${waAPI}/send/message`, {
@@ -46,7 +59,7 @@ export const POST: APIRoute = async ({ request }) => {
         },
         body: JSON.stringify({
           phone: waNumber,
-          message: `Permohonan sudah diterima dengan nomor ${data.id} , kami akan segera memproses permohonan anda. Mohon simpan nomor ini untuk mengecek progres permohonan anda. ~Pesan Otomatis, Jangan Dibalas`,
+          message: message
         }),
       });
       await waResponse.json();

@@ -71,7 +71,7 @@ export const LayananSubmit = ({layananID, className}: {layananID: string, classN
                 <input type="text" id="institution" name="requester_institution" placeholder="Kemenag Kota Probolinggo" className="w-full p-3 border border-gray-300 rounded-md bg-white" required/>
             </div>
             <div className="flex flex-col gap-1">
-                <label htmlFor="phone" className="font-semibold">Nomor Telepon</label>
+                <label htmlFor="phone" className="font-semibold">Nomor WhatsApp</label>
                 <input type="text" minLength={10} maxLength={13} id="phone" name="requester_phone" placeholder="08933453231" className="w-full p-3 border border-gray-300 rounded-md bg-white" required/>
             </div>
             <div className="flex flex-col gap-1">
@@ -85,6 +85,7 @@ export const LayananSubmit = ({layananID, className}: {layananID: string, classN
             {requirement?.document_active && <div className="flex flex-col gap-1">
                 <label htmlFor="file" className="font-semibold">Dokumen</label>
                 <input type="file" id="file" name="file" className="w-full p-3 border border-gray-300 rounded-md bg-white" accept="application/pdf,application/x-rar-compressed,application/zip" required/>
+                <p className="text-xs text-gray-500">Format file: PDF, RAR, ZIP | Maksimal ukuran file: 5MB</p>
             </div>}
             <Button type="submit" className="w-full p-3 bg-green-500 text-white rounded-md mt-5 hover:bg-green-600" disabled={loading}>{loading ? <LoaderCircle className="w-5 h-5 mr-2 animate-spin" /> : "Kirim"}</Button>
         </form> 

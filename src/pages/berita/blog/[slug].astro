@@ -1,11 +1,13 @@
 ---
 import NewsLayout from "@/layouts/NewsLayout.astro";
 import pb from "@/lib/database";
+import HorizontalNews from "@/components/berita/HorizontalNews.astro";
+import ShareButton from "@/components/ShareButton";
 const { slug } = Astro.params;
 
 const detail_berita = await pb.collection('news').getFullList({expand:'category', filter:`slug = '${slug}'`})
+const related_berita = await pb.collection('news').getFullList({expand:'category', fields: 'id, collectionId, title, slug, created, document, category', filter:`category.id = '${detail_berita[0].category}'`, sort:'-created', limit: 4})
 const post = detail_berita[0]
-
 ---
 
 <NewsLayout title={post.title} description={post.content} url={post.slug} image={pb.files.getURL(post, post.document)}>
@@ -22,5 +24,13 @@ const post = detail_berita[0]
     <article class="text-justify mx-30 max-sm:mx-5">
         <div set:html={post.content} />
     </article>
+    <ShareButton className="items-center justify-center" url={`${process.env.SITE_URL || import.meta.env.SITE_URL}/berita/blog/${post.slug}`} title={post.title} client:visible />
+    <!-- related berita -->
+    <h3 class="text-2xl max-sm:text-xl font-semibold mt-10 max-sm:mt-10">Berita Terkait</h3>
+    <div class="grid grid-cols-4 max-sm:grid-cols-1 gap-5 mb-20">
+      {related_berita.map((item) => (
+        <HorizontalNews title={item.title} date={item.created} category={item.expand?.category?.name} image={pb.files.getURL(item, item.document)} slug={item.slug} />
+      ))}
+    </div>
   </article>
 </NewsLayout>

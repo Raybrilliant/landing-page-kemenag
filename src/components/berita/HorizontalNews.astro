@@ -2,10 +2,12 @@
 const { title, date, category, image, description, slug } = Astro.props;
 ---
 
-<section class="flex flex-col gap-2 p-0 hover:outline-1 hover:p-5 hover:shadow-2xl rounded duration-300 cursor-pointer">
+<a href={`/berita/blog/${slug}`} class="flex flex-col gap-2 p-0 hover:outline-1 hover:p-5 hover:shadow-2xl rounded duration-300 cursor-pointer">
     <img src={image} alt="gmabar" class="rounded-xl w-full h-64 object-cover object-center">
     <p class="text-sm text-gray-500">{new Date(date).toLocaleDateString('id-ID',{day:'2-digit', month:'long', year:'numeric'})}</p>
     <h1 class="font-medium text-lg">{title}</h1>
-    <p class="opacity-50 text-sm text-justify">{description.trim().slice(0, 90) + '...'} <a href={`/berita/blog/${slug}`} class="font-medium">Selengkapnya</a></p>
+    {description && (
+        <p class="opacity-50 text-sm text-justify">{description.trim().slice(0, 90) + '...'} <span class="font-medium">Selengkapnya</span></p>
+    )}
     <p class="text-sm text-amber-600 font-medium">{category}</p>
-</section>
+</a>

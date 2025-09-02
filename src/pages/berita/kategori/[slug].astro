@@ -7,7 +7,7 @@ import pb from "@/lib/database";
 const { slug } = Astro.params;
 const {searchParams} = new URL(Astro.url.href);
 const page = Number(searchParams.get("page")) || 1;
-const categories = await pb.collection("news").getList(page, 1, {expand: "category", sort: "-created", filter: `category.name = '${slug}'`})
+const categories = await pb.collection("news").getList(page, 12, {expand: "category", sort: "-created", filter: `category.name = '${slug}'`})
 const category = categories.items[0]
 
 if (!category) {

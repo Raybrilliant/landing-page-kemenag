@@ -71,7 +71,7 @@ export default function Navbar() {
   const profileLinks = [
     { href: "/profil/visi-misi", label: "Visi & Misi" },
     { href: "/profil/sejarah", label: "Sejarah" },
-    { href: "/profil/tugas-fungsi", label: "Tugas & Fungsi" },
+    // { href: "/profil/tugas-fungsi", label: "Tugas & Fungsi" },
     { href: "/profil/struktur", label: "Struktur" },
   ];
 
