@@ -9,6 +9,7 @@ export const GET: APIRoute = async ({ request }) => {
     const data = await pb.collection("news").getFullList({
         sort: "-created",
         limit: limit ? Number(limit) : undefined,
+        fields: "id, collectionId, title, slug, created, document",
         filter: category ? `category.name = '${category}'` : undefined,
     });
     return new Response(JSON.stringify(data));

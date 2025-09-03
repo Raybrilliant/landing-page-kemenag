@@ -9,7 +9,6 @@ if (import.meta.env.SSR) {
   // jalan di browser
   url = import.meta.env.PUBLIC_SITE_API;
 }
-console.log(url);
 
 if (!url) {
   url = 'https://api.kemenagkotaprobolinggo.id/';
