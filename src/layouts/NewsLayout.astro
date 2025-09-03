@@ -13,7 +13,7 @@ const { title, description,url,image, } = Astro.props;
         <!-- Title -->
         <meta property="og:title" content={title} />
         <!-- Deskripsi -->
-        <meta property="og:description" content={description.slice(0, 100)} />
+        <meta property="og:description" content={description ? description.slice(0, 100) : ''} />
         <!-- URL -->
         <meta property="og:url" content={process.env.SITE_URL || import.meta.env.SITE_URL + '/berita/blog/' + url} />
         <!-- Gambar preview -->
@@ -25,7 +25,7 @@ const { title, description,url,image, } = Astro.props;
         <!-- Optional untuk Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description.slice(0, 100)} />
+        <meta name="twitter:description" content={description ? description.slice(0, 100) : ''} />
         <meta name="twitter:image" content={image} />
         <meta name="twitter:url" content={process.env.SITE_URL || import.meta.env.SITE_URL + '/berita/blog/' + url} />
 
