@@ -12,7 +12,7 @@ if (import.meta.env.SSR) {
 console.log(url);
 
 if (!url) {
-  url = 'http://api-kemenag-kota-probolinggo-pocketbase-103-163-139-55.traefik.me/';
+  url = 'https://api.kemenagkotaprobolinggo.id/';
 }
 
 const pb = new PocketBase(url);
