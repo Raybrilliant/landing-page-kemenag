@@ -20,12 +20,11 @@ export const BeritaList = () => {
     const getBerita = async () => {
         const res = await fetch("/api/beritas?limit=4");
         const data = await res.json();
-        // console.log(data);
         
         if (!res.ok) {
             throw new Error("Failed to fetch data");
         }
-        setBerita(data as Berita[]);
+        setBerita(data.items as Berita[]);
         setLoading(false);
     };
     
@@ -40,9 +39,9 @@ export const BeritaList = () => {
             <div className="flex gap-5 whitespace-nowrap">
                 {loading ? (
                 <div className="flex gap-5">
-                    <Skeleton className="min-w-[250px] h-32 bg-white" />
-                    <Skeleton className="min-w-[250px] h-32 bg-white" />
-                    <Skeleton className="min-w-[250px] h-32 bg-white" />
+                    <Skeleton className="min-w-[250px] h-48 bg-white" />
+                    <Skeleton className="min-w-[250px] h-48 bg-white" />
+                    <Skeleton className="min-w-[250px] h-48 bg-white" />
                 </div>
                 ) : (
                 berita.map((item) => (
