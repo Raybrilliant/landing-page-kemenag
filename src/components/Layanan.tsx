@@ -50,7 +50,7 @@ export const Layanan = ({id, className}: any) => {
                 ) : layanan.map((item: any, index: number) => (
                     <BlurFade delay={0.12 * index} direction="left" inView key={item.id} >
                             <div className="rounded-md border hover:shadow-xl transition duration-300 cursor-pointer">
-                                <MagicCard gradientColor={"#D9D9D955"} gradientSize={200} className="p-0 min-h-60">
+                                <MagicCard gradientColor={"#D9D9D955"} gradientSize={200} className="p-0 min-h-60 max-sm:min-h-48">
                                 <a href={`/layanan/${item.id}`}>
                                     <div className="text-center space-y-3 p-5">
                                         <div className={`${randomBackground[Math.floor(Math.random() * randomBackground.length)]} w-16 max-sm:w-12 h-16 max-sm:h-12 rounded mx-auto flex justify-center items-center`}>
