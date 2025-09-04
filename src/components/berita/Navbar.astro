@@ -26,12 +26,12 @@ const isActive = (href: string) => {
     </div>
 
     {/* Desktop Menu */}
-    <div class="hidden md:flex items-center">
+    <div class="hidden md:flex items-center text-xs">
       <a href="/" class="mr-5 opacity-70 hover:opacity-100">Halaman Awal</a>
       {links.map((link) => (
         <a 
           href={link.href} 
-          class={`mr-5 opacity-70 hover:opacity-100 ${isActive(link.href) ? "font-bold" : ""}`}
+          class={`mr-2 opacity-70 hover:opacity-100 ${isActive(link.href) ? "font-bold" : ""}`}
         >
           {link.name}
         </a>

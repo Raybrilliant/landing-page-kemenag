@@ -49,19 +49,21 @@ export const Layanan = ({id, className}: any) => {
                     </>
                 ) : layanan.map((item: any, index: number) => (
                     <BlurFade delay={0.12 * index} direction="left" inView key={item.id} >
-                            <div className="rounded-md border hover:shadow-xl hover:bg-white transition duration-300 cursor-pointer">
-                                <MagicCard gradientColor={"#D9D9D955"} gradientSize={200} className="p-0">
+                            <div className="rounded-md border hover:shadow-xl transition duration-300 cursor-pointer">
+                                <MagicCard gradientColor={"#D9D9D955"} gradientSize={200} className="p-0 min-h-60">
+                                <a href={`/layanan/${item.id}`}>
                                     <div className="text-center space-y-3 p-5">
                                         <div className={`${randomBackground[Math.floor(Math.random() * randomBackground.length)]} w-16 max-sm:w-12 h-16 max-sm:h-12 rounded mx-auto flex justify-center items-center`}>
                                             <IconWrapper IconComponentName={randomIcon[Math.floor(Math.random() * randomIcon.length)]} className="w-8 max-sm:w-6 h-8 max-sm:h-6 text-gray-800" />
                                         </div>
                                         <h1 className="text-lg max-sm:text-sm font-bold max-sm:font-medium">{item.name}</h1>
                                         <p className="text-sm max-sm:hidden">{item.description}</p>
-                                        <a href={`/layanan/${item.id}`} className="text-green-600 group hover:underline cursor-pointer text-sm flex items-center justify-center">
+                                        <div className="text-green-600 group hover:underline cursor-pointer text-sm flex items-center justify-center">
                                             <span>Selengkapnya</span>
                                             <MoveRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                                        </a>
+                                        </div>
                                     </div>
+                                </a>
                                 </MagicCard>
                             </div>
                     </BlurFade>

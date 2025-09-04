@@ -7,7 +7,7 @@ import pb from "@/lib/database";
 const { slug } = Astro.params;
 const {searchParams} = new URL(Astro.url.href);
 const page = Number(searchParams.get("page")) || 1;
-const categories = await pb.collection("news").getList(page, 12, {expand: "category", sort: "-created", filter: `category.name = '${slug}'`})
+const categories = await pb.collection("news").getList(page, 12, {expand: "category", fields: 'id, collectionId, title, slug, date, document, category', sort: "-date", filter: `category.name = '${slug}'`})
 const category = categories.items[0]
 
 if (!category) {
@@ -31,7 +31,7 @@ function getPageUrl(page: number) {
 		 </div>
 		 <div class="grid grid-cols-4 max-sm:grid-cols-1 gap-5 mb-20">
 			 {categories.items.map((item) => (
-				<HorizontalNews title={item.title} date={item.created} category={item.expand?.category?.name} image={pb.files.getURL(item, item.document)} description={item.content} slug={item.slug} />
+				<HorizontalNews title={item.title} date={item.date} category={item.expand?.category?.name} image={pb.files.getURL(item, item.document)} description={item.content} slug={item.slug} />
 			 ))}
 		 </div>
     </section>

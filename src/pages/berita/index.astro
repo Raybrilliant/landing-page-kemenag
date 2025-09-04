@@ -4,7 +4,7 @@ import HorizontalNews from "@/components/berita/HorizontalNews.astro";
 import NewsLayout from "@/layouts/NewsLayout.astro";
 import pb from "@/lib/database";
 
-const beritas = await pb.collection('news').getFullList({expand:'category', sort:'-created', limit: 12})
+const beritas = await pb.collection('news').getFullList({expand:'category', fields: 'id, collectionId, title, slug, date, document, expand', sort:'-date', limit: 12})
 const berita = beritas.slice(0, 4)
 const beritaTerbaru = beritas.slice(4, 8)
 ---
@@ -21,7 +21,7 @@ const beritaTerbaru = beritas.slice(4, 8)
 		 </div>
 		 <div class="grid grid-cols-4 max-sm:grid-cols-1 gap-5 mb-20">
 			 {beritaTerbaru.map((item) => (
-				<HorizontalNews title={item.title} date={item.created} category={item.expand?.category?.name} image={pb.files.getURL(item, item.document)} description={item.content} slug={item.slug} />
+				<HorizontalNews title={item.title} date={item.date} category={item.expand?.category?.name} image={pb.files.getURL(item, item.document)} description={item.content} slug={item.slug} />
 			 ))}
 		 </div>
 	</section>

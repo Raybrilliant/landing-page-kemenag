@@ -50,7 +50,7 @@ export const Laporan = () => {
                 ) : (
                     laporan?.map((item, index) => (
                     <BlurFade inView delay={0.2 * index} direction="left" key={item.id}>
-                    <div className="bg-white p-5 rounded-md">
+                    <div className="bg-white p-5 rounded-md min-h-48">
                         <div className=" flex items-center gap-4 mb-5">
                             <div className="bg-red-200 min-w-13 min-h-13 rounded-md flex justify-center items-center">
                                 <FileText className="text-red-500"/>

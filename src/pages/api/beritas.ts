@@ -7,9 +7,9 @@ export const GET: APIRoute = async ({ request }) => {
     const category = searchParams.get("category");
     try {
     const data = await pb.collection("news").getFullList({
-        sort: "-created",
+        sort: "-date",
         limit: limit ? Number(limit) : undefined,
-        fields: "id, collectionId, title, slug, created, document",
+        fields: "id, collectionId, title, slug, date, document",
         filter: category ? `category.name = '${category}'` : undefined,
     });
     return new Response(JSON.stringify(data));

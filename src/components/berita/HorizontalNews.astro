@@ -7,7 +7,7 @@ const { title, date, category, image, description, slug } = Astro.props;
     <p class="text-sm text-gray-500">{new Date(date).toLocaleDateString('id-ID',{day:'2-digit', month:'long', year:'numeric'})}</p>
     <h1 class="font-medium text-lg">{title}</h1>
     {description && (
-        <p class="opacity-50 text-sm text-justify">{description.trim().slice(0, 90) + '...'} <span class="font-medium">Selengkapnya</span></p>
+        <p class="opacity-50 text-sm text-justify">{description ? description.trim().slice(0, 90) + '...' : ''} <span class="font-medium">Selengkapnya</span></p>
     )}
     <p class="text-sm text-amber-600 font-medium">{category}</p>
 </a>
