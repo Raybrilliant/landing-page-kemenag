@@ -13,7 +13,7 @@ const post = detail_berita[0]
 <NewsLayout title={post.title} description={post.content} url={post.slug} image={pb.files.getURL(post, post.document)}>
   <article class="my-10 mx-30 max-sm:mx-5 space-y-3">
     <h1 class=" text-4xl max-sm:text-3xl font-semibold font-serif">{post.title}</h1>
-    <p class="text-sm max-sm:text-xs text-gray-500"><a href={`/berita/kategori/${post.expand?.category?.name}`} class="font-medium">{post.expand?.category?.name}</a> | {new Date( post.created).toLocaleDateString('id-ID',{day:'2-digit', month:'long', year:'numeric'})}</p>
+    <p class="text-sm max-sm:text-xs text-gray-500"><a href={`/berita/kategori/${post.expand?.category?.name}`} class="font-medium">{post.expand?.category?.name}</a> | {new Date( post.date).toLocaleDateString('id-ID',{day:'2-digit', month:'long', year:'numeric'})}</p>
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-5">
             <p class="text-sm max-sm:text-xs text-gray-500">Humas Kemenag</p>
