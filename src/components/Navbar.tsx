@@ -96,7 +96,7 @@ export default function Navbar() {
         />
         <a href="/">
           <p className={`${textSize} font-bold ${textColorClass}`}>
-            Kementerian Agama
+            Kantor Kementerian Agama
           </p>
           <p className={`${textSize} font-bold ${textColorClass}`}>
             Kota Probolinggo

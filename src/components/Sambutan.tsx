@@ -6,6 +6,11 @@ import { Skeleton } from "./ui/skeleton";
 interface Kepala {
     id: string;
     name: string;
+    expand: {
+        category: {
+            name: string;
+        };
+    };
     document: string;
 }
 
@@ -41,7 +46,7 @@ export const Sambutan = () => {
 			</BlurFade>
 			<div>
 				<p className="text-3xl font-bold">{kepala?.name}</p>
-				<p className="font-semibold opacity-70">Kepala Kementerian Agama Kota Probolinggo</p>
+				<p className="font-semibold opacity-70">{kepala?.expand.category.name} Kementerian Agama Kota Probolinggo</p>
 				<article className="mt-3 text-justify">
 					Assalamualaikum Warahmatullahi Wabarakatuh, <br />
 					Salam sejahtera untuk kita semua. <br /><br />
