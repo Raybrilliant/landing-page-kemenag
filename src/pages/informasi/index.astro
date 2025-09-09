@@ -5,9 +5,9 @@ import {LaporanDetail} from "@/components/LaporanDetail";
 
 <BaseLayout title="Laporan">
     <div class="mx-20 max-sm:mx-5 my-30">
-        <h1 class="text-3xl font-bold">Informasi Terbaru</h1>
+        <h1 class="text-3xl font-bold">Informasi Terbaru</h1>    
         <!-- Laporan -->
-         <LaporanDetail client:only="react"/>
+         <LaporanDetail client:load/>
     </div>
 
 </BaseLayout>

@@ -8,9 +8,14 @@ interface Laporan {
     name: string;
     content: string;
     document: string;
+    expand: {
+        category: {
+            name: string;
+        };
+    };
 }
 
-export const Laporan = () => {
+export const Laporan = ({id}: {id?: string}) => {
     const [laporan, setLaporan] = useState<Laporan[]>();
     const [loading, setLoading] = useState(true);
     const getLaporan = async () => {
@@ -28,7 +33,7 @@ export const Laporan = () => {
     }, []);
 
     return (
-        <div className="bg-green-700 px-20 max-sm:px-5 py-20 max-sm:py-10">
+        <div className="bg-green-700 px-20 max-sm:px-5 py-20 max-sm:py-10" id={id}>
             <div className="flex max-sm:flex-col justify-between gap-10 items-center text-white">
                 <h2 className="text-2xl font-semibold">
                     Transparansi Informasi Kementerian Agama Kota Probolinggo
@@ -55,7 +60,10 @@ export const Laporan = () => {
                             <div className="bg-red-200 min-w-13 min-h-13 rounded-md flex justify-center items-center">
                                 <FileText className="text-red-500"/>
                             </div>
+                            <div>
                             <h3 className="text-lg font-semibold">{item.name}</h3>
+                            <p className="text-sm opacity-50">{item.expand.category.name}</p>
+                            </div>
                         </div>
                         <p className="text-sm">{item.content}</p>
                     <div className="flex text-sm justify-between mt-5" hidden={!item.document}>

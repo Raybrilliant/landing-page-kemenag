@@ -62,9 +62,11 @@ export default function Navbar() {
     ? "bg-opacity-80 backdrop-blur-md shadow-md"
     : "bg-transparent";
 
-  const navLinks = [
+  // Link yang akan ditampilkan di navbar
+    const navLinks = [
     { href: "/progres", label: "Cek Progres" },
     { href: "/#layanan", label: "Layanan" },
+    { href: "/#laporan", label: "Laporan" },
     { href: "/#contact", label: "Hubungi Kami" },
   ];
 

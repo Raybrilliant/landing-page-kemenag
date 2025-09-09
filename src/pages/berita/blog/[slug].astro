@@ -6,7 +6,7 @@ import ShareButton from "@/components/ShareButton";
 const { slug } = Astro.params;
 
 const detail_berita = await pb.collection('news').getFullList({expand:'category', filter:`slug = '${slug}'`})
-const related_berita = await pb.collection('news').getFullList({expand:'category', fields: 'id, collectionId, title, slug, date, document, category', filter:`category.id = '${detail_berita[0].category}'`, sort:'-date', limit: 4})
+const related_berita = await pb.collection('news').getList(1,4,{expand:'category', fields: 'id, collectionId, title, slug, date, document, category', filter:`category.id = '${detail_berita[0].category}'`, sort:'-date'})
 const post = detail_berita[0]
 ---
 
@@ -28,7 +28,7 @@ const post = detail_berita[0]
     <!-- related berita -->
     <h3 class="text-2xl max-sm:text-xl font-semibold mt-10 max-sm:mt-10">Berita Terkait</h3>
     <div class="grid grid-cols-4 max-sm:grid-cols-1 gap-5 mb-20">
-      {related_berita.map((item) => (
+      {related_berita.items.map((item) => (
         <HorizontalNews title={item.title} date={item.date} category={item.expand?.category?.name} image={pb.files.getURL(item, item.document)} slug={item.slug} />
       ))}
     </div>

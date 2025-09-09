@@ -10,6 +10,11 @@ interface LaporanItem {
     name: string;
     content: string;
     document: string;
+    expand: {
+        category: {
+            name: string;
+        };
+    };
 }
 
 interface LaporanResponse {
@@ -24,9 +29,10 @@ export const LaporanDetail = () => {
     const [laporan, setLaporan] = useState<LaporanResponse | null>(null);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
+    const [name, setName] = useState("");
     const url = '/api/laporan?limit=15&page=' + page;
     const getLaporan = async () => {
-        const res = await fetch(url);
+        const res = await fetch(url + (name ? `&name=${name}` : ""));
         const data = await res.json();
         if (!res.ok) {
             throw new Error("Failed to fetch data");
@@ -40,7 +46,12 @@ export const LaporanDetail = () => {
     }, [page]);
 
     return (
-        <section className="flex flex-col gap-5 mt-10">
+    <>
+        <div className="flex items-center justify-end max-sm:justify-center my-5 gap-2">
+                <input type="text" placeholder="Cari Laporan" name="name" className="border border-gray-300 rounded-md px-3 py-2" onChange={(e) => setName(e.target.value)}/>
+                <button type="button" onClick={getLaporan} className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-600/80 hover:px-7 duration-300 cursor-pointer">Cari</button>
+        </div>
+        <section className="flex flex-col gap-5">
         {loading ? (
                 <div className="flex flex-col gap-4">
                     <Skeleton className="w-full h-32 bg-white" />
@@ -55,7 +66,10 @@ export const LaporanDetail = () => {
                                 <div className="bg-red-200 min-w-13 min-h-13 rounded-md flex justify-center items-center">
                                     <FileText className="text-red-500"/>
                                 </div>
-                                <h3 className="text-lg font-semibold">{item.name}</h3>
+                                <div>
+                                    <h3 className="text-lg font-semibold">{item.name}</h3>
+                                    <p className="text-sm opacity-50">{item.expand.category.name}</p>
+                                </div>
                             </div>
                             <p className="text-sm">{item.content}</p>
                             <div className="flex text-sm justify-between mt-5" hidden={!item.document}>
@@ -81,5 +95,7 @@ export const LaporanDetail = () => {
                 />
             )}
         </section>
+    </>
+
     );
 }
