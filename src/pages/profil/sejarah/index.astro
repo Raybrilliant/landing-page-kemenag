@@ -72,7 +72,7 @@ const kepala = [
       {
         kepala.map((item,index) => (
           <BlurFade delay={index * 0.1} client:visible>
-            <img src={item.image} alt={item.name} class="w-64 h-72 object-cover rounded-md transition duration-300 grayscale hover:grayscale-0"/>
+            <img src={item.image} alt={item.name} class="w-60 h-80 max-xl:min-w-64 max-xl:min-h-72 object-cover rounded-md transition duration-300 grayscale hover:grayscale-0"/>
             <h2 class="text-xl font-medium text-center">{item.name}</h2>
             <p class="text-center">{item.year}</p>
           </BlurFade>

@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Struktur from "@/components/Struktur";
 import pb from "@/lib/database";
 
-const struktur = await pb.collection('organizations').getFullList({expand:'category', sort:'-created'})
+const struktur = await pb.collection('organizations').getFullList({expand:'category', sort:'+created'})
 
 ---
 

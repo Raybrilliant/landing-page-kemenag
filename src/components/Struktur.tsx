@@ -33,7 +33,7 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
     <>
       <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-10 max-sm:gap-5">
         {struktur.map((item, index) => (
-          <BlurFade key={index} className="flex flex-col gap-1 items-center" delay={index * 0.1}>
+          <BlurFade key={index} className="flex flex-col gap-1 items-center justify-center" delay={index * 0.1}>
             <button
               type="button"
               onClick={() => handleOpen(item)}
@@ -42,8 +42,6 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
               <img
                 src={pb.files.getURL(item,item?.document ?? '')}
                 alt={item.name}
-                width={200}
-                height={200}
                 className={`object-cover rounded-md group-hover:shadow-lg group-hover:rounded-none duration-300 cursor-pointer`}
               />
 
@@ -57,7 +55,7 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
 
       {/* Modal */}
       <Dialog open={open}  onOpenChange={setOpen} >
-        <DialogContent className="max-w-xl">
+        <DialogContent className="min-w-xl">
           <DialogHeader>
             <DialogTitle className="text-green-700">{selected?.name}</DialogTitle>
             <DialogDescription>{selected?.expand?.category?.name}</DialogDescription>
