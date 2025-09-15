@@ -45,8 +45,8 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
                 className={`object-cover rounded-md group-hover:shadow-lg group-hover:rounded-none duration-300 cursor-pointer`}
               />
 
-                <div className="text-2xl max-sm:text-xl font-bold group-hover:text-green-700 duration-300">{item.name}</div>
-                <div className="text-sm text-gray-500">{item.expand?.category?.name}</div>
+                <div className="text-2xl max-sm:text-lg font-bold group-hover:text-green-700 duration-300">{item.name}</div>
+                <div className="text-sm max-sm:text-xs text-gray-500">{item.expand?.category?.name}</div>
             </button>
 
           </BlurFade>
@@ -54,8 +54,8 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
       </div>
 
       {/* Modal */}
-      <Dialog open={open}  onOpenChange={setOpen} >
-        <DialogContent className="min-w-xl">
+      <Dialog open={open} onOpenChange={setOpen} >
+        <DialogContent className="min-w-xl max-sm:min-w-0">
           <DialogHeader>
             <DialogTitle className="text-green-700">{selected?.name}</DialogTitle>
             <DialogDescription>{selected?.expand?.category?.name}</DialogDescription>
@@ -67,7 +67,9 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
               alt={selected?.name}
               className="w-full object-cover mb-4 rounded-md"
             />
+            <div className="max-h-[calc(100vh-20rem)] overflow-auto">
             <p className="text-sm leading-relaxed text-justify text-gray-600">{selected?.description ?? 'Belum ada deskripsi.'}</p>
+            </div>
           </div>
 
         </DialogContent>
