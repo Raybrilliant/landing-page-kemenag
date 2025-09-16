@@ -39,7 +39,10 @@ const isActive = (href: string) => {
     </div> -->
     <div class="flex items-center gap-2">
       <a href="/" class="mr-5 opacity-70 hover:opacity-100 max-sm:hidden">Halaman Awal</a>
-      <!-- <input type="text" placeholder="Cari Berita" class="bg-white text-black px-5 py-2 rounded-md"/> -->
+      <form method="get" class="flex items-center gap-2">
+        <input name="search" type="search" placeholder="Cari Berita" class="bg-white text-black px-5 py-2 rounded-md"/>
+        <button type="submit" class="bg-white text-black px-5 py-2 rounded-md">Cari</button>
+      </form>
       {/* Mobile Menu Button */}
       <button id="menu-btn" class="flex flex-col gap-1 cursor-pointer">
         <span class="w-6 h-0.5 bg-white"></span>

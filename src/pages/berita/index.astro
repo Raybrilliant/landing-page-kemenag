@@ -4,7 +4,9 @@ import HorizontalNews from "@/components/berita/HorizontalNews.astro";
 import NewsLayout from "@/layouts/NewsLayout.astro";
 import pb from "@/lib/database";
 
-const beritas = await pb.collection('news').getList(1, 12, {expand:'category', fields: 'id, collectionId, title, slug, date, document, expand', sort:'-date', limit: 12})
+const {searchParams} = new URL(Astro.url.href);
+const search = searchParams.get("search") || "";
+const beritas = await pb.collection('news').getList(1, 12, {expand:'category', filter: `title ~ '${search}'`, fields: 'id, collectionId, title, slug, date, document, expand', sort:'-date', limit: 12})
 const berita = beritas.items.slice(0, 4)
 const beritaTerbaru = beritas.items.slice(4, 12)
 ---
