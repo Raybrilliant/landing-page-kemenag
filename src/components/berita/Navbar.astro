@@ -37,18 +37,22 @@ const isActive = (href: string) => {
         </a>
       ))}
     </div> -->
+    <div class="flex items-center gap-2">
+      <a href="/" class="mr-5 opacity-70 hover:opacity-100 max-sm:hidden">Halaman Awal</a>
+      <!-- <input type="text" placeholder="Cari Berita" class="bg-white text-black px-5 py-2 rounded-md"/> -->
+      {/* Mobile Menu Button */}
+      <button id="menu-btn" class="flex flex-col gap-1 cursor-pointer">
+        <span class="w-6 h-0.5 bg-white"></span>
+        <span class="w-6 h-0.5 bg-white"></span>
+        <span class="w-6 h-0.5 bg-white"></span>
+      </button>
+    </div>
 
-    {/* Mobile Menu Button */}
-    <button id="menu-btn" class="flex flex-col gap-1 cursor-pointer">
-      <span class="w-6 h-0.5 bg-white"></span>
-      <span class="w-6 h-0.5 bg-white"></span>
-      <span class="w-6 h-0.5 bg-white"></span>
-    </button>
   </div>
 
   {/* Mobile Dropdown */}
   <div id="mobile-menu" class="flex-col flex hidden mt-4 space-y-3">
-    <a href="/" class="opacity-70 hover:opacity-100">Halaman Awal</a>
+    <a href="/" class="hidden opacity-70 hover:opacity-100 max-sm:block">Halaman Awal</a>
     {links.map((link) => (
       <a 
         href={link.href} 

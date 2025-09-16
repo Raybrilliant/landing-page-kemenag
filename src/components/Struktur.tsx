@@ -61,17 +61,14 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
             <DialogDescription>{selected?.expand?.category?.name}</DialogDescription>
           </DialogHeader>
 
-          <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
+          <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-5 max-h-[calc(100vh-20rem)] overflow-auto">
             <img
               src={pb.files.getURL(selected!,selected?.document ?? '')}
               alt={selected?.name}
               className="w-full object-cover mb-4 rounded-md"
             />
-            <div className="max-h-[calc(100vh-20rem)] overflow-auto">
             <p className="text-sm leading-relaxed text-justify text-gray-600">{selected?.description ?? 'Belum ada deskripsi.'}</p>
-            </div>
           </div>
-
         </DialogContent>
       </Dialog>
     </>
