@@ -39,7 +39,7 @@ const isActive = (href: string) => {
     </div> -->
     <div class="flex items-center gap-2">
       <a href="/" class="mr-5 opacity-70 hover:opacity-100 max-sm:hidden">Halaman Awal</a>
-      <form method="get" class="flex items-center gap-2">
+      <form method="get" class="flex items-center gap-2 max-sm:hidden">
         <input name="search" type="search" placeholder="Cari Berita" class="bg-white text-black px-5 py-2 rounded-md"/>
         <button type="submit" class="bg-white text-black px-5 py-2 rounded-md">Cari</button>
       </form>
@@ -64,6 +64,10 @@ const isActive = (href: string) => {
         {link.name}
       </a>
     ))}
+    <form method="get" class="hidden flex items-center gap-2 max-sm:block">
+      <input name="search" type="search" placeholder="Cari Berita" class="bg-white text-black px-5 py-2 rounded-md"/>
+      <button type="submit" class="bg-white text-black px-5 py-2 rounded-md">Cari</button>
+    </form>
   </div>
 
   <script>
