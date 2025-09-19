@@ -1,7 +1,7 @@
 import { AccordionTrigger, Accordion, AccordionItem, AccordionContent } from './ui/accordion'
 
 
-export default function Syarat({ requirement,flow,fee }: {requirement?:string,flow?:string,fee?:string}) {
+export default function Syarat({ requirement,flow,fee }: {requirement?:string,flow?:string,fee?:number}) {
     return (
         <section>
             <Accordion type="single" collapsible className="w-full p-2 px-4 rounded bg-white shadow-md" defaultValue="1">
@@ -20,7 +20,8 @@ export default function Syarat({ requirement,flow,fee }: {requirement?:string,fl
                     <AccordionItem key={'fee'} value={'fee'}>
                         <AccordionTrigger>Biaya</AccordionTrigger>
                         <AccordionContent>
-                            <p dangerouslySetInnerHTML={{ __html: fee || '' }}></p>
+
+                            <p>{fee || fee === 0 ? `Rp ${new Intl.NumberFormat('id-ID').format(fee)} rupiah` : 'Rp 0 rupiah'}</p>
                         </AccordionContent>
                     </AccordionItem>
             </Accordion>

@@ -59,7 +59,7 @@ export const LayananSubmit = ({layananID, className}: {layananID: string, classN
 
     return (
         <div className={className}>
-        <Syarat requirement={requirement?.requirement} flow={requirement?.flow} fee={requirement?.fee}/>
+        <Syarat requirement={requirement?.requirement} flow={requirement?.flow} fee={Number(requirement?.fee)}/>
         <form className="space-y-3" onSubmit={handleSubmit}>
             {data && <div className="p-4 bg-green-200 text-sm rounded-md mb-5">Permintaan Layanan Anda telah terkirim dengan nomor  <span className="font-bold">{data?.id}</span> mohon agar nomor dapat disimpan untuk melakukan pengecekan</div>}
             <div className="flex flex-col gap-1">
@@ -67,7 +67,7 @@ export const LayananSubmit = ({layananID, className}: {layananID: string, classN
                 <input type="text" id="nama" name="requester_name" placeholder="Fulan bin Fulan" className="w-full p-3 border border-gray-300 rounded-md bg-white"  required/>
             </div>
             <div className="flex flex-col gap-1">
-                <label htmlFor="institution" className="font-semibold">Nama Instansi</label>
+                <label htmlFor="institution" className="font-semibold">Nama Lembaga</label>
                 <input type="text" id="institution" name="requester_institution" placeholder="Kemenag Kota Probolinggo" className="w-full p-3 border border-gray-300 rounded-md bg-white" required/>
             </div>
             <div className="flex flex-col gap-1">

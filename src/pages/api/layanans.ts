@@ -6,7 +6,6 @@ export const GET: APIRoute = async ({ request }) => {
     const categoryid = searchParams.get("categoryId");
     try {
     const data = await pb.collection("services").getFullList({
-        sort: "-created",
         expand: "category",
         filter: categoryid ? `category = '${categoryid}'` : undefined,
     });
