@@ -122,6 +122,41 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    ul {
+      list-style-type: disc; /* Mengatur jenis bullet untuk daftar tidak terurut */
+      padding-left: 20px; /* Memberikan padding di sebelah kiri */
+    }
+    
+    ol {
+        list-style-type: decimal; /* Mengatur jenis numbering untuk daftar terurut */
+        padding-left: 20px; /* Memberikan padding di sebelah kiri */
+    }
+    
+    li {
+        margin-bottom: 0.5em; /* Memberikan jarak antar item */
+        font-size: 1rem; /* Mengatur ukuran font */
+        line-height: 1.5; /* Mengatur tinggi baris untuk keterbacaan */
+        color: #333; /* Mengatur warna teks */
+    }
+    
+    /* Jika Anda ingin menargetkan <ul> di dalam <li> secara spesifik */
+    li > ul {
+        list-style-type: circle; /* Mengatur jenis bullet untuk sub-list */
+        padding-left: 20px; /* Memberikan padding di sebelah kiri untuk sub-list */
+    }
+    
+    /* Jika Anda ingin menargetkan <ol> di dalam <li> secara spesifik */
+    li > ol {
+        list-style-type: lower-alpha; /* Mengatur jenis numbering untuk sub-list menjadi huruf kecil */
+        padding-left: 20px; /* Memberikan padding di sebelah kiri untuk sub-list */
+    }
+    
+    /* Jika Anda ingin menambahkan gaya khusus untuk <li> di dalam <ul> */
+    li.custom-list-item {
+        font-weight: bold; /* Mengatur teks menjadi tebal */
+        color: #555; /* Mengatur warna teks untuk item khusus */
+    }
+    
   }
   body {
     @apply bg-background text-foreground;

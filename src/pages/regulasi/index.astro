@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import {RegulasiDetail} from "@/components/RegulasiDetail";
+---
+
+<BaseLayout title="Regulasi">
+    <div class="mx-20 max-sm:mx-5 my-30">
+        <h1 class="text-3xl font-bold">Regulasi</h1>    
+        <!-- Laporan -->
+         <RegulasiDetail client:load/>
+    </div>
+
+</BaseLayout>

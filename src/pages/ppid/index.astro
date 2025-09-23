@@ -1,0 +1,158 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const profil = `
+      Dalam rangka memberikan pelayanan Informasi Publik sebagaimana diamanatkan dalam Peraturan Pemerintah Nomor 61 Tahun 2010 tentang Pelaksanaan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik, Menteri Agama menetapkan Pejabat Pengelola informasi dan Dokumentasi (PPID) melalui Keputusan Menteri Agama (KMA) Nomor 200 Tahun 2012 tentang Pejabat Pengelola Informasi dan Dokumentasi (PPID) Kementerian Agama yang telah diperbaharui menjadi Keputusan Menteri Agama (KMA) Nomor 533 Tahun 2018 tentang Pejabat Pengelola Informasi dan Dokumentasi Kementerian Agama dan Atasan Pejabat Pengelola Informasi dan Dokumentasi Kementerian Agama. Pada Keputusan Menteri Agama Nomor 533 Tahun 2018 tersebut ditetapkan bahwa PPID Kementerian Agama terdiri dari:
+      </p>
+      <ul>
+        <li>PPID Utama yaitu Biro Humas, Data, dan Informasi Sekretariat Jenderal;</li>
+        <li>PPID Unit yaitu:
+          <ul>
+            <li>PPID Unit Eselon I Pusat yang terdiri dari PPID Unit: Inspektorat Jenderal, Direktorat Jenderal Pendidikan Islam, Direktorat Jenderal Bimbingan Masyarakat Islam, Direktorat Jenderal Bimbingan Masyarakat Kristen, Direktorat Jenderal Bimbingan Masyarakat Katolik, Direktorat Jenderal Bimbingan Masyarakat Hindu, Direktorat Jenderal Bimbingan Masyarakat Buddha, Badan Penelitian dan Pengembangan serta Diklat, Badan Penyelenggara Jaminan Produk Halal;</li>
+            <li>PPID Unit Kantor Wilayah Kementerian Agama Provinsi (34 Unit);</li>
+            <li>PPID Unit Kantor Kementerian Agama Kabupaten/Kota (512 Unit);</li>
+            <li>PPID Unit Perguruan Tinggi Keagamaan Negeri (PTKN) yang terdiri dari PPID Unit: Universitas Islam Negeri (17 Unit), Institut Agama Islam Negeri (31 Unit), Sekolah Tinggi Agama Islam Negeri (11 Unit), Institut Agama Kristen Negeri (3 Unit), Sekolah Tinggi Agama Kristen Negeri (4 Unit), Sekolah Tinggi Agama Katolik Negeri (1 Unit), Institut Hindu Dharma Negeri (1 Unit), Institut Agama Hindu Negeri (1 Unit), Sekolah Tinggi Agama Hindu Negeri (2 Unit), Sekolah Tinggi Agama Buddha Negeri (2 Unit);</li>
+            <li>PPID Unit Pelaksana Teknis (UPT) Asrama Haji (11 Unit);</li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+      Agar pelaksanaan keterbukaan informasi publik pada satuan kerja Pusat dan Daerah berjalan dengan baik, Menteri Agama menetapkan Keputusan Menteri Agama Nomor 92 Tahun 2019 tentang Pedoman Layanan Informasi Publik Bagi Pejabat Pengelola Informasi dan Dokumentasi Kementerian Agama dan Atasan Pejabat Pengelola Informasi dan Dokumentasi Kementerian Agama. Masing-masing PPID pada unit eselon I di lingkungan Kementerian Agama bertanggung jawab untuk melakukan penyediaan, penyimpanan, pendokumentasian, pelayanan, dan pengamanan informasi publik. Atasan PPID merupakan Pimpinan masing-masing unit eselon I.
+`;
+
+const tugas = `
+<ol class="list-decimal pl-5">
+    <li>Menyediakan dan mengamankan Informasi Publik;</li>
+    <li>Memberikan pelayanan Informasi Publik yang cepat, tepat, dan sederhana;</li>
+    <li>Menyusun standar operasional prosedur pelaksanaan tugas dan kewenangan PPID Kementerian Agama dalam rangka penyebarluasan Informasi Publik;</li>
+    <li>Menetapkan Daftar Informasi Publik dalam bentuk keputusan PPID Kementerian Agama mengenai Daftar Informasi Publik Kementerian Agama, paling lambat akhir bulan Januari tahun berjalan;</li>
+    <li>Melaksanakan Pengklasifikasian Informasi Publik atau perubahannya dengan persetujuan Atasan PPID Kementerian Agama dalam bentuk keputusan PPID Kementerian Agama mengenai klasifikasi informasi Kementerian Agama;</li>
+    <li>Menetapkan Informasi Publik yang Dikecualikan sebagai Informasi Publik yang dapat diakses dalam hal:
+        <ol class="list-alpha pl-5">
+            <li>telah dinyatakan terbuka bagi masyarakat berdasarkan mekanisme keberatan;</li>
+            <li>telah dinyatakan terbuka bagi masyarakat berdasarkan putusan sidang ajudikasi, putusan pengadilan, serta putusan Mahkamah Agung;</li>
+            <li>telah habis jangka waktu pengecualiannya; dan/atau ditentukan oleh peraturan perundang-undangan;</li>
+        </ol>
+    </li>
+    <li>Menetapkan pertimbangan tertulis atas setiap kebijakan yang diambil guna memenuhi hak setiap orang atas Informasi Publik;</li>
+    <li>Mengoordinasikan:
+        <ol class="list-alpha pl-5">
+            <li>pengumpulan seluruh Informasi Publik yang meliputi: informasi yang wajib disediakan dan diumumkan secara berkala, informasi yang wajib diumumkan secara serta merta; dan informasi yang wajib tersedia setiap saat;</li>
+            <li>pengumpulan Informasi Publik yang Dikecualikan;</li>
+            <li>pengumuman Informasi Publik melalui media yang secara efektif dan efisien dapat menjangkau seluruh pemangku kepentingan;</li>
+            <li>penyampaian Informasi Publik dalam bahasa Indonesia yang baik, benar, dan mudah dipahami;</li>
+            <li>pemenuhan permohonan Informasi Publik yang dapat diakses oleh publik;</li>
+            <li>Pengklasifikasian Informasi Publik dan/ atau pengubahan Pengklasifikasian Informasi Publik;</li>
+            <li>permohonan keberatan di proses berdasarkan prosedur;</li>
+            <li>proses layanan Informasi Publik di Kementerian Agama berjalan dengan baik;</li>
+            <li>melakukan Uji Konsekuensi bersama dengan PPID Unit eselon I terhadap Informasi Publik yang tidak dapat diakses oleh masyarakat sebagaimana dimaksud dalam peraturan perundang-undangan mengenai keterbukaan Informasi Publik;</li>
+            <li>memberikan alasan tertulis atas pengecualian Informasi Publik, dalam hal permohonan Informasi Publik ditolak;</li>
+            <li>melakukan penghitaman atau pengaburan materi Informasi Publik yang Dikecualikan beserta alasannya;</li>
+            <li>menetapkan dan menugaskan petugas layanan informasi untuk membantu pelaksanaan tugas PPID Kementerian Agama;</li>
+            <li>melakukan pengembangan kompetensi petugas layanan informasi guna meningkatkan kualitas layanan informasi publik;</li>
+            <li>menggunakan Sistem Informasi PPID dalam pengelolaan layanan Informasi Publik;</li>
+            <li>menyediakan Informasi Publik yang mutakhir pada portal Kementerian Agama dan Sistem Informasi PPID;</li>
+            <li>memelihara dan/atau memutakhirkan informasi pada portal Kementerian Agama dan Sistem Informasi PPID sekurang-kurangnya 1 (satu) kali dalam 1 (satu) bulan;</li>
+            <li>melakukan koordinasi, harmonisasi, dan fasilitasi Perangkat PPID;</li>
+            <li>menyediakan ruangan dan/ atau meja layanan Informasi Publik;</li>
+            <li>membuat dan menyampaikan Laporan Empat Bulanan Layanan Informasi Publik kepada Atasan PPID Kementerian Agama;</li>
+            <li>membuat dan mengumumkan Laporan Tahunan layanan Informasi Publik serta menyampaikan salinannya kepada Komisi Informasi Pusat.</li>
+        </ol>
+    </li>
+</ol>
+`;
+
+const waktu_layanan = `
+    <p class="md:text-lg text-justify">
+        Layanan permohonan informasi pada PPID Kementerian Agama dilaksanakan pada hari kerja, mulai Senin sampai dengan Jumat, dengan ketentuan waktu sebagai berikut:
+    </p>
+    <div class="grid grid-cols-2">
+    <div>
+    <h3 class="text-lg font-semibold my-5">SENIN – KAMIS</h3>
+    <ul class="list-disc pl-5">
+        <li>Jam Layanan Pagi: 08.00 WIB – 12.00 WIB</li>
+        <li>Jam Layanan Siang: 13.00 WIB – 15.00 WIB</li>
+    </ul>
+    </div>
+    <div>
+    <h3 class="text-lg font-semibold my-5">JUMAT</h3>
+    <ul class="list-disc pl-5">
+        <li>Jam Layanan Pagi: 08.00 WIB – 11.30 WIB</li>
+        <li>Jam Layanan Siang: 13.00 WIB – 15.30 WIB</li>
+    </ul>
+    </div>
+    </div>
+`;
+
+const visiMisi = {
+  visi: "Terwujudnya Pelayanan Informasi yang Akuntabel",
+  misi: "Meningkatkan layanan informasi yang cepat, tepat, dan transparan, Meningkatkan kompetensi SDM pelayan informasi, Penguatan koordinasi antar PPID lintas sektoral",
+  motto: "Melayani dengan Ikhlas",
+}
+
+const biaya = `
+PPID Kementerian Agama menyediakan informasi publik secara gratis (tidak dipungut biaya). Adapun untuk penggandaan atau perekaman, pemohon/pengguna informasi publik dapat melakukan penggandaan/fotocopy sendiri di sekitar gedung Kementerian Agama atau menyediakan CD/DVD kosong atau flashdisk untuk perekaman data dan informasinya.
+`;
+
+const maklumat = `
+    <p class="md:text-lg text-justify">
+        Maklumat pelayanan merupakan salah satu bukti kesungguhan pemberi layanan publik untuk menerapkan prinsip-prinsip good governance (transparansi, akuntabilitas, keterbukaan, dan keadilan) dalam memberikan pelayanan kepada masyarakatnya. Masyarakat harus mengetahui maklumat tersebut dan memberikan kesempatan bagi masyarakat untuk menyalurkan keinginan dan sarannya serta melakukan pengawasan dan komplain bila ada ketidaksesuaian antara yang dijanjikan dengan praktek pelaksanaannya.
+    </p>
+`;
+
+const { visi, misi, motto } = visiMisi;
+
+---
+
+<BaseLayout title="PPID">
+  <div class="max-sm:mx-5 mx-20 my-30">
+    <h1 class="text-3xl font-bold mb-10">PPID</h1>
+    <!-- Profil PPID -->
+    <div class="my-20">
+      <h2 class="text-2xl font-bold mb-5">Profil PPID</h2>
+      <article class="md:text-lg text-justify" set:html={profil}></article>
+    </div>
+    <!-- Tugas -->
+    <div class="my-20">
+      <h2 class="text-2xl font-bold mb-5">Tugas</h2>
+      <p class="md:text-lg text-justify" set:html={tugas}></p>
+    </div>
+      <!-- Waktu Pelayanan -->
+      <div class="my-20">
+        <h2 class="text-2xl font-bold mb-5">Waktu Pelayanan</h2>
+        <p class="md:text-lg text-justify" set:html={waktu_layanan}></p>
+      </div>
+      <!-- Visi Misi Motto -->
+    <div class="grid grid-cols-3 max-sm:grid-cols-1 gap-10 max-sm:gap-5">
+      <div>
+        <h2 class="text-2xl font-bold mb-5">Visi</h2>
+        <p class="md:text-lg text-justify">{visi}</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold mb-5">Misi</h2>
+        <p class="md:text-lg text-justify">{misi}</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold mb-5">Motto</h2>
+        <p class="md:text-lg text-justify">{motto}</p>
+      </div>
+    </div>
+    <!-- Biaya dan Tarif -->
+    <div class="my-20">
+      <h2 class="text-2xl font-bold mb-5">Biaya dan Tarif</h2>
+      <p class="md:text-lg text-justify" set:html={biaya}></p>
+    </div>
+    <!-- Struktur Organisasi -->
+    <div class="my-20">
+      <h2 class="text-2xl font-bold mb-5">Struktur Organisasi</h2>
+      <p class="md:text-lg text-justify">{visi}</p>
+    </div>
+    <!-- Maklumat Pelayanan -->
+    <div class="my-20">
+      <h2 class="text-2xl font-bold mb-5">Maklumat Pelayanan</h2>
+      <p class="md:text-lg text-justify" set:html={maklumat}></p>
+    </div>
+
+
+  </div>
+</BaseLayout>

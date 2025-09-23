@@ -10,12 +10,13 @@ import {
 } from "./ui/navigation-menu";
 
 export default function Navbar() {
-  const [isLightNavbarTheme, setIsLightNavbarTheme] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHome, setIsHome] = useState(true);
+  const [isHome, setIsHome] = useState(false); // Inisialisasi dengan false
+  const [isLightNavbarTheme, setIsLightNavbarTheme] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
+    // Jalankan kode ini HANYA di client setelah hidrasi
     setIsHome(window.location.pathname === "/");
 
     const handleScroll = () => {
@@ -23,7 +24,7 @@ export default function Navbar() {
       const darkSectionEnd = 500;
       const lightSectionEnd = 1500;
 
-      if (isHome) {
+      if (window.location.pathname === "/") {
         if (
           scrollPosition < darkSectionEnd ||
           (scrollPosition >= lightSectionEnd && scrollPosition < 1500)
@@ -38,10 +39,10 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
+    handleScroll(); // Panggil sekali untuk inisialisasi awal
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHome]);
+  }, []);
 
   const baseTextTransition = "transition-colors duration-300";
 
@@ -64,10 +65,13 @@ export default function Navbar() {
 
   // Link yang akan ditampilkan di navbar
     const navLinks = [
-    { href: "/progres", label: "Cek Progres" },
-    { href: "/#layanan", label: "Layanan" },
+    { href: "/ppid", label: "PPID" },
+    { href: "/regulasi", label: "Regulasi" },
     { href: "/#laporan", label: "Laporan" },
-    { href: "/#contact", label: "Hubungi Kami" },
+    { href: "/#layanan", label: "Layanan" },
+    { href: "/progres", label: "Cek Progres" },
+    { href: "/survei", label: "Survei" },
+    // { href: "/#contact", label: "Hubungi Kami" },
   ];
 
   const profileLinks = [
@@ -105,7 +109,6 @@ export default function Navbar() {
           </p>
         </a>
       </div>
-
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center">
           <NavigationMenu viewport={false}>
@@ -169,6 +172,8 @@ export default function Navbar() {
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className={`p-2 rounded-md ${textColorClass}`}
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
