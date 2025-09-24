@@ -2,6 +2,7 @@ import { EyeIcon, DownloadIcon, ArrowRightSquare, FileText } from "lucide-react"
 import { BlurFade } from "./magicui/blur-fade";
 import { useState, useEffect } from "react";
 import pb from "@/lib/database";
+import { Skeleton } from "./ui/skeleton";
 
 interface Laporan {
     id: number;
@@ -49,13 +50,15 @@ export const Laporan = ({id}: {id?: string}) => {
             </div>
             <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-8 mt-10">
                 {loading ? (
-                    <div className="flex justify-center items-center">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-                    </div>
+                    <>
+                        <Skeleton className="w-full h-60 shadow-xl bg-white" />
+                        <Skeleton className="w-full h-60 shadow-xl bg-white" />
+                        <Skeleton className="w-full h-60 shadow-xl bg-white" />
+                    </>
                 ) : (
                     laporan?.map((item, index) => (
                     <BlurFade inView delay={0.2 * index} direction="left" key={item.id}>
-                    <div className="bg-white p-5 rounded-md min-h-48">
+                    <div className="bg-white p-5 rounded-md min-h-60">
                         <div className=" flex items-center gap-4 mb-5">
                             <div className="bg-red-200 min-w-13 min-h-13 rounded-md flex justify-center items-center">
                                 <FileText className="text-red-500"/>

@@ -7,6 +7,7 @@ export const GET: APIRoute = async ({ request }) => {
     try {
     const data = await pb.collection("categories").getFullList({
         filter: type ? `type = '${type}'` : undefined,
+        sort: '-created',
     });
     return new Response(JSON.stringify(data));
     } catch (error) {
