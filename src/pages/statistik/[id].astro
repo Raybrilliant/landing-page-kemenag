@@ -33,7 +33,7 @@ const csvUrl = () => {
     <h1 class="text-3xl font-bold capitalize max-sm:text-2xl">Statistik {id}</h1>
     <p class="opacity-70">Informasi publik ini dapat diakses secara gratis. Pemohon/pengguna informasi publik dapat melakukan penggandaan secara mandiri di Kementerian Agama atau menyediakan flashdisk untuk perekaman data dan informasi.</p>
 
-    <div class="grid grid-cols-2 gap-5">
+    <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
       <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex}  />
       <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex2}  />
     </div>
