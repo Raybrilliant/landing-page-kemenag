@@ -22,6 +22,7 @@ export default function PieFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
         const res = await fetch(csvUrl);
         const txt = await res.text();
         const rows = txt.trim().split('\n').map(r => r.split(','));
+        const header = rows[0][colIndex] ?? `Kolom ${colIndex}`;
         const vals: string[] = rows.slice(1).map(r => (r[colIndex] ?? '').trim()).filter(v => v !== '');
         const counts: Record<string, number> = {};
         vals.forEach(v => counts[v] = (counts[v] || 0) + 1);
@@ -46,12 +47,11 @@ export default function PieFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
               backgroundColor: ['#4e79a7','#f28e2b','#e15759','#76b7b2','#59a14f'],
             }]
           },
-          options: { responsive: true, maintainAspectRatio: false }
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' }, title: { display: true, text: header } } }
         };
 
         chartRef.current = new Chart(ctx, config as any);
       } catch (err) {
-        // ignore fetch/parse errors for now
         console.error(err);
       }
     }

@@ -55,19 +55,19 @@ export default function TeamGrid({ struktur }: { struktur: Struktur[] }) {
 
       {/* Modal */}
       <Dialog open={open} onOpenChange={setOpen} >
-        <DialogContent className="min-w-xl max-sm:min-w-0">
+        <DialogContent className="min-w-xl p-10 max-sm:min-w-0">
           <DialogHeader>
             <DialogTitle className="text-green-700">{selected?.name}</DialogTitle>
             <DialogDescription>{selected?.expand?.category?.name}</DialogDescription>
           </DialogHeader>
 
-          <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-5 max-h-[calc(100vh-20rem)] overflow-auto">
+          <div className="grid grid-cols-1 gap-5 max-h-[calc(100vh-20rem)] overflow-auto">
             <img
               src={pb.files.getURL(selected!,selected?.document ?? '')}
               alt={selected?.name}
-              className="w-full object-cover mb-4 rounded-md"
+              className="w-1/2 flex mx-auto object-cover mb-4 rounded-md"
             />
-            <p className="text-sm leading-relaxed text-justify text-gray-600">{selected?.description ?? 'Belum ada deskripsi.'}</p>
+            <p className="leading-relaxed text-justify text-gray-600" dangerouslySetInnerHTML={{ __html: selected?.description ?? 'Belum ada deskripsi.' }}></p>
           </div>
         </DialogContent>
       </Dialog>

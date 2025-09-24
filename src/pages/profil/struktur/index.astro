@@ -11,7 +11,6 @@ const struktur = await pb.collection('organizations').getFullList({expand:'categ
   <div class="max-sm:mx-5 mx-20 my-30">
     <h1 class="text-3xl font-bold mb-10">Struktur Organisasi</h1>
       <Struktur struktur={struktur} client:visible />
-      <!-- <h2 class="text-2xl font-bold mt-20 mb-5">Struktur Organisasi</h2> -->
       <div class="flex justify-center items-center mt-25 max-sm:mt-10">
         <img src="/organization.webp" alt="struktur organisasi" class="w-full rounded-2xl">
       </div>
