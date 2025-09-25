@@ -8,7 +8,7 @@ export const POST: APIRoute = async ({ request }) => {
     const data = await pb.collection("requests").getOne(id as string);
     return new Response(JSON.stringify(data));
     } catch (error) {
-        return new Response(JSON.stringify({ error: "Failed to fetch data" }), {
+        return new Response(JSON.stringify({ error: String(error) }), {
             status: 500,
         });
     }

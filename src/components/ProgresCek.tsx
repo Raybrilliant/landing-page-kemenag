@@ -15,6 +15,7 @@ interface Data {
 export const ProgresCek = () => {
     const [result, setResult] = useState<Data>();
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -29,10 +30,11 @@ export const ProgresCek = () => {
             if (res.ok) {
                 setResult(data);
             } else {
-                console.log("Gagal mengirim data");
+                console.log(res);
+                setError(true);
             }
         } catch (error) {
-            console.log("Gagal mengirim data");
+            setError(true);
         }
         setLoading(false);
     }
@@ -52,6 +54,12 @@ export const ProgresCek = () => {
                         {result.explanation && <p>Keteranagan: <span id="result-text" className="font-bold">{result?.explanation}</span></p>}
                         {result.status == 'selesai' && result.response_document && <p>Hasil Layanan anda dapat di unduh: <a href={pb.files.getURL(result,result.response_document)} target="_blank" className="text-blue-500">Lihat Dokumen</a></p>}
                         {result.status == 'selesai' && <p>Mohon agar dapat mengisi kuisioner penilaian layanan kami. <a href={`/penilaian?id=${result?.id}`} className="text-blue-500">Disini</a></p>}
+                    </div>
+                )}
+                {error && (
+                    <div id="result" className="mt-5 bg-red-200 p-4 rounded-md">
+                        <p>Mohon Maaf🙏</p>
+                        <p>Nomor Pelayanan/Pelaporan tidak ditemukan</p>
                     </div>
                 )}
             </CardContent>
