@@ -30,7 +30,7 @@ export const ProgresCek = () => {
             if (res.ok) {
                 setResult(data);
             } else {
-                console.log(res);
+                // console.log(res);
                 setError(true);
             }
         } catch (error) {
@@ -47,7 +47,7 @@ export const ProgresCek = () => {
                     <input type="text" name="id" id="" className="w-full p-2 border border-gray-300 rounded-md" placeholder="Nomor Pelayanan/Laporan"/>
                     <Button type="submit" className="w-full py-2 bg-green-500 text-white rounded-md cursor-pointer hover:bg-green-600" disabled={loading}>{loading ? <LoaderCircle className="w-4 h-4 animate-spin" /> : "Cek Progres"}</Button>
                 </form>
-                {result && (
+                {result && !error && (
                     <div id="result" className="mt-5 bg-green-200 p-4 rounded-md">
                         <p>Nomor Pelayanan/Pelaporan: <span id="result-number" className="font-bold">{result?.id}</span></p>
                         <p>Progres Pelayanan atau pelaporan anda <span id="result-text" className="font-bold">{result?.status}</span>.</p>
@@ -56,7 +56,7 @@ export const ProgresCek = () => {
                         {result.status == 'selesai' && <p>Mohon agar dapat mengisi kuisioner penilaian layanan kami. <a href={`/penilaian?id=${result?.id}`} className="text-blue-500">Disini</a></p>}
                     </div>
                 )}
-                {error && (
+                {error && !result && (
                     <div id="result" className="mt-5 bg-red-200 p-4 rounded-md">
                         <p>Mohon Maaf🙏</p>
                         <p>Nomor Pelayanan/Pelaporan tidak ditemukan</p>

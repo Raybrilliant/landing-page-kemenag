@@ -18,6 +18,7 @@ export const LayananSubmit = ({layananID, className}: {layananID: string, classN
     const [loading, setLoading] = useState(false);
     const [requirement, setRequirement] = useState<Requirement>();
     const [data, setData] = useState<Data>();
+    const [error, setError] = useState(false);
 
     const getSubLayananRequirement = async () => {
         const res = await fetch("/api/sub-layanan?id=" + layananID);
@@ -44,7 +45,7 @@ export const LayananSubmit = ({layananID, className}: {layananID: string, classN
                 setData(data);
                 console.log("Data berhasil dikirim");
             } else {
-                console.log("Gagal mengirim data");
+                setError(true);
             }
             setLoading(false);
         } catch (error) {
@@ -61,7 +62,8 @@ export const LayananSubmit = ({layananID, className}: {layananID: string, classN
         <div className={className}>
         <Syarat requirement={requirement?.requirement} flow={requirement?.flow} fee={Number(requirement?.fee)}/>
         <form className="space-y-3" onSubmit={handleSubmit}>
-            {data && <div className="p-4 bg-green-200 text-sm rounded-md mb-5">Permintaan Layanan Anda telah terkirim dengan nomor  <span className="font-bold">{data?.id}</span> mohon agar nomor dapat disimpan untuk melakukan pengecekan</div>}
+            {data && !error && <div className="p-4 bg-green-200 text-sm rounded-md mb-5">Permintaan Layanan Anda telah terkirim dengan nomor  <span className="font-bold">{data?.id}</span> mohon agar nomor dapat disimpan untuk melakukan pengecekan</div>}
+            {error && <div className="p-4 bg-red-200 text-sm rounded-md mb-5">Gagal mengirim data, silahkan coba lagi</div>}
             <div className="flex flex-col gap-1">
                 <label htmlFor="nama" className="font-semibold">Nama Lengkap</label>
                 <input type="text" id="nama" name="requester_name" placeholder="Fulan bin Fulan" className="w-full p-3 border border-gray-300 rounded-md bg-white"  required/>

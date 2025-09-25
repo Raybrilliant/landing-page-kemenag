@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
+import { sendWhatsapp } from "@/lib/sendWhatsapp";
 import pb from "@/lib/database";
+import { sendTelegram } from "@/lib/sendTelegram";
 
 export const GET: APIRoute = async ({ request }) => {
     const {searchParams} = new URL(request.url);
@@ -15,9 +17,6 @@ export const GET: APIRoute = async ({ request }) => {
 };
 
 export const POST: APIRoute = async ({ request }) => {
-    const waAPI = import.meta.env.WA_API || process.env.WA_API;
-    const waUsername = import.meta.env.WA_USERNAME || process.env.WA_USERNAME;
-    const waPassword = import.meta.env.WA_PASSWORD || process.env.WA_PASSWORD;
     const formData = await request.formData();
     const file = formData.get("file") as File;
     if (file) {
@@ -27,50 +26,14 @@ export const POST: APIRoute = async ({ request }) => {
   
     try {
       const data = await pb.collection("requests").create(formData);
-      const rawPhone = formData.get("requester_phone") as string;
-      let waNumber = rawPhone.replace(/\s+/g, "").replace(/^\+/, "");
-      if (waNumber.startsWith("0")) {
-        waNumber = "62" + waNumber.slice(1);
-      }
-      if (!waNumber.endsWith("@s.whatsapp.net")) {
-        waNumber = waNumber + "@s.whatsapp.net";
-      }
-      const auth = Buffer.from(`${waUsername}:${waPassword}`).toString("base64");
+      const phone = formData.get("requester_phone") as string;
 
-const message = `
-*📢 Layanan PTSP Kemenag Kota Probolinggo*
+      await sendWhatsapp({ phone: phone, nomor: data.id, perihal: data.mail_about, status: data.status });
+      await sendTelegram({ id: data.id, mail_about: data.mail_about, institution: data.requester_institution });
 
-*Surat anda* 
-✉️ Nomor : ${data.id}
-✉️ Perihal : ${data.mail_about}
-✉️ Status : ${data.status}
-
-_Untuk memantau progress layanan, bisa mengunjungi tautan dibawah ini:_
-${process.env.SITE_URL || import.meta.env.SITE_URL}/progres
-`;
-
-  
-  
-      const waResponse = await fetch(`${waAPI}/send/message`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Basic ${auth}`,
-        },
-        body: JSON.stringify({
-          phone: waNumber,
-          message: message
-        }),
-      });
-      await waResponse.json();
-  
-      return new Response(
-        JSON.stringify(data),
-        { status: 200 }
-      );
+      return new Response(JSON.stringify(data),{status: 200});
     } catch (error) {
-      return new Response(JSON.stringify({ error: "Failed to fetch data" }), {
-        status: 500,
-      });
+      console.log(error);
+      return new Response(JSON.stringify({ error: "Failed to create data" }), {status: 500});
     }
-  };  
+  }
