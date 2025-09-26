@@ -94,7 +94,7 @@ export default function Navbar() {
       {/* Logo */}
       <div className="flex gap-2 items-center py-2">
         <img
-          src="/logo/logo.png"
+          src="/logo/logo.webp"
           alt="logo"
           width={isScrolled ? 64 : 48}
           height={isScrolled ? 64 : 48}

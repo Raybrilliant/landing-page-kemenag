@@ -6,17 +6,15 @@ const csvUrlSPKP = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyYcMkYtohU
 const csvUrlSKM = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-XnLQR2igFV_Mj5eJOaeye_nqvTavsBrQhK_OHvYPZ66-SCtbliSkQtmpiwQJ4MfSBKIfPrxdw0ip/pub?gid=1673183934&single=true&output=csv"
 const survei = Astro.url.searchParams.get('survei') ?? 'skm';
 
-console.log(survei);
-
 ---
 
 <BaseLayout title="Survei Pelayanan">
   <div class="max-sm:mx-5 mx-20 my-30">
     <h1 class="text-3xl font-bold mb-10">Survei Pelayanan</h1>
     <div class="grid grid-cols-3 max-sm:grid-cols-1 gap-5">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRs4BwJO3aRW12PzwLiz7f-A3Cu1fnT2whp7Vm1rtns1to7A/viewform?usp=dialog" target="_blank"><img src="/logo/SKM.png" class=" rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300" alt="Survey Indeks Kepuasan Masyarakat terhadap Pelayanan Publik"></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScAYJR8sLMgnjDzMAsindhFAFW1t-cIJAYURUmpj2zdlLM-sA/viewform?usp=dialog" target="_blank"><img src="/logo/SPKP.png" class=" rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300" alt="Survei Persepsi Kualitas Pelayanan (SPKP) pada Kantor Kementerian Agama Kota Probolinggo"></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScrnWwmLRdVQ_5nIZE_aMNFc28avfaY1eTx-YyrXiLiwXKMeQ/viewform?usp=dialog" target="_blank"><img src="/logo/SPAK.png" class=" rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300" alt="Survey Persepsi Anti Korupsi"></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRs4BwJO3aRW12PzwLiz7f-A3Cu1fnT2whp7Vm1rtns1to7A/viewform?usp=dialog" target="_blank"><img src="/logo/SKM.webp" class=" rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300" alt="Survey Indeks Kepuasan Masyarakat terhadap Pelayanan Publik"></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScAYJR8sLMgnjDzMAsindhFAFW1t-cIJAYURUmpj2zdlLM-sA/viewform?usp=dialog" target="_blank"><img src="/logo/SPKP.webp" class=" rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300" alt="Survei Persepsi Kualitas Pelayanan (SPKP) pada Kantor Kementerian Agama Kota Probolinggo"></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScrnWwmLRdVQ_5nIZE_aMNFc28avfaY1eTx-YyrXiLiwXKMeQ/viewform?usp=dialog" target="_blank"><img src="/logo/SPAK.webp" class=" rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300" alt="Survey Persepsi Anti Korupsi"></a>
     </div>
 
     <div class="my-10 flex max-sm:flex-col items-center justify-between">

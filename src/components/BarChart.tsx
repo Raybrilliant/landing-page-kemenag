@@ -2,20 +2,13 @@ import { useEffect, useRef } from 'react';
 import Chart, { Chart as ChartJS } from 'chart.js/auto';
 import type { ChartConfiguration } from 'chart.js';
 
-type Props = {
-  csvUrl: string;
-  colIndex?: number;
-  width?: number | string;
-  height?: number | string;
-};
-
 // function getRandomColors(n: number) {
 //     return Array.from({ length: n }, () =>
 //       `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`
 //     );
 // }
 
-export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', height = 400 }: Props) {
+export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', height = 400, filterYear }: { csvUrl: string, colIndex?: number, width?: string|number, height?: string|number, filterYear?: number | null }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const chartRef = useRef<ChartJS | null>(null);
 
@@ -28,14 +21,32 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
         const res = await fetch(csvUrl);
         const txt = await res.text();
         const rows = txt.trim().split('\n').map(r => r.split(','));
+
         const header = rows[0][colIndex] ?? `Kolom ${colIndex}`;
-        const vals: string[] = rows.slice(1).map(r => (r[colIndex] ?? '').trim()).filter(v => v !== '');
+
+        // ambil kolom tanggal (kolom index 1 = tanggal)
+        const vals: string[] = rows.slice(1).map(r => {
+          const rawDate = (r[1] ?? '').trim(); // tanggal di kolom 1
+          const rawValue = (r[colIndex] ?? '').trim();
+
+          if (!rawDate || !rawValue) return '';
+
+          const parts = rawDate.split('-'); // format dd-mm-yyyy
+          if (parts.length !== 3) return '';
+
+          const year = parseInt(parts[2], 10);
+
+          // kalau ada filterYear, cuma ambil data sesuai tahun
+          if (filterYear && year !== filterYear) return '';
+
+          return rawValue;
+        }).filter(v => v !== '');
+
         const counts: Record<string, number> = {};
         vals.forEach(v => counts[v] = (counts[v] || 0) + 1);
+
         const labels = Object.keys(counts).sort();
         const data = labels.map(l => counts[l]);
-        // const colors = getRandomColors(labels.length);
-
 
         if (cancelled) return;
         const ctx = canvasRef.current.getContext('2d');
@@ -51,7 +62,7 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
           data: {
             labels,
             datasets: [{
-              label: header,
+              label: filterYear ? `${header} (${filterYear})` : header,
               data,
               backgroundColor: 'green',
             }]
@@ -91,7 +102,7 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
         chartRef.current = null;
       }
     };
-  }, [csvUrl, colIndex]);
+  }, [csvUrl, colIndex, filterYear]);
 
   return (
     <div style={{ width, height }}>

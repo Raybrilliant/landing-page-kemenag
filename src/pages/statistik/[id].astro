@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import BarChart from '@/components/BarChart';
 import DataTableFromCsv from '@/components/DataTableFromCsv';
+import { undefined } from 'astro:schema';
 
 const { id } = Astro.params 
 const csvUrl = () => {
@@ -10,19 +11,25 @@ const csvUrl = () => {
       return {
         url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vRlV4_mYKcppHjOJWraza9FEF785NqQbKpRZJLXaq7gQ9PYxM1uV-a9fG5Urp3jsg/pub?gid=1502408189&single=true&output=csv",
         colIndex: 3,
-        colIndex2: 4
+        colIndex2: 4,
+        table:true,
+        filterYear:null,
       }
     case 'Lembaga TPQ dan Madin':
       return {
         url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3L5H3IrMLV-_XaHJVXW8ieSbmlNx71W4Bf9Pc7lLJKWdZHC-P0NIN0Op7AyjZxA/pub?gid=705032251&single=true&output=csv",
         colIndex: 2,
-        colIndex2: 5
+        colIndex2: 5,
+        table:true,
+        filterYear:null,
+
       }
     default:
       return {
         url:"",
         colIndex: 0,
-        colIndex2: 0
+        colIndex2: 0,
+        table:false
       }
   }
 } 
@@ -34,10 +41,10 @@ const csvUrl = () => {
     <p class="opacity-70">Informasi publik ini dapat diakses secara gratis. Pemohon/pengguna informasi publik dapat melakukan penggandaan secara mandiri di Kementerian Agama atau menyediakan flashdisk untuk perekaman data dan informasi.</p>
 
     <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
-      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex}  />
-      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex2}  />
+      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex} filterYear={csvUrl().filterYear}  />
+      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex2} filterYear={csvUrl().filterYear}  />
     </div>
-    <DataTableFromCsv client:load csvUrl={csvUrl().url} />
+    {csvUrl().table && <DataTableFromCsv client:load csvUrl={csvUrl().url} />}
 
   </div>
 
