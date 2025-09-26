@@ -32,9 +32,9 @@ import { BeritaList } from "@/components/BeritaList";
 
 		<h3 class="text-2xl font-bold mt-20 mb-10 mx-20 max-sm:mx-5 text-center max-sm:mt-10" id="layanan">Layanan PTSP</h3>
 		<!-- Layanan -->
-		<Layanan className="mx-20 max-sm:mx-5 mb-30 max-sm:my-5" client:only="react"/>
+		<Layanan className="mx-20 max-sm:mx-5 mb-30 max-sm:my-5" client:visible/>
 		<!-- Laporan -->
-		<Laporan id="laporan" client:only="react"/>
+		<Laporan id="laporan" client:visible/>
 
 		<!-- Kepala Kemenag -->
 		<Sambutan client:visible />
@@ -45,14 +45,14 @@ import { BeritaList } from "@/components/BeritaList";
 			<p class="text-center text-white max-sm:text-sm">Terhubung dengan kami melalui jalur yang mudah dan cepat. Layanan tersedia pada hari kerja pukul 08.00 - 15.30 WIB.</p>
 			<div class=" mx-20 max-sm:mx-5 grid grid-cols-2 max-sm:grid-cols-1 gap-5 mt-10 -mb-24">
 				<a href="https://www.lapor.go.id/" target="_blank" class="bg-white p-10 rounded-md shadow-xl flex gap-5 items-center">
-					<img src="/logo/lapor.webp" width={60} height={60} alt="lapor">
+					<img loading="lazy" src="/logo/lapor.webp" width={60} height={60} alt="lapor">
 					<div>
 						<h2 class="text-xl font-bold">Lapor</h2>
 						<p class="text-sm">Laporkan jika anda bertemu dengan pegawai kami yang tidak melaksanakan tugas sesuai SOP.</p>
 					</div>
 				</a>
 				<a href="https://wa.me/6281359136007?text=Assalamualaikum%20Wr%20Wb%20Halo%20Kementerian%20Agama%20Kota%20Probolinggo" target="_blank" class="bg-white p-10 rounded-md shadow-xl flex gap-5 items-center">
-					<img src="/logo/wa.webp" width={60} height={60} alt="wa">
+					<img loading="lazy" src="/logo/wa.webp" width={60} height={60} alt="wa">
 					<div>
 						<h2 class="text-xl font-bold">Pesan WhatsApp</h2>
 						<p class="text-sm">Kirim pesan via WhatsApp untuk memudahkan masyarakat terhubung dengan Kementerian Agama Kota Probolinggo.</p>
@@ -62,7 +62,7 @@ import { BeritaList } from "@/components/BeritaList";
 		 </div>
 		 <!-- Zona Itegritas -->
 		  <div class="mt-30 mx-20 max-sm:mx-5 md:h-96 max-xl:h-full overflow-hidden rounded-2xl">
-			<img src="/logo/zona-integritas.webp" alt="zona-integritas" class="w-full h-full object-cover">
+			<img loading="lazy" src="/logo/zona-integritas.webp" alt="zona-integritas" class="w-full h-full object-cover">
 		  </div>
 		 <!-- Footer -->
 		 <Footer />
