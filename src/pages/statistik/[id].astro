@@ -13,7 +13,7 @@ const csvUrl = () => {
         colIndex: 3,
         colIndex2: 4,
         table:true,
-        filterYear:null,
+        // filterYear:null,
       }
     case 'Lembaga TPQ dan Madin':
       return {
@@ -21,7 +21,7 @@ const csvUrl = () => {
         colIndex: 2,
         colIndex2: 5,
         table:true,
-        filterYear:null,
+        // filterYear:null,
 
       }
     default:
@@ -41,8 +41,8 @@ const csvUrl = () => {
     <p class="opacity-70">Informasi publik ini dapat diakses secara gratis. Pemohon/pengguna informasi publik dapat melakukan penggandaan secara mandiri di Kementerian Agama atau menyediakan flashdisk untuk perekaman data dan informasi.</p>
 
     <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
-      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex} filterYear={csvUrl().filterYear}  />
-      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex2} filterYear={csvUrl().filterYear}  />
+      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex} />
+      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex2} />
     </div>
     {csvUrl().table && <DataTableFromCsv client:load csvUrl={csvUrl().url} />}
 
