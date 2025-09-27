@@ -26,20 +26,29 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
 
         // ambil kolom tanggal (kolom index 1 = tanggal)
         const vals: string[] = rows.slice(1).map(r => {
-          const rawDate = (r[1] ?? '').trim(); // tanggal di kolom 1
-          const rawValue = (r[colIndex] ?? '').trim();
+          const rawDate = (r[0] ?? '').trim(); // Tanggal di kolom 0
+          const rawValue = (r[colIndex] ?? '').trim(); // Nilai di kolom target (Kolom 3 atau 4)
 
-          if (!rawDate || !rawValue) return '';
+          // 1. Validasi Nilai Target (WAJIB)
+          // Jika kolom target kosong, baris ini harus dibuang.
+          if (!rawValue) return '';
 
-          const parts = rawDate.split('-'); // format dd-mm-yyyy
-          if (parts.length !== 3) return '';
+          // 2. Validasi Filter Tahun (OPSIONAL)
+          if (filterYear) {
+            // Jika filterYear ada (bukan null), maka tanggal HARUS ada dan sesuai
+            if (!rawDate) return ''; // Tanggal kosong jika ada filter
+            
+            const parts = rawDate.split('-'); // format dd-mm-yyyy
+            if (parts.length !== 3) return '';
 
-          const year = parseInt(parts[2], 10);
+            const year = parseInt(parts[2], 10);
 
-          // kalau ada filterYear, cuma ambil data sesuai tahun
-          if (filterYear && year !== filterYear) return '';
+            // Cuma ambil data sesuai tahun
+            if (year !== filterYear) return '';
+          }
+          // Jika filterYear: null, bagian di atas dilewati, dan kita tidak peduli dengan rawDate
 
-          return rawValue;
+          return rawValue; // Kembalikan nilai yang akan dihitung
         }).filter(v => v !== '');
 
         const counts: Record<string, number> = {};
@@ -47,6 +56,11 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
 
         const labels = Object.keys(counts).sort();
         const data = labels.map(l => counts[l]);
+
+        // console.log('--- DEBUG CHART DATA ---');
+        // console.log('Labels:', labels);
+        // console.log('Counts (Data):', data); // <-- Cek array ini!
+        // console.log('------------------------');
 
         if (cancelled) return;
         const ctx = canvasRef.current.getContext('2d');

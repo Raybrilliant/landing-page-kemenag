@@ -3,6 +3,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import BarChart from '@/components/BarChart';
 import DataTableFromCsv from '@/components/DataTableFromCsv';
 
+const {searchParams} = new URL(Astro.url.href)
+const year = Number(searchParams.get('year'))
+
+const nowYear = new Date().getFullYear()
+const YearFilter = [nowYear, nowYear-1, nowYear-2, nowYear-3, nowYear-4, nowYear-5]
+
 const { id } = Astro.params 
 const csvUrl = () => {
   switch (id) {
@@ -12,7 +18,8 @@ const csvUrl = () => {
         colIndex: 3,
         colIndex2: 4,
         table:true,
-        filterYear:null,
+        filterYear:false,
+        year:year,
       }
     case 'Lembaga TPQ dan Madin':
       return {
@@ -20,7 +27,8 @@ const csvUrl = () => {
         colIndex: 2,
         colIndex2: 5,
         table:true,
-        filterYear:null,
+        filterYear:false,
+        year:year,
 
       }
     default:
@@ -28,7 +36,9 @@ const csvUrl = () => {
         url:"",
         colIndex: 0,
         colIndex2: 0,
-        table:false
+        table:false,
+        filterYear:false,
+        year:year,
       }
   }
 } 
@@ -39,11 +49,18 @@ const csvUrl = () => {
     <h1 class="text-3xl font-bold capitalize max-sm:text-2xl">Statistik {id}</h1>
     <p class="opacity-70">Informasi publik ini dapat diakses secara gratis. Pemohon/pengguna informasi publik dapat melakukan penggandaan secara mandiri di Kementerian Agama atau menyediakan flashdisk untuk perekaman data dan informasi.</p>
 
+    {csvUrl().filterYear && <form class="flex justify-end gap-2">
+      <select name="year" id="year" class="border border-gray-300 rounded px-2 py-1">
+        <option value="">Semua Tahun</option>
+        {YearFilter.map(y => <option value={y}>{y}</option>)}
+      </select>
+      <button type="submit" class="bg-green-500 text-white px-2 py-1 rounded">Filter</button>
+    </form>}
     <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
-      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex} filterYear={csvUrl().filterYear}/>
-      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex2} filterYear={csvUrl().filterYear}/>
+      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex} filterYear={csvUrl().year}/>
+      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex2} filterYear={csvUrl().year}/>
     </div>
-    {csvUrl().table && <DataTableFromCsv client:load csvUrl={csvUrl().url} />}
+    {csvUrl().table && <DataTableFromCsv client:load csvUrl={csvUrl().url} filterYear={csvUrl().year} />}
 
   </div>
 

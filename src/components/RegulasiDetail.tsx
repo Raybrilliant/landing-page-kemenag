@@ -56,7 +56,7 @@ export const RegulasiDetail = () => {
                 </div>
             ) : regulasi ? (
                 regulasi.items.map((item, index) => (
-                    <BlurFade key={item.id} inView delay={0.2 * index} direction="left">
+                    <BlurFade key={item.id} inView delay={0.2} direction="left">
                         <div className="bg-white p-5 rounded-md">
                             <div className="flex items-center gap-4 mb-5">
                                 <div className="bg-red-200 min-w-13 min-h-13 rounded-md flex justify-center items-center">

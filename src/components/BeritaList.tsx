@@ -18,7 +18,7 @@ export const BeritaList = () => {
     const [loading, setLoading] = useState(true);
 
     const getBerita = async () => {
-        const res = await fetch("/api/beritas?limit=4");
+        const res = await fetch("/api/beritas?limit=5");
         const data = await res.json();
         
         if (!res.ok) {
