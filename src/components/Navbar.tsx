@@ -58,7 +58,7 @@ export default function Navbar() {
     ? "hover:text-gray-300"
     : "hover:text-green-600";
 
-  const textSize = isScrolled ? "text-xl" : "text-sm";
+  const textSize = isScrolled ? "text-md" : "text-sm";
   const navBgClass = isScrolled
     ? "bg-opacity-80 backdrop-blur-md shadow-md"
     : "bg-transparent";
@@ -70,6 +70,7 @@ export default function Navbar() {
     { href: "/#laporan", label: "Laporan" },
     { href: "/#layanan", label: "Layanan" },
     { href: "/progres", label: "Cek Progres" },
+    { href: "/prestasi", label: "Prestasi Kita" },
     { href: "/survei", label: "Survei" },
     // { href: "/#contact", label: "Hubungi Kami" },
   ];
@@ -96,8 +97,8 @@ export default function Navbar() {
         <img
           src="/logo/logo.webp"
           alt="logo"
-          width={isScrolled ? 64 : 48}
-          height={isScrolled ? 64 : 48}
+          width={isScrolled ? 56 : 48}
+          height={isScrolled ? 56 : 48}
           className="duration-300"
         />
         <a href="/">

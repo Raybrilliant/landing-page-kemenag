@@ -1,0 +1,11 @@
+---
+import { Prestasi } from "@/components/Prestasi";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Prestasi Kita">
+  <section class="max-sm:mx-5 mx-20 my-30">
+    <h1 class="text-3xl font-semibold mb-10">Prestasi Kita</h1>
+    <Prestasi client:visible/>
+  </section>
+</BaseLayout>
