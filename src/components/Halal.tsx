@@ -11,55 +11,55 @@ interface HalalItem {
 const data =[
     {
         name: "ALUR SERTIFIKASI HALAL REGULER",
-        document: "/halal/ALUR SERTIFIKASI HALAL REGULER.webp",
+        document: "/halal/ALUR_SERTIFIKASI_HALAL_REGULER.webp",
     },
     {
         name: "ALUR SERTIFIKASI HALAL SELF DECLARE",
-        document: "/halal/ALUR SERTIFIKASI HALAL SELF DECLARE.webp",
+        document: "/halal/ALUR_SERTIFIKASI_HALAL_SELF_DECLARE.webp",
     },
     {
         name: "BARANG JASA WAJIB SERTIFIKAT HALAL",
-        document: "/halal/BARANG JASA WAJIB SERTIFIKAT HALAL.webp",
+        document: "/halal/BARANG_JASA_WAJIB_SERTIFIKAT_HALAL.webp",
     },
     {
         name: "CEK LABEL HALAL",
-        document: "/halal/CEK LABEL HALAL.webp",
+        document: "/halal/CEK_LABEL_HALAL.webp",
     },
     {
         name: "DOKUMEN SERTIFIKASI HALAL REGULER",
-        document: "/halal/DOKUMEN SERTIFIKASI HALAL REGULER.webp",
+        document: "/halal/DOKUMEN_SERTIFIKASI_HALAL_REGULER.webp",
     },
     {
         name: "DOKUMEN SERTIFIKASI SELF DECLARE",
-        document: "/halal/DOKUMEN SERTIFIKASI SELF DECLARE.webp",
+        document: "/halal/DOKUMEN_SERTIFIKASI_SELF_DECLARE.webp",
     },
     {
         name: "HALAL DAN HARAM",
-        document: "/halal/HALAL DAN HARAM.webp",
+        document: "/halal/HALAL_DAN_HARAM.webp",
     },
     {
         name: "Himbauan Akun Sihalal",
-        document: "/halal/Himbauan Akun Sihalal.webp",
+        document: "/halal/Himbauan_Akun_Sihalal.webp",
     },
     {
-        name: "KETENTUAN  PENCANTUMAN LABEL HALAL",
-        document: "/halal/KETENTUAN  PENCANTUMAN LABEL HALAL.webp",
+        name: "KETENTUAN PENCANTUMAN LABEL HALAL",
+        document: "/halal/KETENTUAN _PENCANTUMAN_LABEL_HALAL.webp",
     },
     {
-        name: "Kriteria_Syarat PU Mikro dan Kecil Sertifikasi Halal Self Declare JILID 1 ",
-        document: "/halal/Kriteria_Syarat PU Mikro dan Kecil Sertifikasi Halal Self Declare JILID 1 .webp",
+        name: "Kriteria-Syarat PU Mikro dan Kecil Sertifikasi Halal Self Declare JILID 1",
+        document: "/halal/Kriteria_Syarat_PU_Mikro_dan_Kecil_Sertifikasi_Halal_Self_Declare_JILID_1.webp",
     },
     {
         name: "Kriteria-Syarat PU Mikro dan Kecil Sertifikasi Halal Self Declare JILID 2",
-        document: "/halal/Kriteria-Syarat PU Mikro dan Kecil Sertifikasi Halal Self Declare JILID 2.webp",
+        document: "/halal/Kriteria_Syarat_PU_Mikro_dan_Kecil_Sertifikasi_Halal_Self_Declare_JILID_2.webp",
     },
     {
         name: "LABEL HALAL",
-        document: "/halal/LABEL HALAL.webp",
+        document: "/halal/LABEL_HALAL.webp",
     },
     {
         name: "PU WAJIB P3H",
-        document: "/halal/PU WAJIB P3H.webp",
+        document: "/halal/PU_WAJIB_P3H.webp",
     },
     {
         name: "SJPH",
@@ -92,7 +92,7 @@ export const Halal = () => {
         </div>
             <section className=" grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-5 mb-10">
                 {
-                halal.map((item, index) => (
+                halal.slice((page - 1) * 6, page * 6).map((item, index) => (
                     <BlurFade key={index} delay={0.2} direction="right" inView>
                         <div className="p-5 bg-white md:min-h-[30rem] rounded-lg hover:shadow-xl hover:bg-white transition duration-300 cursor-pointer" onClick={() => handleOpen(item)}>
                             <img src={item.document} alt="photo-prestasi" className="w-full h-60 object-top object-cover"/>
@@ -101,12 +101,12 @@ export const Halal = () => {
                     </BlurFade>
                 ))}
             </section>
-            {/* <ItemPagination 
+            <ItemPagination 
                 page={page}
-                totalPage={halal?.length ?? 0}
-                getPageUrl={(page) => `/halal?page=${page}`}
+                totalPage={Math.ceil(halal?.length/6)}
+                getPageUrl={(page) => `#`}
                 onPageChange={(newPage) => setPage(newPage)}
-            />   */}
+            />  
 
 
         {/* Modal */}
