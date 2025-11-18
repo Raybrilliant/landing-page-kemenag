@@ -2,8 +2,8 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-// import node from '@astrojs/node';
-import nurodevbun from '@nurodev/astro-bun';
+import node from '@astrojs/node';
+// import nurodevbun from '@nurodev/astro-bun';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,6 +12,8 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react(), nurodevbun()],
-  adapter: nurodevbun()
+  integrations: [react()],
+  adapter: node({
+    mode: 'standalone'
+  })
 });
