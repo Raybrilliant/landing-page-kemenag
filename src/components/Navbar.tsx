@@ -100,11 +100,11 @@ export default function Navbar() {
   ]
 
   const ppid = [
-    { title: "PPID", href:"/ppid", links: [
-      { href: "#", label: "Profil Pejabat" },
-      { href: "#", label: "Visi, Misi, dan Moto" },
-      { href: "#", label: "Tugas & Fungsi" },
-      { href: "#", label: "Struktur Organisasi" },
+    { title: "Profil", href:"/ppid/profil", links: [
+      // { href: "#", label: "Profil Pejabat" },
+      // { href: "#", label: "Visi, Misi, dan Moto" },
+      // { href: "#", label: "Tugas & Fungsi" },
+      // { href: "#", label: "Struktur Organisasi" },
     ]},
     { title: "Daftar Informasi", links:[], href:"/daftar-informasi"},
     { title: "Informasi Publik", href:"/informasi-publik", links: [
@@ -234,7 +234,7 @@ export default function Navbar() {
                           // Tautan biasa jika tidak ada sub-link
                           <a
                             href={item.href} 
-                            className="block px-3 py-2 hover:bg-gray-100 rounded-md text-gray-800 bg-transparent font-normal text-left"
+                            className="block px-3 py-2 cursor-pointer hover:bg-gray-100 rounded-md text-gray-800 bg-transparent font-normal text-left"
                           >
                             {item.title}
                           </a>

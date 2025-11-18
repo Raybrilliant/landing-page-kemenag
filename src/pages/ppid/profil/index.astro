@@ -86,7 +86,7 @@ const waktu_layanan = `
 
 const visiMisi = {
   visi: "Terwujudnya Pelayanan Informasi yang Akuntabel",
-  misi: "Meningkatkan layanan informasi yang cepat, tepat, dan transparan, Meningkatkan kompetensi SDM pelayan informasi, Penguatan koordinasi antar PPID lintas sektoral",
+  misi: "Cepat, tepat, dan transparan SDM PPID yang kompeten Koordinasi lintas sektoral",
   motto: "Melayani dengan Ikhlas",
 }
 
@@ -101,52 +101,143 @@ const maklumat = `
 `;
 
 const { visi, misi, motto } = visiMisi;
-
 ---
 
-<BaseLayout title="PPID">
+<BaseLayout title="Profil PPID">
   <div class="max-sm:mx-5 mx-20 my-30">
-    <h1 class="text-3xl font-bold mb-10">PPID</h1>
+    <h1 class="text-3xl font-bold mb-10">Profil PPID</h1>
+
     <!-- Profil PPID -->
-    <div class="my-20">
-      <h2 class="text-2xl font-bold mb-5">Profil PPID</h2>
+    <div class="my-10">
       <article class="md:text-lg text-justify" set:html={profil}></article>
     </div>
+
+    <!-- Profil Pejabat -->
+    <h2 class="text-2xl font-bold mb-5">Profil Pejabat</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 border border-gray-300">
+        <thead class="bg-blue-600 text-white">
+          <tr>
+            <th colspan="2" class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">
+              Informasi Pejabat Pengelola Informasi dan Dokumentasi (PPID)
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap font-medium bg-gray-50">Dasar Hukum</td>
+            <td class="px-6 py-4">Keputusan Menteri Agama (KMA) Nomor 657 Tahun 2021 tentang Pejabat Pengelola Informasi dan Dokumentasi Kementerian Agama dan Atasan Pejabat Pengelola Informasi dan Dokumentasi Kementerian Agama.</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap font-medium bg-gray-50">Atasan PPID</td>
+            <td class="px-6 py-4">Kepala Kantor Kementerian Agama Kota Probolinggo</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap font-medium bg-gray-50">PPID</td>
+            <td class="px-6 py-4">Kepala Sub Bagian Tata Usaha Kantor Kementerian Agama Kota Probolinggo</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap font-medium bg-gray-50">Alamat</td>
+            <td class="px-6 py-4">Jl. Mastrip No. 323, Kanigaran, Kec. Kanigaran, Kota Probolinggo 67213</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap font-medium bg-gray-50">Telepon</td>
+            <td class="px-6 py-4">(031)</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap font-medium bg-gray-50">Email</td>
+            <td class="px-6 py-4">kotaprobolinggo@kemenag.go.id</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap font-medium bg-gray-50">Website</td>
+            <td class="px-6 py-4">kemenagkotaprobolinggo.id</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <!-- Tugas -->
     <div class="my-20">
       <h2 class="text-2xl font-bold mb-5">Tugas</h2>
       <p class="md:text-lg text-justify" set:html={tugas}></p>
     </div>
-      <!-- Waktu Pelayanan -->
-      <div class="my-20">
-        <h2 class="text-2xl font-bold mb-5">Waktu Pelayanan</h2>
-        <p class="md:text-lg text-justify" set:html={waktu_layanan}></p>
-      </div>
-      <!-- Visi Misi Motto -->
-    <div class="grid grid-cols-3 max-sm:grid-cols-1 gap-10 max-sm:gap-5">
-      <div>
-        <h2 class="text-2xl font-bold mb-5">Visi</h2>
-        <p class="md:text-lg text-justify">{visi}</p>
-      </div>
-      <div>
-        <h2 class="text-2xl font-bold mb-5">Misi</h2>
-        <p class="md:text-lg text-justify">{misi}</p>
-      </div>
-      <div>
-        <h2 class="text-2xl font-bold mb-5">Motto</h2>
-        <p class="md:text-lg text-justify">{motto}</p>
+
+        <div class="my-20">
+          <h2 class="text-2xl font-bold mb-5">Waktu Pelayanan</h2>
+          <div class="overflow-x-auto border border-gray-200 rounded-lg shadow-md">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-blue-500">
+                <tr>
+                  <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                Hari
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider text-white">
+                Jam Pelayanan
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-100">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Senin - Kamis</td>
+              <td class="px-6 py-4 whitespace-nowrap text-gray-700">07:30 - 16:00 WIB</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Jumat</td>
+              <td class="px-6 py-4 whitespace-nowrap text-gray-700">07:30 - 16:30 WIB</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Sabtu, Minggu, dan Hari Libur Nasional</td>
+              <td class="px-6 py-4 whitespace-nowrap text-gray-700">Tutup (Tidak ada pelayanan)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+
+      <!-- Visi Misi Motto -->
+      <div class="overflow-x-auto p-5">
+        <table class="min-w-full border-collapse">
+          <thead>
+            <tr>
+              <th class="p-0 border-r border-gray-200">
+                <h2 class="text-2xl font-bold mb-5 px-5 pt-0 text-left">Visi</h2>
+              </th>
+              <th class="p-0 border-r border-gray-200">
+                <h2 class="text-2xl font-bold mb-5 px-5 pt-0 text-left">Misi</h2>
+              </th>
+              <th class="p-0">
+                <h2 class="text-2xl font-bold mb-5 px-5 pt-0 text-left">Motto</h2>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-5 align-top border-r border-gray-200 w-1/3">
+                <p class="md:text-lg text-justify">{visi}</p>
+              </td>
+              <td class="p-5 align-top border-r border-gray-200 w-1/3">
+                <p class="md:text-lg text-justify">{misi}</p>
+              </td>
+              <td class="p-5 align-top w-1/3">
+                <p class="md:text-lg text-justify">{motto}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     <!-- Biaya dan Tarif -->
     <div class="my-20">
       <h2 class="text-2xl font-bold mb-5">Biaya dan Tarif</h2>
       <p class="md:text-lg text-justify" set:html={biaya}></p>
     </div>
+
     <!-- Struktur Organisasi -->
     <div class="my-20">
       <h2 class="text-2xl font-bold mb-5">Struktur Organisasi</h2>
-      <p class="md:text-lg text-justify">{visi}</p>
+      <img src="/struktur-ppid.jpeg" class=" rounded-2xl " alt="Struktur Organisasi">
     </div>
+
     <!-- Maklumat Pelayanan -->
     <div class="my-20">
       <h2 class="text-2xl font-bold mb-5">Maklumat Pelayanan</h2>
