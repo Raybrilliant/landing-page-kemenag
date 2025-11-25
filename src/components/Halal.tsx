@@ -10,60 +10,60 @@ interface HalalItem {
 
 const data =[
     {
-        name: "ALUR SERTIFIKASI HALAL REGULER",
-        document: "/halal/ALUR_SERTIFIKASI_HALAL_REGULER.webp",
+        name: "HIMBAUAN PENTING UNTUK PELAKU USAHA HALAL",
+        document: "/halal/14-HIMBAUAN-PENTING-UNTUK-PELAKU-USAHA-HALAL.webp",
     },
     {
-        name: "ALUR SERTIFIKASI HALAL SELF DECLARE",
-        document: "/halal/ALUR_SERTIFIKASI_HALAL_SELF_DECLARE.webp",
+        name: "PENJELASAN LABEL HALAL",
+        document: "/halal/1-PENJELASAN-LABEL-HALAL.webp",
     },
     {
-        name: "BARANG JASA WAJIB SERTIFIKAT HALAL",
-        document: "/halal/BARANG_JASA_WAJIB_SERTIFIKAT_HALAL.webp",
+        name: "CARA CEK LABEL HALAL PRODUK",
+        document: "/halal/2-CARA-CEK-LABEL-HALAL-PRODUK.webp",
     },
     {
-        name: "CEK LABEL HALAL",
-        document: "/halal/CEK_LABEL_HALAL.webp",
+        name: "PENJELASAN HALAL HARAM",
+        document: "/halal/3-PENJELASAN-HALAL-HARAM.webp",
+    },
+    {
+        name: "PENJELASAN SISTEM JAMINAN PRODUK HALAL",
+        document: "/halal/4-PENJELASAN-SISTEM-JAMINAN-PRODUK-HALAL.webp",
+    },
+    {
+        name: "KRITERIA:SYARAT PELAKU USAHA (PU) MIKRO DAN KECIL UNTUK SERTIFIKASI HALAL SELF DECLARE JILID 1",
+        document: "/halal/5-KRITERIA:SYARAT-PELAKU-USAHA-(PU)-MIKRO-DAN-KECIL-UNTUK-SERTIFIKASI-HALAL-SELF-DECLARE-JILID-1.webp",
+    },
+    {
+        name: "KRITERIA:SYARAT PELAKU USAHA (PU) MIKRO DAN KECIL UNTUK SERTIFIKASI HALAL SELF DECLARE JILID 2",
+        document: "/halal/6-KRITERIA:SYARAT-PELAKU-USAHA-(PU)-MIKRO-DAN-KECIL-UNTUK-SERTIFIKASI-HALAL-SELF-DECLARE-JILID-2.webp",
+    },
+    {
+        name: "PRODUK BARANG WAJIB BERSERTIFIKAT HALAL",
+        document: "/halal/7-PRODUK-BARANG-WAJIB-BERSERTIFIKAT-HALAL.webp",
+    },
+    {
+        name: "PRODUK JASA LAYANAN WAJIB BERSERTIFIKAT HALAL",
+        document: "/halal/8-PRODUK-JASA-LAYANAN-WAJIB-BERSERTIFIKAT-HALAL.webp",
+    },
+    {
+        name: "DOKUMEN SERTIFIKASI HALAL SELFDECLARE",
+        document: "/halal/9-DOKUMEN-SERTIFIKASI-HALAL-SELFDECLARE.webp",
+    },
+    {
+        name: "ALUR SERTIFIKASI HALAL SELFDECLARE",
+        document: "/halal/10-ALUR-SERTIFIKASI-HALAL-SELFDECLARE.webp",
     },
     {
         name: "DOKUMEN SERTIFIKASI HALAL REGULER",
-        document: "/halal/DOKUMEN_SERTIFIKASI_HALAL_REGULER.webp",
+        document: "/halal/11-DOKUMEN-SERTIFIKASI-HALAL-REGULER.webp",
     },
     {
-        name: "DOKUMEN SERTIFIKASI SELF DECLARE",
-        document: "/halal/DOKUMEN_SERTIFIKASI_SELF_DECLARE.webp",
+        name: "ALUR SERTIFIKASI HALAL REGULER",
+        document: "/halal/12-ALUR-SERTIFIKASI-HALAL-REGULER.webp",
     },
     {
-        name: "HALAL DAN HARAM",
-        document: "/halal/HALAL_DAN_HARAM.webp",
-    },
-    {
-        name: "Himbauan Akun Sihalal",
-        document: "/halal/Himbauan_Akun_Sihalal.webp",
-    },
-    {
-        name: "KETENTUAN PENCANTUMAN LABEL HALAL",
-        document: "/halal/KETENTUAN _PENCANTUMAN_LABEL_HALAL.webp",
-    },
-    {
-        name: "Kriteria-Syarat PU Mikro dan Kecil Sertifikasi Halal Self Declare JILID 1",
-        document: "/halal/Kriteria_Syarat_PU_Mikro_dan_Kecil_Sertifikasi_Halal_Self_Declare_JILID_1.webp",
-    },
-    {
-        name: "Kriteria-Syarat PU Mikro dan Kecil Sertifikasi Halal Self Declare JILID 2",
-        document: "/halal/Kriteria_Syarat_PU_Mikro_dan_Kecil_Sertifikasi_Halal_Self_Declare_JILID_2.webp",
-    },
-    {
-        name: "LABEL HALAL",
-        document: "/halal/LABEL_HALAL.webp",
-    },
-    {
-        name: "PU WAJIB P3H",
-        document: "/halal/PU_WAJIB_P3H.webp",
-    },
-    {
-        name: "SJPH",
-        document: "/halal/SJPH.webp",
+        name: "PELAKU USAHA WAJIB MELAKUKAN PROSES PRODUKSI HALAL",
+        document: "/halal/13-PELAKU-USAHA-WAJIB-MELAKUKAN-PROSES-PRODUKSI-HALAL.webp",
     },
 ]
 
