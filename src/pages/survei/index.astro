@@ -1,6 +1,7 @@
 ---
+import PieFromSheet from "@/components/PieChart";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Chart from "@/components/PieChart";
+
 const csvUrlSPAK = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwVPUqSKDu8juq4Cax4xknNC0_M-1WIzkuwb8EC3w18Y6WPAVTz7VBC1XZqXohvKO85fWiI6DJ3FKn/pub?gid=992793483&single=true&output=csv"
 const csvUrlSPKP = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyYcMkYtohUjoHO4TaA-1v_e3uM-asyhW-440y-SbWCjirYiDiO1LDJj7XXW_nKfaZfdP5vAK-f30g/pub?gid=1053296242&single=true&output=csv"
 const csvUrlSKM = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-XnLQR2igFV_Mj5eJOaeye_nqvTavsBrQhK_OHvYPZ66-SCtbliSkQtmpiwQJ4MfSBKIfPrxdw0ip/pub?gid=1673183934&single=true&output=csv"
@@ -33,41 +34,66 @@ const survei = Astro.url.searchParams.get('survei') ?? 'skm';
     {survei === 'skm' && (
       <>
         <h3 class="text-xl font-semibold mb-5">Survey Indeks Kepuasan Masyarakat terhadap Pelayanan Publik</h3>
-        <Chart client:visible csvUrl={csvUrlSKM} colIndex={8} />
+        <div class="grid grid-cols-3 max-sm:grid-cols-2 gap-5">
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={9}/>
+            <PieFromSheet scaleType="1-4"  client:visible csvUrl={csvUrlSKM} colIndex={10}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={11}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={12}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={13}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={14}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={15}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={16}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={17}/>
+        </div>
+
       </>
     )}
     <!-- Diagram SPKP -->
     {survei === 'spkp' && (
       <>
         <h3 class="text-xl font-semibold mb-5">Survey Persepsi Kualitas Pelayanan (SPKP) pada Kantor Kementerian Agama Kota Probolinggo</h3>
-        <Chart client:visible csvUrl={csvUrlSPKP} colIndex={8} />
+        <div class="grid grid-cols-3 max-sm:grid-cols-2 gap-5">
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={10} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={11} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={12} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={13} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={14} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={15} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={16} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={17} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={18} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={19} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={20} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={21} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={22} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={23} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={24} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={25} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={26} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={27} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={28} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={29} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={30} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={31} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={32} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={33} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={34} />
+        </div>
       </>
     )}
     <!-- Diagram SPAK -->
     {survei === 'spak' && (
       <>
         <h3 class="text-xl font-semibold mb-5">Survey Persepsi Anti Korupsi</h3>
-        <div class="grid grid-cols-5 max-sm:grid-cols-2 gap-5">
-          <div>
-            <Chart client:visible csvUrl={csvUrlSPAK} colIndex={7}/>
-            <p class="text-center">Kecamatan</p>
-          </div>
-          <div>
-            <Chart client:visible csvUrl={csvUrlSPAK} colIndex={8}/>
-            <p class="text-center">Pekerjaan</p>
-          </div>
-          <div>
-            <Chart client:visible csvUrl={csvUrlSPAK} colIndex={9}/>
-            <p class="text-center">Tidak ada petugas yang memberikan pelayanan secara khusus</p>
-          </div>
-          <div>
-            <Chart client:visible csvUrl={csvUrlSPAK} colIndex={10}/>
-            <p class="text-center">Petugas tidak membeda-bedakan pelayanan karena factor suku, agama, kekerabatan, almamater dan sejenisnya</p>
-          </div>
-          <div>
-            <Chart client:visible csvUrl={csvUrlSPAK} colIndex={11}/>
-            <p class="text-center">Tidak ada petugas yang memberikan pelayanan yang tidak sesuai dengan ketentuan sehingga mengindikasikan kecurangan, seperti penyerobotan antrian, mempersingkat waktu tunggu layanan di luar prosedur, pengurangan syarat/prosedur, pengurangan denda, dll.</p>
-          </div>
+        <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={9}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={10}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={11}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={12}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={13}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={14}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={15}/> 
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={16}/>
         </div>
       </>
     )}
