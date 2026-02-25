@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { LayananDetail } from "@/components/LayananDetail";
 import pb from '@/lib/database';
+import { PopUpBanner } from "@/components/PopUpBanner";
 
 const { id } = Astro.params 
 const data = await pb.collection('categories').getOne(id as string)
@@ -13,4 +14,9 @@ const data = await pb.collection('categories').getOne(id as string)
     <p class="opacity-70">Silahkan memilih layanan yang anda perlukan</p>
   </div>
     <LayananDetail id={id} className="mx-20 max-sm:mx-5 my-10 max-sm:my-5" client:only="react" />
+    <div class="flex justify-center my-10 mx-20 max-sm:mx-5 rounded-lg overflow-hidden">
+        <img src="/alur-pelayanan.webp" alt="Alur Pelayanan" class="w-full h-auto" />
+    </div>
+  
+    <PopUpBanner client:visible />
 </BaseLayout>
