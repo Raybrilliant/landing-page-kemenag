@@ -1,4 +1,5 @@
 ---
+import LineChart from "@/components/LineChart";
 import PieFromSheet from "@/components/PieChart";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
@@ -6,7 +7,12 @@ const csvUrlSPAK = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwVPUqSKDu8
 const csvUrlSPKP = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyYcMkYtohUjoHO4TaA-1v_e3uM-asyhW-440y-SbWCjirYiDiO1LDJj7XXW_nKfaZfdP5vAK-f30g/pub?gid=1053296242&single=true&output=csv"
 const csvUrlSKM = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-XnLQR2igFV_Mj5eJOaeye_nqvTavsBrQhK_OHvYPZ66-SCtbliSkQtmpiwQJ4MfSBKIfPrxdw0ip/pub?gid=1673183934&single=true&output=csv"
 const survei = Astro.url.searchParams.get('survei') ?? 'skm';
+const tahun = Astro.url.searchParams.get('tahun') ?? new Date().getFullYear();
 
+const tahunOptions = Array.from({ length: 3 }, (_, i) => {
+  const year = new Date().getFullYear() - i;
+  return { value: year.toString(), label: year.toString() };
+});
 ---
 
 <BaseLayout title="Survei Pelayanan">
@@ -26,6 +32,13 @@ const survei = Astro.url.searchParams.get('survei') ?? 'skm';
           <option value="spkp" selected={survei === 'spkp'}>Survey Persepsi Kualitas Pelayanan (SPKP) pada Kantor Kementerian Agama Kota Probolinggo</option>
           <option value="spak" selected={survei === 'spak'}>Survey Persepsi Anti Korupsi</option>
         </select>
+        <select name="tahun" class="border border-gray-300 rounded-md p-2 max-sm:w-full">
+          {tahunOptions.map((option) => (
+            <option value={option.value} selected={tahun === option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
         <button type="submit" class="bg-green-600 text-white px-5 py-2 rounded-md max-sm:w-full">Tampilkan</button>
       </form>
     </div>
@@ -34,16 +47,17 @@ const survei = Astro.url.searchParams.get('survei') ?? 'skm';
     {survei === 'skm' && (
       <>
         <h3 class="text-xl font-semibold mb-5">Survey Indeks Kepuasan Masyarakat terhadap Pelayanan Publik</h3>
+        <LineChart client:visible csvUrl={csvUrlSKM} colIndices={[9, 10, 11, 12, 13, 14, 15, 16, 17]} filterYear={Number(tahun)}/>
         <div class="grid grid-cols-3 max-sm:grid-cols-2 gap-5">
-            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={9}/>
-            <PieFromSheet scaleType="1-4"  client:visible csvUrl={csvUrlSKM} colIndex={10}/>
-            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={11}/>
-            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={12}/>
-            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={13}/>
-            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={14}/>
-            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={15}/>
-            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={16}/>
-            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={17}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={9} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-4"  client:visible csvUrl={csvUrlSKM} colIndex={10} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={11} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={12} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={13} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={14} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={15} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={16} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-4" client:visible csvUrl={csvUrlSKM} colIndex={17} filterYear={Number(tahun)}/>
         </div>
 
       </>
@@ -52,32 +66,33 @@ const survei = Astro.url.searchParams.get('survei') ?? 'skm';
     {survei === 'spkp' && (
       <>
         <h3 class="text-xl font-semibold mb-5">Survey Persepsi Kualitas Pelayanan (SPKP) pada Kantor Kementerian Agama Kota Probolinggo</h3>
+        <LineChart client:visible csvUrl={csvUrlSPKP} colIndices={[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]} filterYear={Number(tahun)}/>
         <div class="grid grid-cols-3 max-sm:grid-cols-2 gap-5">
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={10} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={11} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={12} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={13} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={14} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={15} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={16} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={17} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={18} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={19} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={20} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={21} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={22} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={23} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={24} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={25} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={26} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={27} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={28} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={29} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={30} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={31} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={32} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={33} />
-          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={34} />
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={10} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={11} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={12} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={13} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={14} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={15} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={16} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={17} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={18} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={19} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={20} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={21} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={22} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={23} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={24} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={25} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={26} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={27} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={28} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={29} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={30} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={31} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={32} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={33} filterYear={Number(tahun)}/>
+          <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPKP} colIndex={34} filterYear={Number(tahun)}/>
         </div>
       </>
     )}
@@ -85,15 +100,16 @@ const survei = Astro.url.searchParams.get('survei') ?? 'skm';
     {survei === 'spak' && (
       <>
         <h3 class="text-xl font-semibold mb-5">Survey Persepsi Anti Korupsi</h3>
+        <LineChart client:visible csvUrl={csvUrlSPAK} colIndices={[9, 10, 11, 12, 13, 14, 15, 16]} filterYear={Number(tahun)}/>
         <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
-            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={9}/>
-            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={10}/>
-            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={11}/>
-            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={12}/>
-            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={13}/>
-            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={14}/>
-            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={15}/> 
-            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={16}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={9}  filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={10} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={11} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={12} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={13} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={14} filterYear={Number(tahun)}/>
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={15} filterYear={Number(tahun)}/> 
+            <PieFromSheet scaleType="1-6" client:visible csvUrl={csvUrlSPAK} colIndex={16} filterYear={Number(tahun)}/>
         </div>
       </>
     )}

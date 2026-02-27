@@ -9,6 +9,7 @@ type Props = {
   scaleType: '1-4' | '1-6';
   width?: number | string;
   height?: number | string;
+  filterYear?: number | null;
 };
 
 // **Fungsi helper untuk memetakan nilai numerik ke label deskriptif**
@@ -40,7 +41,7 @@ const mapValue = (value: string, type: '1-4' | '1-6'): string => {
   return value;
 };
 
-export default function PieFromSheet({ csvUrl, colIndex = 0, scaleType }: Props) {
+export default function PieFromSheet({ csvUrl, colIndex = 0, scaleType, filterYear }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const chartRef = useRef<ChartJS | null>(null);
 
@@ -56,7 +57,6 @@ export default function PieFromSheet({ csvUrl, colIndex = 0, scaleType }: Props)
         // PapaParse bisa membaca dari URL secara langsung, tapi karena ini di Google Sheets, 
         // kita tetap gunakan fetch untuk mendapatkan teksnya, lalu parsing teksnya.
         // Atau, cara yang lebih elegan untuk URL publik:
-        
         Papa.parse(csvUrl, {
           download: true, // PapaParse akan menangani proses fetch/download
           header: false,  // Kita tidak menggunakan baris pertama sebagai kunci objek
@@ -71,11 +71,19 @@ export default function PieFromSheet({ csvUrl, colIndex = 0, scaleType }: Props)
               return;
             }
 
+            // buat data bisa difilter berdasarkan tahun
+            const filteredData = rows.filter(row => {
+              const dateParts = (row[0] || '').split('/');
+              if (dateParts.length !== 3) return false;
+              const year = parseInt(dateParts[2], 10);
+              return year === filterYear;
+            });
+
             // 1. Ambil Header (Baris 0)
             const header = rows[0][colIndex] ?? `Kolom ${colIndex}`;
 
             // 2. Ambil Nilai (Baris 1 dan seterusnya)
-            const vals: string[] = rows.slice(1)
+            const vals: string[] = filteredData.slice(1)
               .map(r => (r[colIndex] ?? '').trim())
               .filter(v => v !== '');
 
