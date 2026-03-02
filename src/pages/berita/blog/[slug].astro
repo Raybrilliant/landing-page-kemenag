@@ -5,8 +5,8 @@ import HorizontalNews from "@/components/berita/HorizontalNews.astro";
 import ShareButton from "@/components/ShareButton";
 const { slug } = Astro.params;
 
-const detail_berita = await pb.collection('news').getFullList({expand:'category', filter:`slug = '${slug}'`})
-const related_berita = await pb.collection('news').getList(1,4,{expand:'category', fields: 'id, collectionId, title, slug, date, document, category', filter:`category.id = '${detail_berita[0].category}'`, sort:'-date'})
+const detail_berita = await pb.collection('news').getFullList({expand:'category', filter:`published = true && slug = '${slug}'`})
+const related_berita = await pb.collection('news').getList(1,4,{expand:'category', fields: 'id, collectionId, title, slug, date, document, category', filter:`published = true && category.id = '${detail_berita[0].category}'`, sort:'-date'})
 const post = detail_berita[0]
 ---
 
