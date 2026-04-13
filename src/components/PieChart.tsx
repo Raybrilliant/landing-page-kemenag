@@ -18,10 +18,10 @@ const mapValue = (value: string, type: '1-4' | '1-6'): string => {
 
   if (type === '1-4') {
     switch (trimmedValue) {
-      case '1': return 'Sangat Tidak Baik';
-      case '2': return 'Tidak Baik';
-      case '3': return 'Baik';
-      case '4': return 'Sangat Baik';
+      case '1': return 'Sangat Tidak Setuju';
+      case '2': return 'Tidak Setuju';
+      case '3': return 'Setuju';
+      case '4': return 'Sangat Setuju';
       default: return value;
     }
   } 
