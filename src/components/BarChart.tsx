@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Chart, { Chart as ChartJS } from 'chart.js/auto';
 import type { ChartConfiguration } from 'chart.js';
+import Papa from 'papaparse';
 
 // function getRandomColors(n: number) {
 //     return Array.from({ length: n }, () =>
@@ -8,7 +9,25 @@ import type { ChartConfiguration } from 'chart.js';
 //     );
 // }
 
-export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', height = 400, filterYear }: { csvUrl: string, colIndex?: number, width?: string|number, height?: string|number, filterYear?: number | null }) {
+export default function BarFromSheet({
+  csvUrl,
+  colIndex = 8,
+  groupColIndex,
+  mode = 'count',
+  width = '100%',
+  height = 400,
+  filterYear,
+  yearColIndex,
+}: {
+  csvUrl: string;
+  colIndex?: number;
+  groupColIndex?: number;
+  mode?: 'count' | 'sum';
+  width?: string | number;
+  height?: string | number;
+  filterYear?: number | null;
+  yearColIndex?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const chartRef = useRef<ChartJS | null>(null);
 
@@ -20,47 +39,44 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
       try {
         const res = await fetch(csvUrl);
         const txt = await res.text();
-        const rows = txt.trim().split('\n').map(r => r.split(','));
+        const parsed = Papa.parse<string[]>(txt, {
+          skipEmptyLines: true,
+          transform: (v) => v.trim(),
+        });
+        const rows = parsed.data;
 
-        const header = rows[0][colIndex] ?? `Kolom ${colIndex}`;
+        const header = rows[1][colIndex] ?? `Kolom ${colIndex}`;
 
-        // ambil kolom tanggal (kolom index 1 = tanggal)
-        const vals: string[] = rows.slice(1).map(r => {
-          const rawDate = (r[0] ?? '').trim(); // Tanggal di kolom 0
-          const rawValue = (r[colIndex] ?? '').trim(); // Nilai di kolom target (Kolom 3 atau 4)
+        // filter by year if needed
+        const dataRows = rows.slice(2).filter(r => {
+          if (!filterYear || yearColIndex === undefined) return true;
+          const match = (r[yearColIndex] ?? '').trim().match(/\d{4}/);
+          return match ? Number(match[0]) === filterYear : false;
+        });
 
-          // 1. Validasi Nilai Target (WAJIB)
-          // Jika kolom target kosong, baris ini harus dibuang.
-          if (!rawValue) return '';
+        const agg: Record<string, number> = {};
 
-          // 2. Validasi Filter Tahun (OPSIONAL)
-          if (filterYear) {
-            // Jika filterYear ada (bukan null), maka tanggal HARUS ada dan sesuai
-            if (!rawDate) return ''; // Tanggal kosong jika ada filter
-            
-            const parts = rawDate.split('-'); // format dd-mm-yyyy
-            if (parts.length !== 3) return '';
-
-            const year = parseInt(parts[2], 10);
-
-            // Cuma ambil data sesuai tahun
-            if (year !== filterYear) return '';
+        if (mode === 'sum') {
+          // group by groupColIndex, sum values from colIndex
+          const labelCol = groupColIndex ?? 0;
+          for (const r of dataRows) {
+            const label = (r[labelCol] ?? '').trim();
+            const raw = (r[colIndex] ?? '').replace(/[^0-9.-]/g, '');
+            const num = parseFloat(raw);
+            if (!label || isNaN(num)) continue;
+            agg[label] = (agg[label] ?? 0) + num;
           }
-          // Jika filterYear: null, bagian di atas dilewati, dan kita tidak peduli dengan rawDate
+        } else {
+          // count occurrences of colIndex values
+          for (const r of dataRows) {
+            const val = (r[colIndex] ?? '').trim();
+            if (!val) continue;
+            agg[val] = (agg[val] ?? 0) + 1;
+          }
+        }
 
-          return rawValue; // Kembalikan nilai yang akan dihitung
-        }).filter(v => v !== '');
-
-        const counts: Record<string, number> = {};
-        vals.forEach(v => counts[v] = (counts[v] || 0) + 1);
-
-        const labels = Object.keys(counts).sort();
-        const data = labels.map(l => counts[l]);
-
-        // console.log('--- DEBUG CHART DATA ---');
-        // console.log('Labels:', labels);
-        // console.log('Counts (Data):', data); // <-- Cek array ini!
-        // console.log('------------------------');
+        const labels = Object.keys(agg).sort();
+        const data = labels.map(l => agg[l]);
 
         if (cancelled) return;
         const ctx = canvasRef.current.getContext('2d');
@@ -70,6 +86,8 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
           chartRef.current.destroy();
           chartRef.current = null;
         }
+
+        const yLabel = mode === 'sum' ? `Total ${header}` : 'Jumlah';
 
         const config: ChartConfiguration<'bar'> = {
           type: 'bar',
@@ -85,19 +103,8 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: {
-                title: {
-                  display: true,
-                  text: header
-                }
-              },
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Jumlah'
-                }
-              }
+              x: { title: { display: true, text: header } },
+              y: { beginAtZero: true, title: { display: true, text: yLabel } },
             }
           }
         };
@@ -116,7 +123,7 @@ export default function BarFromSheet({ csvUrl, colIndex = 8, width = '100%', hei
         chartRef.current = null;
       }
     };
-  }, [csvUrl, colIndex, filterYear]);
+  }, [csvUrl, colIndex, groupColIndex, mode, filterYear, yearColIndex]);
 
   return (
     <div style={{ width, height }}>

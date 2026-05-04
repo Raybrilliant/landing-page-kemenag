@@ -1,67 +1,235 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro'
-import BarChart from '@/components/BarChart';
-import DataTableFromCsv from '@/components/DataTableFromCsv';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BarChart from "@/components/BarChart";
+import DataTableFromCsv from "@/components/DataTableFromCsv";
 
-const {searchParams} = new URL(Astro.url.href)
-const year = Number(searchParams.get('year'))
+const { searchParams } = new URL(Astro.url.href);
+const year = Number(searchParams.get("year"));
 
-const nowYear = new Date().getFullYear()
-const YearFilter = [nowYear, nowYear-1, nowYear-2, nowYear-3, nowYear-4, nowYear-5]
+const nowYear = new Date().getFullYear();
+const YearFilter = [
+    nowYear,
+    nowYear - 1,
+    nowYear - 2,
+    nowYear - 3,
+    nowYear - 4,
+    nowYear - 5,
+];
 
-const { id } = Astro.params 
+const { id } = Astro.params;
 const csvUrl = () => {
-  switch (id) {
-    case 'Lembaga Madrasah':
-      return {
-        url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vRlV4_mYKcppHjOJWraza9FEF785NqQbKpRZJLXaq7gQ9PYxM1uV-a9fG5Urp3jsg/pub?gid=1502408189&single=true&output=csv",
-        colIndex: 3,
-        colIndex2: 4,
-        table:true,
-        filterYear:false,
-        year:year,
-      }
-    case 'Lembaga TPQ dan Madin':
-      return {
-        url:"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3L5H3IrMLV-_XaHJVXW8ieSbmlNx71W4Bf9Pc7lLJKWdZHC-P0NIN0Op7AyjZxA/pub?gid=705032251&single=true&output=csv",
-        colIndex: 2,
-        colIndex2: 5,
-        table:true,
-        filterYear:false,
-        year:year,
-
-      }
-    default:
-      return {
-        url:"",
-        colIndex: 0,
-        colIndex2: 0,
-        table:false,
-        filterYear:false,
-        year:year,
-      }
-  }
-} 
+    switch (id) {
+        case "Data Pegawai":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=108686125&single=true&output=csv",
+                colIndex: 11,
+                colIndex2: 6,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [1, 2, 3, 6, 7, 8, 11],
+                yearColIndex: 0,
+            };
+        case "Guru DPK":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=1831682664&single=true&output=csv",
+                colIndex: 7,
+                colIndex2: 3,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [1, 2, 3, 4, 5, 6, 7],
+                yearColIndex: 0,
+            };
+        case "Guru Sertifikat Pendidik":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=1662667355&single=true&output=csv",
+                colIndex: 10,
+                colIndex2: 3,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [1, 2, 3, 5, 6, 7, 8, 9],
+                yearColIndex: 0,
+            };
+        case "Lembaga Madrasah":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=486907344&single=true&output=csv",
+                colIndex: 3,
+                colIndex2: 4,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15],
+                yearColIndex: 0,
+            };
+        case "Pondok Pesantren":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=1098987175&single=true&output=csv",
+                colIndex: 3,
+                colIndex2: 6,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [1, 2, 3, 4, 5, 6, 7, 9, 14],
+                yearColIndex: 0,
+            };
+        case "Lembaga TPQ dan Madin":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=104225362&single=true&output=csv",
+                colIndex: 3,
+                colIndex2: 6,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [1, 2, 3, 4, 5, 6, 7, 11, 12],
+                yearColIndex: 0,
+            };
+        case "Zakat":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=2036535046&single=true&output=csv",
+                colIndex: 2,
+                colIndex2: 5,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [7, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14],
+                yearColIndex: 0,
+            };
+        case "Wakaf":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=1863825755&single=true&output=csv",
+                colIndex: 4,
+                colIndex2: 5,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+                yearColIndex: 0,
+            };
+        case "Nikah":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=1716322140&single=true&output=csv",
+                colIndex: 5,
+                colIndex2: 6,
+                table: false,
+                filterYear: false,
+                year: year,
+                visibleCols: [] as number[],
+                yearColIndex: 3,
+            };
+        case "Masjid dan Musholla":
+            return {
+                url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NxHN7O3OCWAVj8SL3EIytT0GYlj_x7-Anj2HJgo0-m9z2Hub1Vue3td1Q6Hr-HTd2ZpfJ6tfy1Ta/pub?gid=188330066&single=true&output=csv",
+                colIndex: 2,
+                colIndex2: 5,
+                table: true,
+                filterYear: false,
+                year: year,
+                visibleCols: [1,2,3,4,5,6,7,8,11,13],
+                yearColIndex: 0,
+            };
+        default:
+            return {
+                url: "",
+                colIndex: 0,
+                colIndex2: 0,
+                table: false,
+                filterYear: false,
+                year: year,
+                visibleCols: undefined as number[] | undefined,
+                yearColIndex: undefined as number | undefined,
+            };
+    }
+};
 ---
 
 <BaseLayout title={`Statistik ${id}`}>
-  <div class="mx-20 max-sm:mx-5 mt-30 mb-15 space-y-2">
-    <h1 class="text-3xl font-bold capitalize max-sm:text-2xl">Statistik {id}</h1>
-    <p class="opacity-70">Informasi publik ini dapat diakses secara gratis. Pemohon/pengguna informasi publik dapat melakukan penggandaan secara mandiri di Kementerian Agama atau menyediakan flashdisk untuk perekaman data dan informasi.</p>
+    <div class="mx-20 max-sm:mx-5 mt-30 mb-15 space-y-2">
+        <h1 class="text-3xl font-bold capitalize max-sm:text-2xl">
+            Statistik {id}
+        </h1>
+        <p class="opacity-70">
+            Informasi publik ini dapat diakses secara gratis. Pemohon/pengguna
+            informasi publik dapat melakukan penggandaan secara mandiri di
+            Kementerian Agama atau menyediakan flashdisk untuk perekaman data
+            dan informasi.
+        </p>
 
-    {csvUrl().filterYear && <form class="flex justify-end gap-2">
-      <select name="year" id="year" class="border border-gray-300 rounded px-2 py-1">
-        <option value="">Semua Tahun</option>
-        {YearFilter.map(y => <option value={y}>{y}</option>)}
-      </select>
-      <button type="submit" class="bg-green-500 text-white px-2 py-1 rounded">Filter</button>
-    </form>}
-    <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
-      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex} filterYear={csvUrl().year}/>
-      <BarChart client:load csvUrl={csvUrl().url} colIndex={csvUrl().colIndex2} filterYear={csvUrl().year}/>
+        {
+            csvUrl().filterYear && (
+                <form class="flex justify-end gap-2">
+                    <select
+                        name="year"
+                        id="year"
+                        class="border border-gray-300 rounded px-2 py-1"
+                    >
+                        <option value="">Semua Tahun</option>
+                        {YearFilter.map((y) => (
+                            <option value={y}>{y}</option>
+                        ))}
+                    </select>
+                    <button
+                        type="submit"
+                        class="bg-green-500 text-white px-2 py-1 rounded"
+                    >
+                        Filter
+                    </button>
+                </form>
+            )
+        }
+        {
+            id == "Nikah" && (
+                <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
+                    <BarChart
+                        client:load
+                        csvUrl={csvUrl().url}
+                        mode="sum"
+                        groupColIndex={1}
+                        colIndex={csvUrl().colIndex}
+                        filterYear={csvUrl().year}
+                    />
+                    <BarChart
+                        client:load
+                        csvUrl={csvUrl().url}
+                        mode="sum"
+                        groupColIndex={1}
+                        colIndex={csvUrl().colIndex2}
+                        filterYear={csvUrl().year}
+                    />
+                </div>
+            )
+        }
+        {
+            id != "Nikah" && (
+                <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
+                    <BarChart
+                        client:load
+                        csvUrl={csvUrl().url}
+                        colIndex={csvUrl().colIndex}
+                        filterYear={csvUrl().year}
+                        yearColIndex={csvUrl().yearColIndex}
+                    />
+                    <BarChart
+                        client:load
+                        csvUrl={csvUrl().url}
+                        colIndex={csvUrl().colIndex2}
+                        filterYear={csvUrl().year}
+                        yearColIndex={csvUrl().yearColIndex}
+                    />
+                </div>
+            )
+        }
+        {
+            csvUrl().table && (
+                <DataTableFromCsv
+                    client:load
+                    csvUrl={csvUrl().url}
+                    filterYear={csvUrl().year}
+                    visibleCols={csvUrl().visibleCols}
+                    yearColIndex={csvUrl().yearColIndex}
+                />
+            )
+        }
     </div>
-    {csvUrl().table && <DataTableFromCsv client:load csvUrl={csvUrl().url} filterYear={csvUrl().year} />}
-
-  </div>
-
 </BaseLayout>
