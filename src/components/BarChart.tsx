@@ -100,11 +100,12 @@ export default function BarFromSheet({
             }]
           },
           options: {
+            indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { title: { display: true, text: header } },
-              y: { beginAtZero: true, title: { display: true, text: yLabel } },
+              x: { beginAtZero: true, title: { display: true, text: yLabel } },
+              y: { title: { display: true, text: header } },
             }
           }
         };
