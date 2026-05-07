@@ -142,6 +142,19 @@ const csvUrl = () => {
             };
     }
 };
+
+let lastUpdate = '';
+if (csvUrl().url) {
+    try {
+        const res = await fetch(csvUrl().url);
+        const txt = await res.text();
+        const rows = txt.split('\n');
+        const cols = (rows[1] ?? '').split(',');
+        lastUpdate = cols[2]?.trim().replace(/^"|"$/g, '') ?? '';
+    } catch {
+        // silently fail
+    }
+}
 ---
 
 <BaseLayout title={`Statistik ${id}`}>
@@ -155,6 +168,14 @@ const csvUrl = () => {
             Kementerian Agama atau menyediakan flashdisk untuk perekaman data
             dan informasi.
         </p>
+        {lastUpdate && (
+            <p class="text-sm text-end text-gray-500 animate-pulse">
+                Terakhir diperbarui: <span class="font-medium">{lastUpdate}</span>
+            </p>
+            <p class="text-sm text-end text-gray-500 font-medium">
+                Sumber Data Kantor Kementerian Agama Kota Probolinggo
+            </p>
+        )}
 
         {
             csvUrl().filterYear && (

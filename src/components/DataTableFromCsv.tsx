@@ -32,9 +32,9 @@ export default function DataTableFromCSV({ csvUrl, filterYear, visibleCols, year
         });
         const lines = parsed.data;
 
-        // lines[0] = judul, lines[1] = header kolom, lines[2+] = data
-        const rawHeaders = lines[1] ?? [];
-        const dataRows = lines.slice(2);
+        // lines[0] = judul, lines[1] = info (C2=last update), lines[2] = header, lines[3+] = data
+        const rawHeaders = lines[2] ?? [];
+        const dataRows = lines.slice(3);
 
         const indices =
           visibleCols && visibleCols.length > 0
@@ -42,7 +42,7 @@ export default function DataTableFromCSV({ csvUrl, filterYear, visibleCols, year
             : rawHeaders.map((_, i) => i);
 
         const cols: ColDef[] = indices.map((i) => ({
-          field: rawHeaders[i] || `col_${i}`,
+          field: `col_${i}`,
           headerName: rawHeaders[i] || `Kolom ${i}`,
           filter: true,
           floatingFilter: true,
@@ -77,7 +77,7 @@ export default function DataTableFromCSV({ csvUrl, filterYear, visibleCols, year
     // transform ke visible columns untuk AG Grid
     return filtered.map((row) =>
       Object.fromEntries(
-        activeIndices.map((i) => [headers[i] || `col_${i}`, row[i] ?? ""])
+        activeIndices.map((i) => [`col_${i}`, row[i] ?? ""])
       )
     );
   }, [allRawRows, filterYear, yearColIndex, activeIndices, headers]);

@@ -45,10 +45,10 @@ export default function BarFromSheet({
         });
         const rows = parsed.data;
 
-        const header = rows[1][colIndex] ?? `Kolom ${colIndex}`;
+        const header = rows[2][colIndex] ?? `Kolom ${colIndex}`;
 
         // filter by year if needed
-        const dataRows = rows.slice(2).filter(r => {
+        const dataRows = rows.slice(3).filter(r => {
           if (!filterYear || yearColIndex === undefined) return true;
           const match = (r[yearColIndex] ?? '').trim().match(/\d{4}/);
           return match ? Number(match[0]) === filterYear : false;

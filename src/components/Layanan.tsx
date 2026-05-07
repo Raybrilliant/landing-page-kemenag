@@ -69,7 +69,7 @@ export const Layanan = ({id, className}: any) => {
                     </BlurFade>
                 ))}
                 {/* HALALAN TOYIBAN by Ibnu Alak Muzaki */}
-                <BlurFade delay={1} direction="left" inView key={666} >
+                {/*<BlurFade delay={1} direction="left" inView key={666} >
                             <div className="rounded-md border hover:shadow-xl transition duration-300 cursor-pointer">
                                 <MagicCard gradientColor={"#D9D9D955"} gradientSize={200} className="p-0 min-h-72 max-sm:min-h-48">
                                 <a href={`/halal`}>
@@ -87,7 +87,7 @@ export const Layanan = ({id, className}: any) => {
                                 </a>
                                 </MagicCard>
                             </div>
-                    </BlurFade>
+                    </BlurFade>*/}
             </div>
         </div>
     );
