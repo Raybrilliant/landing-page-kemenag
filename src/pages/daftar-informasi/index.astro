@@ -1,0 +1,86 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const kategori = [
+  {
+    judul: "Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala",
+    items: [
+      "Profil dan gambaran umum Kementerian Agama Kota Probolinggo",
+      "Ringkasan informasi tentang program dan kegiatan yang sedang dijalankan",
+      "Ringkasan informasi tentang kinerja dalam lingkup Kementerian Agama",
+      "Ringkasan laporan keuangan",
+      "Ringkasan laporan akses informasi publik",
+      "Informasi tentang peraturan, keputusan, dan/atau kebijakan yang mengikat",
+      "Informasi tentang hak dan tata cara memperoleh informasi publik",
+      "Informasi tentang tata cara pengajuan keberatan dan proses penyelesaian sengketa",
+    ],
+  },
+  {
+    judul: "Informasi yang Wajib Diumumkan Secara Serta Merta",
+    items: [
+      "Informasi yang dapat mengancam hajat hidup orang banyak dan ketertiban umum",
+      "Informasi tentang bencana alam atau bencana non-alam",
+      "Informasi tentang kejadian luar biasa",
+    ],
+  },
+  {
+    judul: "Informasi yang Wajib Tersedia Setiap Saat",
+    items: [
+      "Daftar seluruh informasi publik yang berada di bawah penguasaan Kementerian Agama",
+      "Hasil keputusan dan pertimbangannya",
+      "Seluruh kebijakan beserta dokumen pendukungnya",
+      "Rencana kerja proyek termasuk perkiraan pengeluaran tahunan",
+      "Perjanjian dengan pihak ketiga",
+      "Informasi dan kebijakan yang disampaikan pejabat publik dalam pertemuan terbuka",
+      "Prosedur kerja pegawai yang berkaitan dengan pelayanan masyarakat",
+      "Laporan mengenai pelayanan akses informasi publik",
+    ],
+  },
+  {
+    judul: "Informasi yang Dikecualikan",
+    items: [
+      "Informasi yang apabila dibuka dapat membahayakan pertahanan dan keamanan negara",
+      "Informasi yang berkaitan dengan kepentingan perlindungan usaha dari persaingan usaha tidak sehat",
+      "Informasi yang berkaitan dengan hak-hak pribadi",
+      "Informasi yang berkaitan dengan rahasia jabatan",
+    ],
+  },
+];
+---
+
+<BaseLayout title="Daftar Informasi Publik">
+  <div class="mx-20 max-sm:mx-5 my-30">
+    <h1 class="text-3xl font-bold mb-3">Daftar Informasi Publik</h1>
+    <p class="text-gray-600 mb-10 text-justify">
+      Daftar Informasi Publik Kantor Kementerian Agama Kota Probolinggo disusun sesuai dengan
+      ketentuan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik dan
+      Peraturan Pemerintah Nomor 61 Tahun 2010.
+    </p>
+
+    <div class="space-y-8">
+      {kategori.map((kat, i) => (
+        <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <div class="bg-green-600 text-white px-6 py-4">
+            <h2 class="text-lg font-semibold">{i + 1}. {kat.judul}</h2>
+          </div>
+          <ul class="divide-y divide-gray-100 bg-white">
+            {kat.items.map((item, j) => (
+              <li class="px-6 py-3 flex items-start gap-3 text-gray-700">
+                <span class="text-green-600 font-semibold shrink-0">{j + 1}.</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 p-5 bg-gray-50 rounded-lg border border-gray-200 text-sm text-gray-600">
+      <p>
+        Untuk mendapatkan informasi lebih lanjut, silakan mengajukan permohonan informasi publik
+        secara tertulis kepada PPID Kantor Kementerian Agama Kota Probolinggo di Jl. Mastrip No. 323,
+        Kanigaran, Kota Probolinggo atau melalui email <strong>kotaprobolinggo@kemenag.go.id</strong>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

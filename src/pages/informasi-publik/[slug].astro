@@ -1,0 +1,315 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pages: Record<string, { title: string; sections: { heading: string; content: string }[] }> = {
+  berkala: {
+    title: "Informasi Berkala",
+    sections: [
+      {
+        heading: "Pengertian",
+        content: "Informasi Berkala adalah informasi yang wajib disediakan dan diumumkan secara berkala oleh Badan Publik paling sedikit 6 (enam) bulan sekali sesuai dengan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik.",
+      },
+      {
+        heading: "Jenis Informasi Berkala",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Profil dan gambaran umum Kantor Kementerian Agama Kota Probolinggo</li>
+          <li>Ringkasan informasi tentang program dan kegiatan yang sedang dijalankan</li>
+          <li>Ringkasan informasi tentang kinerja dalam lingkup Kementerian Agama</li>
+          <li>Ringkasan laporan keuangan</li>
+          <li>Ringkasan laporan akses informasi publik</li>
+          <li>Informasi tentang peraturan, keputusan, dan/atau kebijakan yang mengikat</li>
+          <li>Informasi tentang hak dan tata cara memperoleh informasi publik</li>
+          <li>Informasi tentang tata cara pengajuan keberatan dan proses penyelesaian sengketa</li>
+        </ul>`,
+      },
+      {
+        heading: "Cara Mengakses",
+        content: "Informasi berkala dapat diakses melalui website resmi, papan pengumuman kantor, atau langsung menghubungi PPID Kantor Kementerian Agama Kota Probolinggo.",
+      },
+    ],
+  },
+  "serta-merta": {
+    title: "Informasi Serta Merta",
+    sections: [
+      {
+        heading: "Pengertian",
+        content: "Informasi Serta Merta adalah informasi yang dapat mengancam hajat hidup orang banyak dan ketertiban umum yang wajib diumumkan secara serta merta tanpa penundaan.",
+      },
+      {
+        heading: "Jenis Informasi Serta Merta",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Informasi tentang bencana alam atau bencana non-alam yang mengancam keselamatan jiwa</li>
+          <li>Informasi tentang kejadian luar biasa (KLB) di wilayah Kota Probolinggo</li>
+          <li>Informasi darurat yang memerlukan tindakan segera dari masyarakat</li>
+          <li>Informasi tentang gangguan ketertiban umum yang berdampak luas</li>
+        </ul>`,
+      },
+      {
+        heading: "Mekanisme Pengumuman",
+        content: "Informasi serta merta diumumkan melalui seluruh media yang tersedia, termasuk website, media sosial, dan pengumuman langsung, tanpa menunggu permohonan dari masyarakat.",
+      },
+    ],
+  },
+  "tersedia-setiap-saat": {
+    title: "Informasi Tersedia Setiap Saat",
+    sections: [
+      {
+        heading: "Pengertian",
+        content: "Informasi yang wajib tersedia setiap saat adalah informasi yang harus selalu tersedia dan dapat diberikan kepada pemohon kapan pun dibutuhkan tanpa perlu menunggu jangka waktu tertentu.",
+      },
+      {
+        heading: "Jenis Informasi",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Daftar seluruh informasi publik yang berada di bawah penguasaan Kementerian Agama</li>
+          <li>Hasil keputusan dan pertimbangannya</li>
+          <li>Seluruh kebijakan beserta dokumen pendukungnya</li>
+          <li>Rencana kerja proyek termasuk perkiraan pengeluaran tahunan</li>
+          <li>Perjanjian dengan pihak ketiga</li>
+          <li>Informasi dan kebijakan yang disampaikan pejabat publik dalam pertemuan terbuka</li>
+          <li>Prosedur kerja pegawai yang berkaitan dengan pelayanan masyarakat</li>
+          <li>Laporan mengenai pelayanan akses informasi publik</li>
+        </ul>`,
+      },
+      {
+        heading: "Cara Permohonan",
+        content: "Pemohon dapat mengajukan permohonan secara langsung ke kantor PPID, melalui email, atau secara tertulis. Informasi akan diberikan dalam 10 hari kerja.",
+      },
+    ],
+  },
+  dikecualikan: {
+    title: "Informasi Dikecualikan",
+    sections: [
+      {
+        heading: "Pengertian",
+        content: "Informasi Dikecualikan adalah informasi yang tidak dapat diakses oleh publik karena berpotensi membahayakan negara, kepentingan umum, atau hak-hak pihak tertentu sesuai ketentuan Pasal 17 UU No. 14 Tahun 2008.",
+      },
+      {
+        heading: "Kategori Informasi Dikecualikan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Informasi yang dapat membahayakan pertahanan dan keamanan negara</li>
+          <li>Informasi yang berkaitan dengan kepentingan perlindungan usaha dari persaingan usaha tidak sehat</li>
+          <li>Informasi yang berkaitan dengan hak-hak pribadi (privasi)</li>
+          <li>Informasi yang berkaitan dengan rahasia jabatan</li>
+          <li>Informasi publik yang diminta belum dikuasai atau didokumentasikan</li>
+        </ul>`,
+      },
+      {
+        heading: "Mekanisme Pengujian",
+        content: "Pengklasifikasian informasi sebagai dikecualikan dilakukan melalui Uji Konsekuensi bersama PPID dan ditetapkan dalam keputusan PPID yang dapat diajukan keberatan ke Komisi Informasi.",
+      },
+    ],
+  },
+  "sop-pelayanan": {
+    title: "SOP Pelayanan",
+    sections: [
+      {
+        heading: "Standar Operasional Prosedur Pelayanan Informasi Publik",
+        content: "SOP Pelayanan mengatur alur dan tata kelola pelayanan informasi publik di Kantor Kementerian Agama Kota Probolinggo agar berjalan cepat, tepat, dan terstandar.",
+      },
+      {
+        heading: "Alur Pelayanan Informasi",
+        content: `<ol class="list-decimal pl-5 space-y-2">
+          <li>Pemohon datang atau mengirimkan permohonan informasi secara tertulis</li>
+          <li>Petugas PPID menerima dan mencatat permohonan</li>
+          <li>Petugas memberikan tanda bukti penerimaan</li>
+          <li>PPID menelaah dan memproses permohonan (maks. 10 hari kerja)</li>
+          <li>Jika perlu perpanjangan, PPID memberitahu dalam 7 hari kerja berikutnya</li>
+          <li>Informasi disampaikan sesuai cara yang diminta pemohon</li>
+        </ol>`,
+      },
+      {
+        heading: "Dokumen Terkait",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Formulir Permohonan Informasi Publik</li>
+          <li>Tanda Bukti Penerimaan Permohonan</li>
+          <li>Register Permohonan Informasi</li>
+          <li>Surat Pemberitahuan Tertulis</li>
+        </ul>`,
+      },
+    ],
+  },
+  "sp-sop-ptsp": {
+    title: "SP & SOP PTSP",
+    sections: [
+      {
+        heading: "Pelayanan Terpadu Satu Pintu (PTSP)",
+        content: "PTSP adalah sistem pelayanan yang mengintegrasikan berbagai jenis layanan administrasi Kementerian Agama dalam satu loket/pintu untuk kemudahan masyarakat.",
+      },
+      {
+        heading: "Jenis Layanan PTSP",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Layanan Nikah dan Rujuk</li>
+          <li>Layanan Pendidikan Islam</li>
+          <li>Layanan Kemasjidan</li>
+          <li>Layanan Zakat dan Wakaf</li>
+          <li>Layanan Haji dan Umroh</li>
+          <li>Layanan Bimbingan Masyarakat</li>
+          <li>Layanan Produk Halal</li>
+        </ul>`,
+      },
+      {
+        heading: "Standar Pelayanan PTSP",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Waktu layanan: Senin–Kamis 07.30–16.00 WIB, Jumat 07.30–16.30 WIB</li>
+          <li>Tidak dipungut biaya untuk layanan informasi</li>
+          <li>Petugas ramah, profesional, dan bertanggung jawab</li>
+          <li>Tersedia formulir dan panduan layanan</li>
+        </ul>`,
+      },
+    ],
+  },
+  "laporan-kinerja": {
+    title: "Laporan Kinerja",
+    sections: [
+      {
+        heading: "Tentang Laporan Kinerja",
+        content: "Laporan Kinerja (LAKIN) merupakan bentuk pertanggungjawaban Kantor Kementerian Agama Kota Probolinggo atas pencapaian kinerja yang telah ditetapkan dalam Perjanjian Kinerja.",
+      },
+      {
+        heading: "Dokumen Laporan Kinerja",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Laporan Kinerja Instansi Pemerintah (LKIP/LAKIN) Tahunan</li>
+          <li>Perjanjian Kinerja (PK) Tahunan</li>
+          <li>Rencana Strategis (Renstra) 5 Tahunan</li>
+          <li>Rencana Kerja Tahunan (RKT)</li>
+          <li>Laporan Triwulanan</li>
+          <li>Indikator Kinerja Utama (IKU)</li>
+        </ul>`,
+      },
+      {
+        heading: "Cara Mendapatkan Dokumen",
+        content: "Laporan kinerja dapat diakses melalui permohonan informasi publik kepada PPID Kantor Kementerian Agama Kota Probolinggo atau langsung menghubungi Sub Bagian Tata Usaha.",
+      },
+    ],
+  },
+  "laporan-keuangan-bmn": {
+    title: "Laporan Keuangan dan BMN",
+    sections: [
+      {
+        heading: "Tentang Laporan Keuangan",
+        content: "Laporan Keuangan Kantor Kementerian Agama Kota Probolinggo disusun sesuai Standar Akuntansi Pemerintahan (SAP) dan diaudit oleh Badan Pemeriksa Keuangan (BPK) secara berkala.",
+      },
+      {
+        heading: "Jenis Laporan Keuangan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Laporan Realisasi Anggaran (LRA)</li>
+          <li>Neraca</li>
+          <li>Laporan Arus Kas</li>
+          <li>Catatan atas Laporan Keuangan (CaLK)</li>
+          <li>Laporan Operasional (LO)</li>
+          <li>Laporan Perubahan Ekuitas (LPE)</li>
+        </ul>`,
+      },
+      {
+        heading: "Laporan Barang Milik Negara (BMN)",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Laporan Inventarisasi BMN</li>
+          <li>Laporan Kondisi Barang</li>
+          <li>Laporan SIMAK-BMN Semesteran dan Tahunan</li>
+        </ul>`,
+      },
+    ],
+  },
+  "laporan-dipa": {
+    title: "Laporan DIPA",
+    sections: [
+      {
+        heading: "Tentang DIPA",
+        content: "Daftar Isian Pelaksanaan Anggaran (DIPA) adalah dokumen pelaksanaan anggaran yang ditetapkan oleh Menteri Keuangan dan menjadi dasar bagi satuan kerja dalam melaksanakan kegiatan pemerintahan.",
+      },
+      {
+        heading: "Komponen DIPA",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Ringkasan DIPA (halaman I)</li>
+          <li>Rincian Dana per Kegiatan dan Output (halaman II)</li>
+          <li>Rencana Penarikan Dana dan Perkiraan Penerimaan (halaman III)</li>
+          <li>Catatan (halaman IV)</li>
+        </ul>`,
+      },
+      {
+        heading: "Laporan Pelaksanaan DIPA",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Laporan Realisasi DIPA Bulanan</li>
+          <li>Laporan Realisasi DIPA Triwulanan</li>
+          <li>Laporan Realisasi DIPA Tahunan</li>
+          <li>Monitoring dan Evaluasi Pelaksanaan DIPA</li>
+        </ul>`,
+      },
+    ],
+  },
+  "laporan-realisasi-anggaran": {
+    title: "Laporan Realisasi Anggaran",
+    sections: [
+      {
+        heading: "Tentang Laporan Realisasi Anggaran",
+        content: "Laporan Realisasi Anggaran (LRA) menyajikan informasi realisasi pendapatan, belanja, transfer, surplus/defisit, pembiayaan, dan sisa lebih/kurang pembiayaan anggaran selama satu periode pelaporan.",
+      },
+      {
+        heading: "Komponen LRA",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Realisasi Pendapatan Negara dan Hibah</li>
+          <li>Realisasi Belanja Negara (Pegawai, Barang, Modal)</li>
+          <li>Surplus/Defisit Anggaran</li>
+          <li>Pembiayaan Neto</li>
+          <li>Sisa Lebih Pembiayaan Anggaran (SiLPA)</li>
+        </ul>`,
+      },
+      {
+        heading: "Periode Pelaporan",
+        content: "LRA disusun setiap semester (Juni dan Desember) serta tahunan dan disampaikan kepada Kantor Wilayah Kementerian Agama Provinsi Jawa Timur.",
+      },
+    ],
+  },
+  lhkpn: {
+    title: "LHKPN",
+    sections: [
+      {
+        heading: "Tentang LHKPN",
+        content: "Laporan Harta Kekayaan Penyelenggara Negara (LHKPN) adalah laporan yang wajib disampaikan oleh pejabat/penyelenggara negara mengenai harta kekayaan yang dimiliki sebelum, selama, dan setelah menjabat.",
+      },
+      {
+        heading: "Pejabat Wajib Lapor",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Kepala Kantor Kementerian Agama Kota Probolinggo</li>
+        </ul>`,
+      },
+      {
+        heading: "Cara Mengakses LHKPN",
+        content: "Informasi LHKPN pejabat Kantor Kementerian Agama Kota Probolinggo dapat diakses melalui sistem e-LHKPN KPK di elhkpn.kpk.go.id atau melalui permohonan informasi kepada PPID.",
+      },
+    ],
+  },
+};
+
+const { slug } = Astro.params;
+const page = pages[slug ?? ""];
+
+if (!page) {
+  return Astro.redirect("/404");
+}
+---
+
+<BaseLayout title={page.title}>
+  <div class="mx-20 max-sm:mx-5 my-30">
+    <div class="mb-4">
+      <a href="/informasi-publik" class="text-green-600 hover:underline text-sm">← Kembali ke Informasi Publik</a>
+    </div>
+    <h1 class="text-3xl font-bold mb-10">{page.title}</h1>
+
+    <div class="space-y-8">
+      {page.sections.map((section) => (
+        <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <div class="bg-green-600 text-white px-6 py-4">
+            <h2 class="text-xl font-semibold">{section.heading}</h2>
+          </div>
+          <div class="p-6 bg-white text-gray-700 leading-relaxed" set:html={section.content} />
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 p-5 bg-green-50 rounded-lg border border-green-200 text-sm text-gray-700">
+      <p class="font-semibold mb-1">Butuh informasi lebih lanjut?</p>
+      <p>Hubungi PPID melalui email <strong>kotaprobolinggo@kemenag.go.id</strong> atau kunjungi Jl. Mastrip No. 323, Kota Probolinggo.</p>
+    </div>
+  </div>
+</BaseLayout>

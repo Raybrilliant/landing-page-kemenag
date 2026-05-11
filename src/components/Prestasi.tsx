@@ -21,10 +21,9 @@ interface PrestasiResponse {
 }
 
 export const Prestasi = () => {
-    const [open, setOpen] = useState(false);
     const [prestasi, setPrestasi] = useState<PrestasiResponse | null>(null);
-    const [selected, setSelected] = useState<PrestasiItem | null>(null);
     const [loading, setLoading] = useState(true);
+    const [expandedId, setExpandedId] = useState<string | null>(null);
 
     const [page, setPage] = useState(1);
     const [name, setName] = useState("");
@@ -38,12 +37,6 @@ export const Prestasi = () => {
         }
         setPrestasi(data);
         setLoading(false);
-    };
-    
-
-    const handleOpen = (item: PrestasiItem) => {
-        setSelected(item);
-        setOpen(true);
     };
     
     useEffect(() => {
@@ -67,16 +60,30 @@ export const Prestasi = () => {
                     <Skeleton className="w-full h-64 shadow-xl bg-white" />
                     </>
                 ) : (
-                    prestasi?.items.map((item, index) => (
+                    prestasi?.items.map((item, index) => {
+                        const isExpanded = expandedId === item.id;
+                        return (
                         <BlurFade key={index} delay={0.2} direction="right" inView>
-                            <div className="p-5 bg-white md:min-h-[30rem] rounded-lg hover:shadow-xl hover:bg-white transition duration-300 cursor-pointer" onClick={() => handleOpen(item)}>
-                                <img src={pb.files.getURL(item,item?.document[0] ?? '')} alt="photo-prestasi" className="w-full h-60 object-top object-cover"/>
-                                <h2 className="text-xl font-semibold my-3">{item.name}</h2>
+                            <div className="p-5 bg-white rounded-lg hover:shadow-xl hover:bg-white transition duration-300 cursor-pointer flex flex-col">
+                                <img src={pb.files.getURL(item, item?.document[0] ?? '')} alt="photo-prestasi" className="w-full h-60 object-top object-cover"/>
+                                <h2 className="text-xl font-semibold my-3 line-clamp-2">{item.name}</h2>
                                 <p className="text-sm text-gray-500 my-2">{new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
-                                <p className="text-justify">{item.description}</p>
+                                <p className={`text-justify text-sm transition-all duration-300 ${isExpanded ? '' : 'line-clamp-3'}`}>
+                                    {item.description}
+                                </p>
+                                <button
+                                    className="text-green-600 hover:underline text-sm mt-2 text-left w-fit"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setExpandedId(isExpanded ? null : item.id);
+                                    }}
+                                >
+                                    {isExpanded ? 'Tutup' : 'Baca selengkapnya'}
+                                </button>
                             </div>
-                </BlurFade>
-            )))}
+                        </BlurFade>
+                        );
+                    }))}
             </section>
             <ItemPagination 
                 page={page}
@@ -84,22 +91,6 @@ export const Prestasi = () => {
                 getPageUrl={(page) => url + page}
                 onPageChange={(newPage) => setPage(newPage)}
             />  
-
-
-        {/* Modal */}
-        <Dialog open={open} onOpenChange={setOpen}>
-            <DialogContent className="min-w-xl p-10 max-sm:min-w-0">
-                <DialogHeader>
-                    <DialogTitle>{selected?.name}</DialogTitle>
-                    <section className="grid grid-cols-2 gap-5 max-sm:grid-cols-1 my-5 max-h-[calc(100vh-20rem)] overflow-auto">
-                        {selected?.document.map((item, index) => ( 
-                            <img src={pb.files.getURL(selected!,item ?? '')} alt="photo-prestasi" className="w-full object-cover"/>
-                        ))}
-                    </section>
-                    <DialogDescription>{selected?.description}</DialogDescription>
-                </DialogHeader>
-            </DialogContent>
-        </Dialog>
         </>
         
 

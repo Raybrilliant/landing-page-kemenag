@@ -1,0 +1,259 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pages: Record<string, { title: string; sections: { heading: string; content: string }[] }> = {
+  "tata-cara-permohonan-informasi": {
+    title: "Tata Cara Permohonan Informasi",
+    sections: [
+      {
+        heading: "Pengertian",
+        content: "Permohonan informasi publik dapat diajukan oleh setiap warga negara kepada PPID Kantor Kementerian Agama Kota Probolinggo secara tertulis maupun tidak tertulis.",
+      },
+      {
+        heading: "Langkah-Langkah Permohonan",
+        content: `<ol class="list-decimal pl-5 space-y-2">
+          <li>Pemohon mengisi formulir permohonan informasi yang memuat: nama lengkap, alamat, nomor telepon, subjek informasi yang diminta, cara penyampaian informasi, dan tujuan penggunaan informasi.</li>
+          <li>Formulir diserahkan secara langsung, via email, atau melalui surat tertulis kepada PPID.</li>
+          <li>PPID mencatat permohonan dan memberikan tanda bukti penerimaan dengan nomor registrasi.</li>
+          <li>PPID menelaah dan memproses permohonan dalam waktu <strong>10 hari kerja</strong>.</li>
+          <li>Jika memerlukan perpanjangan waktu, PPID memberitahu pemohon dalam <strong>7 hari kerja</strong> berikutnya.</li>
+          <li>Informasi disampaikan sesuai cara yang diminta pemohon (softcopy/hardcopy).</li>
+        </ol>`,
+      },
+      {
+        heading: "Syarat Permohonan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Identitas diri yang jelas (KTP/SIM/Paspor)</li>
+          <li>Formulir permohonan informasi yang telah diisi lengkap</li>
+          <li>Surat kuasa (jika melalui perwakilan)</li>
+        </ul>`,
+      },
+      {
+        heading: "Kontak Pengajuan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li><strong>Datang langsung:</strong> Jl. Mastrip No. 323, Kanigaran, Kota Probolinggo</li>
+          <li><strong>Email:</strong> kotaprobolinggo@kemenag.go.id</li>
+          <li><strong>Jam layanan:</strong> Senin–Kamis 07.30–16.00, Jumat 07.30–16.30 WIB</li>
+        </ul>`,
+      },
+    ],
+  },
+  "tata-cara-sengketa-informasi": {
+    title: "Tata Cara Sengketa Informasi",
+    sections: [
+      {
+        heading: "Pengertian Sengketa Informasi",
+        content: "Sengketa informasi adalah sengketa yang terjadi antara badan publik dan pemohon informasi publik berkaitan dengan hak memperoleh dan menggunakan informasi berdasarkan perundang-undangan.",
+      },
+      {
+        heading: "Kapan Sengketa Dapat Diajukan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Permohonan informasi tidak ditanggapi dalam batas waktu yang ditentukan</li>
+          <li>Permohonan informasi ditolak tanpa alasan yang sah</li>
+          <li>Penyampaian informasi melebihi batas waktu</li>
+          <li>Informasi yang diberikan tidak benar atau tidak lengkap</li>
+          <li>Biaya yang dikenakan tidak wajar</li>
+          <li>Keberatan tidak ditanggapi atau ditolak oleh atasan PPID</li>
+        </ul>`,
+      },
+      {
+        heading: "Prosedur Pengajuan Sengketa",
+        content: `<ol class="list-decimal pl-5 space-y-2">
+          <li>Pemohon mengajukan sengketa ke Komisi Informasi (KI) paling lambat <strong>14 hari kerja</strong> setelah keberatan diterima atau tidak ditanggapi atasan PPID.</li>
+          <li>KI memeriksa kelengkapan berkas permohonan sengketa.</li>
+          <li>KI memanggil para pihak untuk mediasi.</li>
+          <li>Jika mediasi gagal, dilanjutkan dengan sidang ajudikasi nonlitigasi.</li>
+          <li>KI mengeluarkan putusan yang bersifat final dan mengikat.</li>
+          <li>Para pihak dapat mengajukan keberatan ke Pengadilan dalam 14 hari setelah putusan KI.</li>
+        </ol>`,
+      },
+      {
+        heading: "Komisi Informasi",
+        content: "Sengketa diajukan ke Komisi Informasi Provinsi Jawa Timur untuk sengketa yang melibatkan kantor daerah. Informasi lebih lanjut: www.komisinformasi.go.id",
+      },
+    ],
+  },
+  "tata-cara-pengaduan-masyarakat": {
+    title: "Tata Cara Pengaduan Masyarakat",
+    sections: [
+      {
+        heading: "Pengertian",
+        content: "Pengaduan masyarakat adalah penyampaian keluhan, saran, atau informasi mengenai ketidaksesuaian pelayanan yang diterima dengan standar yang telah ditetapkan.",
+      },
+      {
+        heading: "Saluran Pengaduan",
+        content: `<ul class="list-disc pl-5 space-y-2">
+          <li><strong>Langsung:</strong> Datang ke meja layanan PPID di Jl. Mastrip No. 323, Kota Probolinggo</li>
+          <li><strong>Tertulis:</strong> Surat resmi kepada Kepala Kantor Kementerian Agama Kota Probolinggo</li>
+          <li><strong>Email:</strong> kotaprobolinggo@kemenag.go.id</li>
+          <li><strong>Telepon:</strong> Hubungi kantor pada jam layanan</li>
+        </ul>`,
+      },
+      {
+        heading: "Prosedur Pengaduan",
+        content: `<ol class="list-decimal pl-5 space-y-2">
+          <li>Pengadu menyampaikan pengaduan dengan identitas jelas dan uraian permasalahan.</li>
+          <li>Sertakan bukti pendukung jika ada (dokumen, foto, dll).</li>
+          <li>Petugas mencatat dan memberikan tanda terima pengaduan.</li>
+          <li>PPID menindaklanjuti pengaduan dalam waktu <strong>14 hari kerja</strong>.</li>
+          <li>Hasil penanganan disampaikan kepada pengadu secara tertulis.</li>
+        </ol>`,
+      },
+      {
+        heading: "Perlindungan Pengadu",
+        content: "Identitas pengadu dijaga kerahasiaannya dan pengadu dilindungi dari tindakan balasan sepanjang pengaduan disampaikan dengan itikad baik dan berdasarkan fakta.",
+      },
+    ],
+  },
+  "tata-cara-pengajuan-keberatan": {
+    title: "Tata Cara Pengajuan Keberatan",
+    sections: [
+      {
+        heading: "Pengertian",
+        content: "Keberatan adalah upaya hukum yang dapat dilakukan pemohon informasi publik apabila tidak puas dengan keputusan atau tindakan PPID dalam menangani permohonan informasi.",
+      },
+      {
+        heading: "Kondisi Pengajuan Keberatan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Penolakan atas permohonan informasi publik</li>
+          <li>Tidak disediakannya informasi berkala</li>
+          <li>Tidak ditanggapinya permohonan informasi</li>
+          <li>Permohonan ditanggapi tidak sebagaimana mestinya</li>
+          <li>Tidak dipenuhinya permohonan informasi</li>
+          <li>Pengenaan biaya yang tidak wajar</li>
+          <li>Penyampaian informasi yang melebihi waktu yang ditetapkan</li>
+        </ul>`,
+      },
+      {
+        heading: "Prosedur Pengajuan",
+        content: `<ol class="list-decimal pl-5 space-y-2">
+          <li>Pemohon mengajukan keberatan secara tertulis kepada <strong>Atasan PPID</strong> (Kepala Kantor Kemenag Kota Probolinggo).</li>
+          <li>Keberatan memuat: nama pemohon, alasan keberatan, dan tanda tangan pemohon.</li>
+          <li>Keberatan diajukan paling lambat <strong>30 hari kerja</strong> setelah ditemukannya dasar keberatan.</li>
+          <li>Atasan PPID memberikan tanggapan dalam <strong>30 hari kerja</strong> sejak keberatan diterima.</li>
+          <li>Jika keberatan diterima, informasi wajib diberikan kepada pemohon.</li>
+          <li>Jika tidak puas, pemohon dapat mengajukan sengketa ke Komisi Informasi.</li>
+        </ol>`,
+      },
+    ],
+  },
+  "alasan-pengajuan-keberatan": {
+    title: "Alasan Pengajuan Keberatan",
+    sections: [
+      {
+        heading: "Dasar Hukum",
+        content: "Alasan-alasan pengajuan keberatan diatur dalam Pasal 35 ayat (1) Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik.",
+      },
+      {
+        heading: "Alasan yang Sah untuk Mengajukan Keberatan",
+        content: `<ol class="list-decimal pl-5 space-y-3">
+          <li><strong>Penolakan permohonan informasi publik</strong> — PPID menolak memberikan informasi yang diminta tanpa alasan yang jelas atau sah.</li>
+          <li><strong>Tidak tersedianya informasi berkala</strong> — Badan publik tidak menyediakan informasi yang wajib diumumkan secara berkala.</li>
+          <li><strong>Permohonan tidak ditanggapi</strong> — PPID tidak merespons permohonan dalam waktu yang ditentukan (10 hari kerja + 7 hari perpanjangan).</li>
+          <li><strong>Tanggapan tidak sebagaimana mestinya</strong> — Informasi yang diberikan tidak lengkap, tidak benar, atau tidak relevan.</li>
+          <li><strong>Permintaan tidak dipenuhi</strong> — PPID mengakui informasi ada namun tidak memberikannya.</li>
+          <li><strong>Biaya tidak wajar</strong> — Dikenakan biaya yang tidak sesuai ketentuan.</li>
+          <li><strong>Informasi terlambat disampaikan</strong> — Penyampaian informasi melampaui batas waktu yang ditetapkan.</li>
+        </ol>`,
+      },
+      {
+        heading: "Hal yang Perlu Diperhatikan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Keberatan harus diajukan dalam batas waktu 30 hari kerja sejak dasar keberatan ditemukan</li>
+          <li>Keberatan diajukan secara tertulis dan ditandatangani pemohon</li>
+          <li>Simpan salinan permohonan asli sebagai bukti</li>
+        </ul>`,
+      },
+    ],
+  },
+  "sop-layanan-informasi-publik": {
+    title: "SOP Layanan Informasi Publik",
+    sections: [
+      {
+        heading: "Ruang Lingkup SOP",
+        content: "SOP Layanan Informasi Publik mengatur seluruh prosedur operasional standar yang wajib diikuti oleh petugas PPID Kantor Kementerian Agama Kota Probolinggo dalam memberikan pelayanan informasi kepada masyarakat.",
+      },
+      {
+        heading: "SOP yang Berlaku",
+        content: `<ul class="list-disc pl-5 space-y-2">
+          <li><strong>SOP Permohonan Informasi Publik</strong> — Mengatur alur penerimaan, pencatatan, pemrosesan, dan penyampaian informasi.</li>
+          <li><strong>SOP Penanganan Keberatan</strong> — Mengatur prosedur penanganan keberatan pemohon informasi.</li>
+          <li><strong>SOP Pengklasifikasian Informasi</strong> — Mengatur tata cara mengklasifikasikan informasi publik dan dikecualikan.</li>
+          <li><strong>SOP Dokumentasi Informasi</strong> — Mengatur pengelolaan dan penyimpanan arsip informasi publik.</li>
+          <li><strong>SOP Pelayanan Pengaduan</strong> — Mengatur penanganan pengaduan dari masyarakat.</li>
+        </ul>`,
+      },
+      {
+        heading: "Standar Waktu Layanan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Penerimaan dan pencatatan permohonan: <strong>1 hari kerja</strong></li>
+          <li>Pemrosesan dan penyampaian informasi: <strong>10 hari kerja</strong></li>
+          <li>Perpanjangan (jika diperlukan): <strong>7 hari kerja</strong></li>
+          <li>Tanggapan keberatan: <strong>30 hari kerja</strong></li>
+        </ul>`,
+      },
+    ],
+  },
+  "standar-pengumuman-informasi": {
+    title: "Standar Pengumuman Informasi",
+    sections: [
+      {
+        heading: "Pengertian",
+        content: "Standar Pengumuman Informasi mengatur tata cara dan media yang digunakan untuk mengumumkan informasi publik kepada masyarakat agar dapat diakses secara luas dan mudah.",
+      },
+      {
+        heading: "Media Pengumuman",
+        content: `<ul class="list-disc pl-5 space-y-2">
+          <li><strong>Website resmi</strong> — Informasi dipublikasikan di website Kantor Kementerian Agama Kota Probolinggo</li>
+          <li><strong>Papan pengumuman</strong> — Tersedia di area kantor yang mudah dijangkau masyarakat</li>
+          <li><strong>Media sosial</strong> — Melalui akun resmi Kementerian Agama Kota Probolinggo</li>
+          <li><strong>Selebaran/brosur</strong> — Disebarluaskan pada kegiatan-kegiatan publik</li>
+          <li><strong>Koran/media cetak lokal</strong> — Untuk informasi yang memerlukan jangkauan lebih luas</li>
+        </ul>`,
+      },
+      {
+        heading: "Standar Konten Pengumuman",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Informasi disajikan dalam Bahasa Indonesia yang baik, benar, dan mudah dipahami</li>
+          <li>Informasi harus akurat, relevan, dan mutakhir</li>
+          <li>Mencantumkan tanggal pembaruan informasi</li>
+          <li>Dilengkapi narahubung untuk pertanyaan lebih lanjut</li>
+          <li>Diperbarui paling sedikit 1 (satu) kali dalam sebulan</li>
+        </ul>`,
+      },
+    ],
+  },
+};
+
+const { slug } = Astro.params;
+const page = pages[slug ?? ""];
+
+if (!page) {
+  return Astro.redirect("/404");
+}
+---
+
+<BaseLayout title={page.title}>
+  <div class="mx-20 max-sm:mx-5 my-30">
+    <div class="mb-4">
+      <a href="/layanan-informasi" class="text-green-600 hover:underline text-sm">← Kembali ke Layanan Informasi</a>
+    </div>
+    <h1 class="text-3xl font-bold mb-10">{page.title}</h1>
+
+    <div class="space-y-8">
+      {page.sections.map((section) => (
+        <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <div class="bg-green-600 text-white px-6 py-4">
+            <h2 class="text-xl font-semibold">{section.heading}</h2>
+          </div>
+          <div class="p-6 bg-white text-gray-700 leading-relaxed" set:html={section.content} />
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 p-5 bg-green-50 rounded-lg border border-green-200 text-sm text-gray-700">
+      <p class="font-semibold mb-1">Butuh bantuan lebih lanjut?</p>
+      <p>Hubungi PPID melalui email <strong>kotaprobolinggo@kemenag.go.id</strong> atau kunjungi Jl. Mastrip No. 323, Kota Probolinggo.</p>
+    </div>
+  </div>
+</BaseLayout>

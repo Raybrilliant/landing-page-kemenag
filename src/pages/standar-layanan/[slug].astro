@@ -1,0 +1,219 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pages: Record<string, { title: string; sections: { heading: string; content: string }[] }> = {
+  "maklumat-pelayanan": {
+    title: "Maklumat Pelayanan",
+    sections: [
+      {
+        heading: "Maklumat Pelayanan Kantor Kementerian Agama Kota Probolinggo",
+        content: `<div class="border-l-4 border-green-600 pl-5 italic text-gray-700 text-lg leading-relaxed">
+          "Dengan ini kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan dan apabila tidak menepati janji ini, kami siap menerima sanksi sesuai peraturan perundang-undangan yang berlaku."
+        </div>`,
+      },
+      {
+        heading: "Komitmen Pelayanan",
+        content: `<ul class="list-disc pl-5 space-y-2">
+          <li>Memberikan pelayanan yang cepat, tepat, dan transparan kepada seluruh masyarakat</li>
+          <li>Melayani dengan penuh keikhlasan dan profesionalisme</li>
+          <li>Tidak memungut biaya di luar ketentuan yang berlaku</li>
+          <li>Menyelesaikan permohonan informasi sesuai batas waktu yang ditetapkan</li>
+          <li>Memberikan informasi yang akurat, lengkap, dan mudah dipahami</li>
+          <li>Menjaga kerahasiaan identitas pemohon/pengadu jika diminta</li>
+        </ul>`,
+      },
+      {
+        heading: "Dasar Hukum",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>UU No. 14 Tahun 2008 tentang Keterbukaan Informasi Publik</li>
+          <li>PP No. 61 Tahun 2010 tentang Pelaksanaan UU KIP</li>
+          <li>KMA No. 200 Tahun 2012 tentang PPID Kementerian Agama</li>
+          <li>KMA No. 92 Tahun 2019 tentang Pedoman Layanan Informasi Publik</li>
+        </ul>`,
+      },
+    ],
+  },
+  "jadwal-pelayanan": {
+    title: "Jadwal Pelayanan",
+    sections: [
+      {
+        heading: "Jam Layanan Informasi Publik",
+        content: `<div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-lg">
+            <thead class="bg-green-600 text-white">
+              <tr>
+                <th class="px-6 py-3 text-left text-sm font-semibold">Hari</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold">Jam Pelayanan</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-100">
+              <tr><td class="px-6 py-4 font-medium">Senin – Kamis</td><td class="px-6 py-4">07.30 – 16.00 WIB</td><td class="px-6 py-4 text-green-600">Buka</td></tr>
+              <tr><td class="px-6 py-4 font-medium">Jumat</td><td class="px-6 py-4">07.30 – 16.30 WIB</td><td class="px-6 py-4 text-green-600">Buka</td></tr>
+              <tr><td class="px-6 py-4 font-medium">Sabtu & Minggu</td><td class="px-6 py-4">–</td><td class="px-6 py-4 text-red-500">Tutup</td></tr>
+              <tr><td class="px-6 py-4 font-medium">Hari Libur Nasional</td><td class="px-6 py-4">–</td><td class="px-6 py-4 text-red-500">Tutup</td></tr>
+            </tbody>
+          </table>
+        </div>`,
+      },
+      {
+        heading: "Catatan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Jam istirahat Senin–Kamis: 12.00–13.00 WIB (pelayanan tetap berjalan bergantian)</li>
+          <li>Jam istirahat Jumat: 11.30–13.00 WIB (pelayanan tetap berjalan bergantian)</li>
+          <li>Untuk keperluan mendesak di luar jam kantor, dapat menghubungi melalui email</li>
+        </ul>`,
+      },
+    ],
+  },
+  "biaya-tarif-layanan": {
+    title: "Biaya / Tarif Layanan",
+    sections: [
+      {
+        heading: "Layanan Informasi Publik GRATIS",
+        content: `<div class="flex items-center gap-4 p-4 bg-green-50 rounded-lg border border-green-200">
+          <span class="text-5xl">🆓</span>
+          <div>
+            <p class="font-bold text-green-700 text-2xl">TIDAK DIPUNGUT BIAYA</p>
+            <p class="text-gray-600">Semua layanan informasi publik di Kantor Kementerian Agama Kota Probolinggo tidak dikenakan biaya apapun.</p>
+          </div>
+        </div>`,
+      },
+      {
+        heading: "Biaya Penggandaan / Reproduksi",
+        content: `<p class="text-gray-700 mb-3">Untuk keperluan penggandaan atau perekaman dokumen, biaya ditanggung oleh pemohon. Mekanismenya:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Pemohon dapat melakukan penggandaan/fotocopy mandiri di sekitar kantor</li>
+          <li>Pemohon dapat membawa CD/DVD atau flashdisk untuk perekaman data</li>
+          <li>Petugas PPID membantu proses perekaman tanpa memungut biaya jasa</li>
+        </ul>`,
+      },
+      {
+        heading: "Larangan Pungutan",
+        content: "Petugas PPID dilarang keras memungut biaya apapun dalam proses pelayanan informasi publik. Jika terdapat pungutan tidak resmi, harap segera laporkan melalui saluran pengaduan.",
+      },
+    ],
+  },
+  "standar-pelayanan": {
+    title: "Standar Pelayanan",
+    sections: [
+      {
+        heading: "Komponen Standar Pelayanan",
+        content: `<div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200 border border-gray-200">
+            <tbody class="bg-white divide-y divide-gray-100">
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50 w-1/3">Dasar Hukum</td><td class="px-6 py-4">UU No. 14 Tahun 2008 tentang KIP, PP No. 61 Tahun 2010</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Persyaratan</td><td class="px-6 py-4">Identitas diri yang jelas, formulir permohonan informasi</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Prosedur</td><td class="px-6 py-4">Mengisi formulir → Menyerahkan ke PPID → Menerima tanda bukti → Menunggu proses → Menerima informasi</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Jangka Waktu</td><td class="px-6 py-4">10 hari kerja (dapat diperpanjang 7 hari kerja)</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Biaya/Tarif</td><td class="px-6 py-4">Gratis</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Produk Layanan</td><td class="px-6 py-4">Salinan dokumen/informasi publik (softcopy atau hardcopy)</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Sarana & Prasarana</td><td class="px-6 py-4">Meja layanan PPID, komputer, printer, ruang tunggu</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Kompetensi Pelaksana</td><td class="px-6 py-4">Petugas terlatih dalam pelayanan informasi publik</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Pengawasan Internal</td><td class="px-6 py-4">Atasan PPID dan Inspektorat Kementerian Agama</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Penanganan Pengaduan</td><td class="px-6 py-4">Melalui email, surat, atau datang langsung ke kantor PPID</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Jumlah Pelaksana</td><td class="px-6 py-4">Minimal 2 petugas PPID yang berdedikasi</td></tr>
+              <tr><td class="px-6 py-4 font-semibold bg-gray-50">Jaminan Pelayanan</td><td class="px-6 py-4">Pelayanan diberikan sesuai maklumat dan standar yang telah ditetapkan</td></tr>
+            </tbody>
+          </table>
+        </div>`,
+      },
+    ],
+  },
+  "arah-kebijakan-layanan": {
+    title: "Arah Kebijakan Layanan",
+    sections: [
+      {
+        heading: "Visi Layanan Informasi",
+        content: `<div class="p-4 bg-green-50 rounded-lg border border-green-200">
+          <p class="font-bold text-green-700 text-lg">"Terwujudnya Pelayanan Informasi yang Akuntabel"</p>
+        </div>`,
+      },
+      {
+        heading: "Arah Kebijakan",
+        content: `<ol class="list-decimal pl-5 space-y-3">
+          <li><strong>Peningkatan Aksesibilitas</strong> — Meningkatkan kualitas dan kemudahan akses layanan informasi publik kepada masyarakat melalui berbagai media dan kanal.</li>
+          <li><strong>Integrasi Sistem</strong> — Membangun sistem pengelolaan informasi publik yang terintegrasi, transparan, dan mudah digunakan.</li>
+          <li><strong>Pengembangan SDM</strong> — Mengembangkan kompetensi sumber daya manusia PPID melalui pelatihan dan bimbingan teknis secara berkala.</li>
+          <li><strong>Partisipasi Masyarakat</strong> — Mendorong partisipasi aktif masyarakat dalam pengawasan penyelenggaraan pemerintahan melalui keterbukaan informasi.</li>
+          <li><strong>Digitalisasi Layanan</strong> — Menerapkan teknologi informasi untuk mempermudah akses dan permohonan informasi publik secara daring.</li>
+          <li><strong>Peningkatan Kualitas</strong> — Melakukan evaluasi dan peningkatan berkelanjutan terhadap kualitas layanan informasi publik.</li>
+        </ol>`,
+      },
+      {
+        heading: "Target Capaian",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Indeks Keterbukaan Informasi Publik (IKIP) meningkat setiap tahun</li>
+          <li>Waktu penyelesaian permohonan informasi kurang dari 5 hari kerja</li>
+          <li>Tingkat kepuasan pemohon informasi minimal 80%</li>
+          <li>Nol pengaduan layanan informasi yang tidak ditanggapi</li>
+        </ul>`,
+      },
+    ],
+  },
+  "strategi-metode-ppem": {
+    title: "Strategi dan Metode PPEM",
+    sections: [
+      {
+        heading: "Tentang PPEM",
+        content: "Peningkatan Pelayanan dan Edukasi Masyarakat (PPEM) adalah program strategis untuk meningkatkan kualitas layanan informasi publik sekaligus mengedukasi masyarakat tentang hak-hak mereka atas informasi.",
+      },
+      {
+        heading: "Strategi PPEM",
+        content: `<ol class="list-decimal pl-5 space-y-3">
+          <li><strong>Sosialisasi dan Edukasi</strong> — Menyelenggarakan sosialisasi tentang hak atas informasi publik kepada masyarakat, lembaga pendidikan, dan organisasi kemasyarakatan.</li>
+          <li><strong>Pengembangan Portal Informasi</strong> — Membangun dan mengembangkan portal informasi yang user-friendly, responsif, dan mudah diakses oleh semua kalangan.</li>
+          <li><strong>Pelatihan Petugas PPID</strong> — Mengadakan pelatihan rutin untuk meningkatkan kompetensi petugas dalam melayani permohonan informasi.</li>
+          <li><strong>Koordinasi dengan KI</strong> — Membangun koordinasi aktif dengan Komisi Informasi Provinsi Jawa Timur untuk peningkatan tata kelola informasi publik.</li>
+          <li><strong>Monitoring dan Evaluasi</strong> — Melakukan monitoring dan evaluasi berkala terhadap kualitas dan kuantitas layanan informasi yang diberikan.</li>
+          <li><strong>e-PPID</strong> — Menerapkan sistem permohonan informasi secara elektronik (e-PPID) untuk kemudahan dan efisiensi layanan.</li>
+          <li><strong>Kolaborasi Lintas Sektor</strong> — Membangun kerja sama dengan media, akademisi, dan LSM untuk memperluas jangkauan edukasi keterbukaan informasi.</li>
+        </ol>`,
+      },
+      {
+        heading: "Metode Pelaksanaan",
+        content: `<ul class="list-disc pl-5 space-y-1">
+          <li>Workshop dan seminar keterbukaan informasi publik</li>
+          <li>Penyebaran materi edukasi melalui media sosial dan website</li>
+          <li>Bimbingan teknis bagi petugas PPID satker</li>
+          <li>Forum diskusi dan konsultasi publik</li>
+          <li>Pembuatan video panduan permohonan informasi</li>
+          <li>Survei kepuasan layanan informasi secara berkala</li>
+        </ul>`,
+      },
+    ],
+  },
+};
+
+const { slug } = Astro.params;
+const page = pages[slug ?? ""];
+
+if (!page) {
+  return Astro.redirect("/404");
+}
+---
+
+<BaseLayout title={page.title}>
+  <div class="mx-20 max-sm:mx-5 my-30">
+    <div class="mb-4">
+      <a href="/standar-layanan" class="text-green-600 hover:underline text-sm">← Kembali ke Standar Layanan</a>
+    </div>
+    <h1 class="text-3xl font-bold mb-10">{page.title}</h1>
+
+    <div class="space-y-8">
+      {page.sections.map((section) => (
+        <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <div class="bg-green-600 text-white px-6 py-4">
+            <h2 class="text-xl font-semibold">{section.heading}</h2>
+          </div>
+          <div class="p-6 bg-white text-gray-700 leading-relaxed" set:html={section.content} />
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 p-5 bg-green-50 rounded-lg border border-green-200 text-sm text-gray-700">
+      <p class="font-semibold mb-1">Pertanyaan lebih lanjut?</p>
+      <p>Hubungi PPID melalui email <strong>kotaprobolinggo@kemenag.go.id</strong> atau kunjungi Jl. Mastrip No. 323, Kota Probolinggo.</p>
+    </div>
+  </div>
+</BaseLayout>
