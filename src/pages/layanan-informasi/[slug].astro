@@ -6,12 +6,20 @@ const pages: Record<string, { title: string; sections: { heading: string; conten
     title: "Tata Cara Permohonan Informasi",
     sections: [
       {
+        heading: " ",
+        content:`<div class="flex justify-center my-10 mx-20 max-sm:mx-5 rounded-lg overflow-hidden">
+            <img src="/alur-pelayanan.webp" alt="Alur Pelayanan" class="w-full h-auto" />
+        </div>`
+      },
+      {
         heading: "Pengertian",
         content: "Permohonan informasi publik dapat diajukan oleh setiap warga negara kepada PPID Kantor Kementerian Agama Kota Probolinggo secara tertulis maupun tidak tertulis.",
       },
       {
         heading: "Langkah-Langkah Permohonan",
-        content: `<ol class="list-decimal pl-5 space-y-2">
+        content:
+        `
+        <ol class="list-decimal pl-5 space-y-2">
           <li>Pemohon mengisi formulir permohonan informasi yang memuat: nama lengkap, alamat, nomor telepon, subjek informasi yang diminta, cara penyampaian informasi, dan tujuan penggunaan informasi.</li>
           <li>Formulir diserahkan secara langsung, via email, atau melalui surat tertulis kepada PPID.</li>
           <li>PPID mencatat permohonan dan memberikan tanda bukti penerimaan dengan nomor registrasi.</li>

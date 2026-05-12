@@ -66,7 +66,7 @@ export const Prestasi = () => {
                         <BlurFade key={index} delay={0.2} direction="right" inView>
                             <div className="p-5 bg-white rounded-lg hover:shadow-xl hover:bg-white transition duration-300 cursor-pointer flex flex-col">
                                 <img src={pb.files.getURL(item, item?.document[0] ?? '')} alt="photo-prestasi" className="w-full h-60 object-top object-cover"/>
-                                <h2 className="text-xl font-semibold my-3 line-clamp-2">{item.name}</h2>
+                                <h2 className={`text-xl font-semibold my-3 ${isExpanded ? '' : 'line-clamp-1'}`}>{item.name}</h2>
                                 <p className="text-sm text-gray-500 my-2">{new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
                                 <p className={`text-justify text-sm transition-all duration-300 ${isExpanded ? '' : 'line-clamp-3'}`}>
                                     {item.description}
