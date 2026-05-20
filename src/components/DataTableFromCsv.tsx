@@ -102,6 +102,7 @@ export default function DataTableFromCSV({ csvUrl, filterYear, visibleCols, year
         pagination={true}
         paginationPageSize={15}
         defaultColDef={{ resizable: true, minWidth: 100 }}
+        autoSizeStrategy={{ type: 'fitCellContents' }}
       />
     </div>
   );
