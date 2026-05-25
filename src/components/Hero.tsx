@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { SearchBar } from "./SearchBar";
+import { Button } from "./ui/button";
 
 export default function Hero() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -31,7 +32,10 @@ export default function Hero() {
 					<h1 className="text-3xl max-sm:text-xl font-bold">Portal Resmi Kantor Kementerian Agama Kota Probolinggo</h1>
 					<p className="text-sm max-sm:text-xs">Berkhidmah untuk Umat Dalam Keberagaman Bersatupadu Bergerak dan Berkarya Wujudkan Negeri yang Damai</p>
 				</div>
-                <SearchBar />
+          {/*<SearchBar />*/}
+          <a href="https://kemenagkotaprobolinggo.id"><Button variant="ghost" size="lg" className="relative z-10 mt-10 bg-green-600 text-white hover:scale-110 duration-500">
+            Jelajahi Layanan
+          </Button></a>
 			</div>
         </>
     )

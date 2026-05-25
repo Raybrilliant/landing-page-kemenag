@@ -29,11 +29,27 @@ import { BeritaList } from "@/components/BeritaList";
 			</div>
 		</div>
 
-		<h3 class="text-4xl font-bold mt-20 mx-20 max-sm:mx-5 max-sm:mt-5 max-sm:text-3xl text-center" id="layanan">SOLUSI</h3>
-		<p class="font-medium mb-10 mx-20 max-sm:mx-5 text-center max-sm:mb-10 italic">Sistem Online Layanan Unggul & Integrasi</p>
+		<div class="border-2 border-green-600 bg-green-50 rounded-xl shadow-lg p-8 mx-20 my-20 max-sm:mx-5">
+			<div class="flex items-start gap-4">
+				<div class="bg-green-600 text-white rounded-full p-3 flex-shrink-0">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+					</svg>
+				</div>
+				<div class="flex-1">
+					<h4 class="text-xl font-bold text-green-800 mb-2">Pengumuman</h4>
+					<p class="font-medium text-green-700 italic">Untuk pengalaman pelayanan yang lebih baik, silahkan akses <strong>SOLUSI</strong> kami.</p>
+					<a href="https://kemenagkotaprobolinggo.id">
+						<button class="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-600/80 hover:px-8 duration-300 cursor-pointer mt-4">
+							Jelajahi Layanan Kami ->
+						</button>
+					</a>
+				</div>
+			</div>
+		</div>
 		
 		<!-- Layanan -->
-		<Layanan className="mx-20 max-sm:mx-5 mb-30 max-sm:my-5" client:visible/>
+		<!-- <Layanan className="mx-20 max-sm:mx-5 mb-30 max-sm:my-5" client:visible/> -->
 		<!-- Laporan -->
 		<Laporan id="laporan" client:visible/>
 
